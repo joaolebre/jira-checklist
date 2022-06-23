@@ -23,7 +23,7 @@ return function (App $app) {
 
         $group->group('/tickets', function (Group $group) {
             $group->get('', Ticket\ListTicketsAction::class);
-            $group->get('/{id}', ViewUserAction::class);
+            $group->get('/{id}', Ticket\GetTicketAction::class);
         });
     });
 

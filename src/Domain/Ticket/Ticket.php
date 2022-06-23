@@ -14,20 +14,6 @@ class Ticket implements JsonSerializable
     private $tabs;
 
     /**
-     * @param int|null $id
-     * @param string $name
-     * @param string $userId
-     * @param string $tabs
-     */
-    public function __construct(?int $id, string $name, string $userId, string $tabs)
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->userId = $userId;
-        $this->tabs = $tabs;
-    }
-
-    /**
      * @return int|null
      */
     public function getId(): ?int
