@@ -7,7 +7,7 @@ so that the ticket can be considered as validated. Built with the Slim framework
 
 #### DOCS:
 
-- Documentation: `GET /`
+- Documentation: `GET /api`
 
 
 #### USERS:
@@ -62,12 +62,12 @@ so that the ticket can be considered as validated. Built with the Slim framework
 
 #### ITEMS:
 
-- Get All Items: `GET /api/notes`
+- Get All Items: `GET /api/items`
 
-- Get Item: `GET /api/notes/{id}`
+- Get Item: `GET /api/items/{id}`
 
-- Create Item: `POST /api/notes`
+- Create Item: `POST /api/items`
 
-- Update Item: `PUT /api/notes/{id}`
+- Update Item: `PUT /api/items/{id}`
 
-- Delete Item: `DELETE /api/notes/{id}`
+- Delete Item: `DELETE /api/items/{id}`
