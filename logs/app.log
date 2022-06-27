@@ -297,3 +297,6 @@
 [2022-06-27T12:26:30.482633-04:00] slim-app.INFO: Item of id `7` was viewed. [] {"uid":"fbbbc2b"}
 [2022-06-27T12:26:31.516685-04:00] slim-app.INFO: Item of id `7` was viewed. [] {"uid":"8ebe7f8"}
 [2022-06-27T12:26:32.067142-04:00] slim-app.INFO: Item of id `7` was viewed. [] {"uid":"1374904"}
+[2022-06-27T12:57:25.156535-04:00] slim-app.INFO: Item list was viewed [] {"uid":"87bb7dd"}
+[2022-06-27T13:02:29.594175-04:00] slim-app.INFO: Item list was viewed [] {"uid":"be9f776"}
+[2022-06-27T13:09:01.214041-04:00] slim-app.INFO: Item of id `9` was viewed. [] {"uid":"305cc50"}

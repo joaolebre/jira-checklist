@@ -62,6 +62,40 @@ class ItemRepository extends AbstractRepository
     /**
      * @throws ItemNotFoundException
      */
+    public function updateItem(int $itemId): Item {
+        $item = $this->findItemById($itemId);
+
+        $query = '
+            UPDATE items
+            SET summary = :summary,
+                is_checked = :is_checked,
+                is_important = :is_important,
+                `order` = :order,
+                status_id = :status_id
+            WHERE id = :id
+        ';
+        $statement = $this->database->prepare($query);
+
+        $summary = $item->getSummary();
+        $isChecked = $item->getIsChecked();
+        $isImportant = $item->getIsImportant();
+        $order = $item->getOrder();
+        $statusId = $item->getStatusId();
+
+        $statement->bindParam(':summary', $summary);
+        $statement->bindParam(':is_checked', $isChecked);
+        $statement->bindParam(':is_important', $isImportant);
+        $statement->bindParam(':order', $order);
+        $statement->bindParam(':status_id', $statusId);
+
+        $statement->execute();
+
+        return $item;
+    }
+
+    /**
+     * @throws ItemNotFoundException
+     */
     public function deleteItemById(int $itemId) {
         $this->findItemById($itemId);
 

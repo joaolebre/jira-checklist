@@ -19,7 +19,7 @@ class CreateItemAction extends ItemAction
         $newItem = Item::fromJSON($data);
         $createdItem = $this->itemRepository->createItem($newItem);
 
-        $this->logger->info("New item with id `{$createdItem->getId()}`.");
+        $this->logger->info("New item with id `{$createdItem->getId()}` was created.");
 
         return $this->respondWithData($createdItem, 201)->withHeader('Location', "/items/{$createdItem->getId()}");
     }

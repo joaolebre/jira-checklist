@@ -15,7 +15,6 @@ class Item implements JsonSerializable {
     private $sectionId;
     private $statusId;
 
-
     public static function fromJSON(array $data): Item
     {
         [
@@ -49,20 +48,22 @@ class Item implements JsonSerializable {
     }
 
     /**
-     * @param string $summary
+     * @param mixed $summary
      */
-    public function setSummary(string $summary): void
+    public function setSummary($summary): void
     {
         $this->summary = $summary;
     }
 
     /**
-     * @param int $order
+     * @param mixed $order
      */
-    public function setOrder(int $order): void
+    public function setOrder($order): void
     {
         $this->order = $order;
     }
+
+
 
     /**
      * @param int $sectionId
