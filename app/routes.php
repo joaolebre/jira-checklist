@@ -8,6 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use App\Application\Actions\Ticket;
+use App\Application\Actions\ItemStatus;
 
 return function (App $app) {
     $app->get('/', function (Request $request, Response $response) {
@@ -24,6 +25,11 @@ return function (App $app) {
         $group->group('/tickets', function (Group $group) {
             $group->get('', Ticket\ListTicketsAction::class);
             $group->get('/{id}', Ticket\GetTicketAction::class);
+        });
+
+        $group->group('/item-statuses', function (Group $group) {
+            $group->get('', ItemStatus\ListItemStatusesAction::class);
+            $group->get('/{id}', ItemStatus\GetItemStatusAction::class);
         });
     });
 

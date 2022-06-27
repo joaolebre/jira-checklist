@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Ticket;
 
+use App\Domain\User\User;
 use JsonSerializable;
 
 class Ticket implements JsonSerializable
@@ -10,7 +11,7 @@ class Ticket implements JsonSerializable
 
     private $id;
     private $name;
-    private $userId;
+    private $user;
     private $tabs;
 
     /**
@@ -30,11 +31,11 @@ class Ticket implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return User
      */
-    public function getUserId(): string
+    public function getUserId(): User
     {
-        return $this->userId;
+        return $this->user;
     }
 
     /**
@@ -54,7 +55,7 @@ class Ticket implements JsonSerializable
        return [
            'id' => $this->id,
            'name' => $this->name,
-           'userId' => $this->userId,
+           'user' => $this->user,
            'tabs' => $this->tabs
        ];
     }
