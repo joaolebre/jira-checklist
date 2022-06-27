@@ -36,8 +36,38 @@ class ItemRepository extends AbstractRepository
         return $item;
     }
 
+    /**
+     * @throws ItemNotFoundException
+     */
     public function createItem(Item $item): Item {
-        
+        $query = '
+            INSERT INTO items (summary, `order`, section_id)
+            VALUES (:summary, :order, :section_id)
+        ';
+        $statement = $this->database->prepare($query);
+
+        $summary = $item->getSummary();
+        $order = $item->getOrder();
+        $sectionId = $item->getSectionId();
+
+        $statement->bindParam(':summary', $summary);
+        $statement->bindParam(':order', $order);
+        $statement->bindParam(':section_id', $sectionId);
+
+        $statement->execute();
+
+        return $this->findItemById((int) $this->database->lastInsertId());
     }
 
+    /**
+     * @throws ItemNotFoundException
+     */
+    public function deleteItemById(int $itemId) {
+        $this->findItemById($itemId);
+
+        $query = 'DELETE FROM items WHERE items.id = :id';
+        $statement = $this->database->prepare($query);
+        $statement->bindParam(':id', $itemId);
+        $statement->execute();
+    }
 }

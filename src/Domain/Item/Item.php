@@ -3,10 +3,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Item;
 
-use App\Domain\ItemStatus\ItemStatus;
-use App\Domain\Section\Section;
 use JsonSerializable;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class Item implements JsonSerializable {
 
@@ -15,8 +12,25 @@ class Item implements JsonSerializable {
     private $isChecked;
     private $isImportant;
     private $order;
-    private $section;
-    private $status;
+    private $sectionId;
+    private $statusId;
+
+
+    public static function fromJSON(array $data): Item
+    {
+        [
+            'summary' => $summary,
+            'order' => $order,
+            'section_id' => $sectionId
+        ] = $data;
+
+        $newItem = new self();
+        $newItem->setSummary($summary);
+        $newItem->setOrder($order);
+        $newItem->setSectionId($sectionId);
+
+        return $newItem;
+    }
 
     /**
      * @return int|null
@@ -32,6 +46,30 @@ class Item implements JsonSerializable {
     public function getSummary(): string
     {
         return $this->summary;
+    }
+
+    /**
+     * @param string $summary
+     */
+    public function setSummary(string $summary): void
+    {
+        $this->summary = $summary;
+    }
+
+    /**
+     * @param int $order
+     */
+    public function setOrder(int $order): void
+    {
+        $this->order = $order;
+    }
+
+    /**
+     * @param int $sectionId
+     */
+    public function setSectionId(int $sectionId): void
+    {
+        $this->sectionId = $sectionId;
     }
 
     /**
@@ -59,19 +97,19 @@ class Item implements JsonSerializable {
     }
 
     /**
-     * @return Section
+     * @return int
      */
-    public function getSection(): Section
+    public function getSectionId(): int
     {
-        return $this->section;
+        return $this->sectionId;
     }
 
     /**
-     * @return ItemStatus
+     * @return int
      */
-    public function getStatus(): ItemStatus
+    public function getStatusId(): int
     {
-        return $this->status;
+        return $this->statusId;
     }
 
 
@@ -80,11 +118,11 @@ class Item implements JsonSerializable {
         return [
             'id' => $this->id,
             'summary' => $this->summary,
-            'is_checked' => $this->isChecked,
-            'is_important' => $this->isImportant,
+            'is_checked' => $this->is_checked,
+            'is_important' => $this->is_important,
             'order' => $this->order,
-            'section' => $this->section,
-            'status' => $this->status
+            'section_id' => $this->section_id,
+            'status_id' => $this->status_id
         ];
     }
 }

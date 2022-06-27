@@ -12,8 +12,7 @@ class GetItemStatusAction extends ItemStatusAction
 
     /**
      * @return Response
-     * @throws HttpBadRequestException
-     * @throws ItemStatusNotFoundException
+     * @throws ItemStatusNotFoundException|HttpBadRequestException
      */
     protected function action(): Response
     {
