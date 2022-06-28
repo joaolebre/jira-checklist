@@ -19,7 +19,7 @@ class GetItemStatusAction extends ItemStatusAction
         $itemStatusId = (int) $this->resolveArg('id');
         $itemStatus = $this->itemStatusRepository->findItemStatusById($itemStatusId);
 
-        $this->logger->info("Item status of id `${itemStatusId}` was viewed.");
+        $this->logger->info("Item status with id `${itemStatusId}` was viewed.");
 
         return $this->respondWithData($itemStatus);
     }

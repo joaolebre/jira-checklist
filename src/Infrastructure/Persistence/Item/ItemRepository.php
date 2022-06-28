@@ -36,6 +36,15 @@ class ItemRepository extends AbstractRepository
         return $item;
     }
 
+    public function findItemsBySectionId(int $sectionId): array {
+        $query = 'SELECT * FROM items WHERE items.section_id = :section_id';
+        $statement = $this->database->prepare($query);
+        $statement->bindParam(':section_id', $sectionId);
+        $statement->execute();
+
+        return (array) $statement->fetchAll(PDO::FETCH_CLASS);
+    }
+
     /**
      * @throws ItemNotFoundException
      */

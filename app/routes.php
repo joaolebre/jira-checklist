@@ -10,6 +10,7 @@ use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use App\Application\Actions\Ticket;
 use App\Application\Actions\ItemStatus;
 use App\Application\Actions\Item;
+use App\Application\Actions\Section;
 
 return function (App $app) {
     $app->get('/', function (Request $request, Response $response) {
@@ -26,6 +27,12 @@ return function (App $app) {
         $group->group('/tickets', function (Group $group) {
             $group->get('', Ticket\ListTicketsAction::class);
             $group->get('/{id}', Ticket\GetTicketAction::class);
+        });
+
+        $group->group('/sections', function (Group $group) {
+            $group->get('', Section\ListSectionsAction::class);
+            $group->get('/{id}', Section\GetSectionAction::class);
+            $group->post('', Section\CreateSectionAction::class);
         });
 
         $group->group('/items', function (Group $group) {
