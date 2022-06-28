@@ -17,7 +17,12 @@ class CreateSectionAction extends SectionAction
     protected function action(): Response
     {
         $data = $this->request->getParsedBody();
-        $newSection = Section::fromJSON($data);
+
+        $newSection = new Section();
+        $newSection->setName($data['name']);
+        $newSection->setOrder((int) $data['order']);
+        $newSection->setTabId((int) $data['tab_id']);
+
         $createdSection = $this->sectionRepository->createSection($newSection);
 
         $this->logger->info("New section with id `{$createdSection->getId()}` was created.");

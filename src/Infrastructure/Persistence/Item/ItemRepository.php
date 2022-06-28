@@ -37,7 +37,11 @@ class ItemRepository extends AbstractRepository
     }
 
     public function findItemsBySectionId(int $sectionId): array {
-        $query = 'SELECT * FROM items WHERE items.section_id = :section_id';
+        $query = '
+            SELECT * FROM items 
+            WHERE items.section_id = :section_id
+            ORDER BY items.`order`
+        ';
         $statement = $this->database->prepare($query);
         $statement->bindParam(':section_id', $sectionId);
         $statement->execute();

@@ -11,6 +11,7 @@ use App\Application\Actions\Ticket;
 use App\Application\Actions\ItemStatus;
 use App\Application\Actions\Item;
 use App\Application\Actions\Section;
+use App\Application\Actions\Tab;
 
 return function (App $app) {
     $app->get('/', function (Request $request, Response $response) {
@@ -29,10 +30,20 @@ return function (App $app) {
             $group->get('/{id}', Ticket\GetTicketAction::class);
         });
 
+        $group->group('/tabs', function (Group $group) {
+            $group->get('', Tab\ListTabsAction::class);
+            $group->get('/{id}', Tab\GetTabAction::class);
+            $group->post('', Tab\CreateTabAction::class);
+            $group->put('/{id}', Tab\UpdateTabAction::class);
+            $group->delete('/{id}', Tab\DeleteTabAction::class);
+        });
+
         $group->group('/sections', function (Group $group) {
             $group->get('', Section\ListSectionsAction::class);
             $group->get('/{id}', Section\GetSectionAction::class);
             $group->post('', Section\CreateSectionAction::class);
+            $group->put('/{id}', Section\UpdateSectionAction::class);
+            $group->delete('/{id}', Section\DeleteSectionAction::class);
         });
 
         $group->group('/items', function (Group $group) {

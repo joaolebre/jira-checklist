@@ -14,26 +14,42 @@ class Section implements JsonSerializable
     private $tabId;
     private $items;
 
-    public static function fromJSON(array $data): Section
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
     {
-        [
-            'name' => $name,
-            'order' => $order,
-            'tab_id' => $tabId
-        ] = $data;
-
-        $newSection = new self();
-        $newSection->name = $name;
-        $newSection->order = $order;
-        $newSection->tabId = $tabId;
-
-        return $newSection;
+        $this->id = $id;
     }
 
     /**
-     * @return int|null
+     * @param string $name
      */
-    public function getId(): ?int
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param int $order
+     */
+    public function setOrder(int $order): void
+    {
+        $this->order = $order;
+    }
+
+    /**
+     * @param int $tabId
+     */
+    public function setTabId(int $tabId): void
+    {
+        $this->tabId = $tabId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
     {
         return $this->id;
     }
@@ -63,17 +79,17 @@ class Section implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getTabId(): string
+    public function getTabId(): int
     {
         return $this->tabId;
     }
 
     /**
-     * @return array
+     * @return null|array
      */
-    public function getItems(): array
+    public function getItems(): ?array
     {
         return $this->items;
     }

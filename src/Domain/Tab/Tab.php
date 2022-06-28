@@ -15,9 +15,9 @@ class Tab implements JsonSerializable
     private $sections;
 
     /**
-     * @return int|null
+     * @return mixed
      */
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -31,11 +31,43 @@ class Tab implements JsonSerializable
     }
 
     /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param int $order
+     */
+    public function setOrder(int $order): void
+    {
+        $this->order = $order;
+    }
+
+    /**
+     * @param int $ticketId
+     */
+    public function setTicketId(int $ticketId): void
+    {
+        $this->ticketId = $ticketId;
+    }
+
+    /**
      * @return int
      */
     public function getOrder(): int
     {
         return $this->order;
+    }
+
+    /**
+     * @param array $sections
+     */
+    public function setSections(array $sections): void
+    {
+        $this->sections = $sections;
     }
 
     /**
@@ -47,9 +79,9 @@ class Tab implements JsonSerializable
     }
 
     /**
-     * @return array
+     * @return null|array
      */
-    public function getSections(): array
+    public function getSections(): ?array
     {
         return $this->sections;
     }
