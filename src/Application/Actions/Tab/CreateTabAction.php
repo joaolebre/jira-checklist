@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Application\Actions\Tab;
 
-use App\Domain\DomainException\DomainRecordNotFoundException;
 use App\Domain\Tab\Tab;
+use App\Domain\Tab\TabNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
-use Slim\Exception\HttpBadRequestException;
 
 class CreateTabAction extends TabAction
 {
 
     /**
      * @return Response
+     * @throws TabNotFoundException
      */
     protected function action(): Response
     {

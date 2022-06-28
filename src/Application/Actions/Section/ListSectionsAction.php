@@ -14,6 +14,7 @@ class ListSectionsAction extends SectionAction
     protected function action(): Response
     {
         $sections = $this->sectionRepository->findAll();
+
         $this->logger->info("Section list was viewed");
 
         return $this->respondWithData($sections);

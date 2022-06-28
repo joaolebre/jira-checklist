@@ -38,4 +38,25 @@ class TicketRepository extends AbstractRepository
 
         return $ticket;
     }
+
+    /**
+     * @throws TicketNotFoundException
+     */
+    public function createTicket(Ticket $ticket): Ticket {
+        $query = '
+            INSERT INTO tickets (name, user_id) 
+            VALUES (:name, :user_id)
+        ';
+        $statement = $this->database->prepare($query);
+
+        $name = $ticket->getName();
+        $userId = $ticket->getUserId();
+
+        $statement->bindParam(':name', $name);
+        $statement->bindParam(':user_id', $userId);
+
+        $statement->execute();
+
+        return $this->findTicketById((int) $this->database->lastInsertId());
+    }
 }
