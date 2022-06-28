@@ -59,11 +59,8 @@ class ItemRepository extends AbstractRepository
         return $this->findItemById((int) $this->database->lastInsertId());
     }
 
-    /**
-     * @throws ItemNotFoundException
-     */
-    public function updateItem(int $itemId): Item {
-        $item = $this->findItemById($itemId);
+
+    public function updateItem(Item $item): Item {
 
         $query = '
             UPDATE items
@@ -76,12 +73,14 @@ class ItemRepository extends AbstractRepository
         ';
         $statement = $this->database->prepare($query);
 
+        $itemId = $item->getId();
         $summary = $item->getSummary();
         $isChecked = $item->getIsChecked();
         $isImportant = $item->getIsImportant();
         $order = $item->getOrder();
         $statusId = $item->getStatusId();
 
+        $statement->bindParam('id', $itemId);
         $statement->bindParam(':summary', $summary);
         $statement->bindParam(':is_checked', $isChecked);
         $statement->bindParam(':is_important', $isImportant);

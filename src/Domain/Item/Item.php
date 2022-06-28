@@ -32,11 +32,43 @@ class Item implements JsonSerializable {
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param bool $isChecked
+     */
+    public function setIsChecked(bool $isChecked): void
+    {
+        $this->isChecked = $isChecked;
+    }
+
+    /**
+     * @param bool $isImportant
+     */
+    public function setIsImportant(bool $isImportant): void
+    {
+        $this->isImportant = $isImportant;
+    }
+
+    /**
+     * @param int $statusId
+     */
+    public function setStatusId(int $statusId): void
+    {
+        $this->statusId = $statusId;
     }
 
     /**
@@ -48,22 +80,20 @@ class Item implements JsonSerializable {
     }
 
     /**
-     * @param mixed $summary
+     * @param string $summary
      */
-    public function setSummary($summary): void
+    public function setSummary(string $summary): void
     {
         $this->summary = $summary;
     }
 
     /**
-     * @param mixed $order
+     * @param int $order
      */
-    public function setOrder($order): void
+    public function setOrder(int $order): void
     {
         $this->order = $order;
     }
-
-
 
     /**
      * @param int $sectionId

@@ -32,6 +32,7 @@ return function (App $app) {
             $group->get('', Item\ListItemsAction::class);
             $group->get('/{id}', Item\GetItemAction::class);
             $group->post('', Item\CreateItemAction::class);
+            $group->put('/{id}', Item\UpdateItemAction::class);
             $group->delete('/{id}', Item\DeleteItemAction::class);
         });
 
