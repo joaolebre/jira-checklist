@@ -17,7 +17,7 @@ class UpdateTabAction extends TabAction
     protected function action(): Response
     {
         $tabId = $this->resolveArg('id');
-        $tab = $this->tabRepository->findTabById($tabId);
+        $tab = $this->tabRepository->findTabById((int) $tabId);
 
         $data = $this->request->getParsedBody();
 

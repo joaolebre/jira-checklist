@@ -71,9 +71,9 @@ class Tab implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getTicketId(): string
+    public function getTicketId(): int
     {
         return $this->ticketId;
     }
@@ -93,7 +93,7 @@ class Tab implements JsonSerializable
             'id' => $this->id,
             'name' => $this->name,
             'order' => $this->order,
-            'ticket_id' => $this->ticketId,
+            'ticket_id' => $this->ticket_id,
             'sections' => $this->sections
         ];
     }

@@ -9,24 +9,25 @@ class Ticket implements JsonSerializable
 {
 
     private $id;
-    private $name;
+    private $title;
+    private $description;
     private $userId;
     private $tabs;
 
     /**
-     * @return int|null
+     * @return mixed
      */
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @param string $name
+     * @param string $title
      */
-    public function setName(string $name): void
+    public function setTitle(string $title): void
     {
-        $this->name = $name;
+        $this->title = $title;
     }
 
     /**
@@ -48,10 +49,27 @@ class Ticket implements JsonSerializable
     /**
      * @return string
      */
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
 
     /**
      * @return int
@@ -77,7 +95,7 @@ class Ticket implements JsonSerializable
     {
        return [
            'id' => $this->id,
-           'name' => $this->name,
+           'name' => $this->title,
            'user' => $this->user_id,
            'tabs' => $this->tabs
        ];

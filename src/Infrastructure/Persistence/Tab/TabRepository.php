@@ -37,13 +37,27 @@ class TabRepository extends AbstractRepository
         return $tab;
     }
 
+    public function findTabsByTicketId($ticketId): array
+    {
+        $query = '
+            SELECT * FROM tabs 
+            WHERE tabs.ticket_id = :ticket_id 
+            ORDER BY tabs.`order`
+            ';
+        $statement = $this->database->prepare($query);
+        $statement->bindParam(':ticket_id', $ticketId);
+        $statement->execute();
+
+        return (array) $statement->fetchAll(PDO::FETCH_CLASS);
+    }
+
     /**
      * @throws TabNotFoundException
      */
     public function createTab(Tab $tab)
     {
         $query = '
-            INSERT INTO tabs(name, order, ticket_id)
+            INSERT INTO tabs(name, `order`, ticket_id)
             VALUES (:name, :order, :ticket_id)
         ';
         $statement = $this->database->prepare($query);

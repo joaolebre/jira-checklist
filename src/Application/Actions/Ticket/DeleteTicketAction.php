@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Application\Actions\Tab;
+namespace App\Application\Actions\Ticket;
 
 use App\Domain\Tab\TabNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
 
-class DeleteTabAction extends TabAction
+class DeleteTicketAction extends TicketAction
 {
 
     /**
@@ -17,10 +17,10 @@ class DeleteTabAction extends TabAction
      */
     protected function action(): Response
     {
-        $tabId = $this->resolveArg('id');
-        $this->tabRepository->deleteTabById($tabId);
+        $ticketId = $this->resolveArg('id');
+        $this->tabRepository->deleteTabById($ticketId);
 
-        $this->logger->info("Tab with id `${tabId} deleted successfully`.");
+        $this->logger->info("Ticket with id `${ticketId} deleted successfully`.");
 
         return $this->respondWithData();
     }

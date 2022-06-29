@@ -32,9 +32,9 @@ class Item implements JsonSerializable {
     }
 
     /**
-     * @return string|null
+     * @return mixed
      */
-    public function getId(): ?string
+    public function getId()
     {
         return $this->id;
     }

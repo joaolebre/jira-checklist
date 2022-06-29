@@ -7,7 +7,7 @@ use App\Domain\Ticket\TicketNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
 
-class GetTicketAction extends TicketAction
+class UpdateTicketAction extends TicketAction
 {
 
     /**
@@ -20,10 +20,15 @@ class GetTicketAction extends TicketAction
         $ticketId = (int) $this->resolveArg('id');
         $ticket = $this->ticketRepository->findTicketById($ticketId);
 
-        $ticket->setTabs($this->tabRepository->findTabsByTicketId($ticketId));
+        $data = $this->request->getParsedBody();
 
-        $this->logger->info("Ticket of id `${ticketId}` was viewed.");
+        $ticket->setTitle($data['title']);
+        $ticket->setDescription($data['description']);
 
-        return $this->respondWithData($ticket);
+        $ticket = $this->ticketRepository->updateTicket($ticket);
+
+        $this->logger->info("Ticket with id `{$ticketId}` was updated.");
+
+        return $this->respondWithData($ticket)->withHeader('Location', "/items/{$ticketId}");
     }
 }

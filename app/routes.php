@@ -28,6 +28,9 @@ return function (App $app) {
         $group->group('/tickets', function (Group $group) {
             $group->get('', Ticket\ListTicketsAction::class);
             $group->get('/{id}', Ticket\GetTicketAction::class);
+            $group->post('', Ticket\CreateTicketAction::class);
+            $group->put('/{id}', Ticket\UpdateTicketAction::class);
+            $group->delete('/{id}', Ticket\DeleteTicketAction::class);
         });
 
         $group->group('/tabs', function (Group $group) {

@@ -27,7 +27,7 @@ class UpdateItemAction extends ItemAction
         $item->setOrder($data['order']);
         $item->setStatusId($data['status_id']);
 
-        $this->itemRepository->updateItem($item);
+        $item = $this->itemRepository->updateItem($item);
 
         $this->logger->info("Item with id `{$itemId}` was updated.");
 
