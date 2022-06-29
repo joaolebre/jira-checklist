@@ -23,6 +23,7 @@ return function (App $app) {
             $group->get('', User\ListUsersAction::class);
             $group->get('/{id}', User\GetUserAction::class);
             $group->post('', User\CreateUserAction::class);
+            $group->post('/login', User\LoginUserAction::class);
             $group->put('/{id}', User\UpdateUserAction::class);
             $group->delete('/{id}', User\DeleteUserAction::class);
         });

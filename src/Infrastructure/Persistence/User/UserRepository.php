@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Persistence\User;
 
 use App\Domain\User\User;
+use App\Domain\User\UserLoginFailedException;
 use App\Domain\User\UserNotFoundException;
 use App\Infrastructure\Persistence\AbstractRepository;
 use PDO;
@@ -31,6 +32,36 @@ class UserRepository extends AbstractRepository
 
         if (! $user) {
             throw new UserNotFoundException();
+        }
+
+        return $user;
+    }
+
+    /**
+     * @throws UserLoginFailedException
+     */
+    public function loginUser(string $email, string $password) {
+        $query = '
+            SELECT * FROM users
+            WHERE email = :email
+        ';
+        $statement = $this->database->prepare($query);
+
+        $statement->bindParam(':email', $email);
+        $statement->bindParam(':password', $password);
+
+        $statement->execute();
+
+        $user = $statement->fetchObject(User::class);
+
+        if (! $user) {
+            throw new UserLoginFailedException();
+        } else {
+            $hashedPassword = $user->getPassword();
+
+            if (! password_verify($password, $hashedPassword)) {
+                throw new UserLoginFailedException();
+            }
         }
 
         return $user;
