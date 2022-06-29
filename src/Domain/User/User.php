@@ -8,43 +8,30 @@ use JsonSerializable;
 class User implements JsonSerializable
 {
     /**
-     * @var int|null
+     * @var mixed
      */
     private $id;
 
     /**
      * @var string
      */
-    private $username;
+    private $name;
 
     /**
      * @var string
      */
-    private $firstName;
+    private $email;
 
     /**
      * @var string
      */
-    private $lastName;
+    private $password;
+
 
     /**
-     * @param int|null  $id
-     * @param string    $username
-     * @param string    $firstName
-     * @param string    $lastName
+     * @return mixed
      */
-    public function __construct(?int $id, string $username, string $firstName, string $lastName)
-    {
-        $this->id = $id;
-        $this->username = strtolower($username);
-        $this->firstName = ucfirst($firstName);
-        $this->lastName = ucfirst($lastName);
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -52,37 +39,63 @@ class User implements JsonSerializable
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getName(): string
     {
-        return $this->username;
+        return $this->name;
     }
 
     /**
      * @return string
      */
-    public function getFirstName(): string
+    public function getEmail(): string
     {
-        return $this->firstName;
+        return $this->email;
     }
 
     /**
      * @return string
      */
-    public function getLastName(): string
+    public function getPassword(): string
     {
-        return $this->lastName;
+        return $this->password;
     }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
+
 
     /**
      * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,
-            'username' => $this->username,
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => $this->password,
         ];
     }
 }

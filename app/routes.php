@@ -1,12 +1,11 @@
 <?php
 declare(strict_types=1);
 
-use App\Application\Actions\User\ListUsersAction;
-use App\Application\Actions\User\ViewUserAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
+use App\Application\Actions\User;
 use App\Application\Actions\Ticket;
 use App\Application\Actions\ItemStatus;
 use App\Application\Actions\Item;
@@ -21,8 +20,11 @@ return function (App $app) {
 
     $app->group('/api', function (Group $group) {
         $group->group('/users', function (Group $group) {
-            $group->get('', ListUsersAction::class);
-            $group->get('/{id}', ViewUserAction::class);
+            $group->get('', User\ListUsersAction::class);
+            $group->get('/{id}', User\GetUserAction::class);
+            $group->post('', User\CreateUserAction::class);
+            $group->put('/{id}', User\UpdateUserAction::class);
+            $group->delete('/{id}', User\DeleteUserAction::class);
         });
 
         $group->group('/tickets', function (Group $group) {
@@ -85,7 +87,7 @@ return function (App $app) {
 
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
-        $group->get('/{id}', ViewUserAction::class);
+        $group->get('/{id}', GetUserAction::class);
     });
 
     $app->get('/statuses', function (Request $request, Response $response) {

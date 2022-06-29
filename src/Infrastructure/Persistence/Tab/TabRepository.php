@@ -57,7 +57,7 @@ class TabRepository extends AbstractRepository
     public function createTab(Tab $tab)
     {
         $query = '
-            INSERT INTO tabs(name, `order`, ticket_id)
+            INSERT INTO tabs (name, `order`, ticket_id)
             VALUES (:name, :order, :ticket_id)
         ';
         $statement = $this->database->prepare($query);
