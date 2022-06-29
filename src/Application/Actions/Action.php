@@ -10,6 +10,14 @@ use Psr\Log\LoggerInterface;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Exception\HttpNotFoundException;
 
+
+/**
+ * @OA\Server (url="https://sandbox.exads.rocks")
+ * @OA\Info(
+ *     title="JIRA Checklist API",
+ *     version="0.1"
+ * )
+ */
 abstract class Action
 {
     /**

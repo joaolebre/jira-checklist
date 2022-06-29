@@ -5,13 +5,45 @@ namespace App\Domain\Section;
 
 use JsonSerializable;
 
+/**
+ * @OA\Schema ()
+ */
 class Section implements JsonSerializable
 {
 
+    /**
+     * Section id,
+     * @var int
+     * @OA\Property ()
+     */
     private $id;
+
+    /**
+     * Section name,
+     * @var string
+     * @OA\Property ()
+     */
     private $name;
+
+    /**
+     * Order of section in the tab,
+     * @var int
+     * @OA\Property ()
+     */
     private $order;
+
+    /**
+     * Section tab id,
+     * @var int
+     * @OA\Property ()
+     */
     private $tabId;
+
+    /**
+     * Section items list,
+     * @var array
+     * @OA\Property (@OA\Items(ref="#/components/schemas/Item"))
+     */
     private $items;
 
     /**

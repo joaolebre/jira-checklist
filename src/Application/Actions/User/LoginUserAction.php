@@ -29,8 +29,11 @@ class LoginUserAction extends UserAction
 
         $this->userRepository->loginUser($data['email'], $data['password']);
 
-        $this->response->getBody()->write('Login successfull!');
+        $responseData = array('statusCode' => 200,'message' => 'Login successful!');
+        $responsePayload = json_encode($responseData);
 
-        return $this->respondWithData();
+        $this->response->getBody()->write($responsePayload);
+
+        return $this->response->withHeader('Content-Type', 'application/json')->withStatus(200);
     }
 }

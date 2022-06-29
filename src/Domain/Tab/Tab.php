@@ -5,13 +5,45 @@ namespace App\Domain\Tab;
 
 use JsonSerializable;
 
+/**
+ * @OA\Schema ()
+ */
 class Tab implements JsonSerializable
 {
 
+    /**
+     * Tab id,
+     * @var int
+     * @OA\Property ()
+     */
     private $id;
+
+    /**
+     * Tab name,
+     * @var string
+     * @OA\Property ()
+     */
     private $name;
+
+    /**
+     * Order of the tab in the ticket,
+     * @var int
+     * @OA\Property ()
+     */
     private $order;
+
+    /**
+     * Tab ticket id,
+     * @var int
+     * @OA\Property ()
+     */
     private $ticketId;
+
+    /**
+     * Tab sections list,
+     * @var array
+     * @OA\Property (@OA\Items(ref="#/components/schemas/Section"))
+     */
     private $sections;
 
     /**

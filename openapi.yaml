@@ -1,0 +1,189 @@
+openapi: 3.0.0
+info:
+  title: 'JIRA Checklist API'
+  version: '0.1'
+servers:
+  -
+    url: 'https://sandbox.exads.rocks'
+paths:
+  /api/users:
+    get:
+      tags:
+        - User
+      summary: 'Get a list of all users'
+      operationId: listUsers
+      responses:
+        '200':
+          description: 'List all users.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      tags:
+        - User
+      summary: 'Create a new user'
+      operationId: createUser
+      requestBody:
+        description: 'Create user object'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - email
+                - password
+              properties:
+                name:
+                  type: string
+                  format: text
+                  example: Pedro
+                email:
+                  type: email
+                  format: text
+                  example: pedro666@example.org
+                password:
+                  type: string
+                  format: text
+                  example: password123456
+              type: object
+      responses:
+        '201':
+          description: 'Creation successful'
+  '/api/users/{id}':
+    get:
+      tags:
+        - User
+      summary: 'Get a user by id'
+      operationId: getUserById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'User id.'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Get a single user.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  schemas:
+    Item:
+      properties:
+        id:
+          description: 'Item id,'
+          type: integer
+        summary:
+          description: 'Item summary,'
+          type: string
+        isChecked:
+          description: 'Check if item is checked,'
+          type: boolean
+        isImportant:
+          description: 'Check if item is important,'
+          type: boolean
+        order:
+          description: 'Order of the item in the section,'
+          type: integer
+        sectionId:
+          description: 'Item section id,'
+          type: integer
+        statusId:
+          description: 'Item status id,'
+          type: integer
+      type: object
+    ItemStatus:
+      properties:
+        id:
+          description: 'Status id,'
+          type: integer
+        label:
+          description: 'Status label,'
+          type: string
+        color:
+          description: 'Status color,'
+          type: string
+      type: object
+    Section:
+      properties:
+        id:
+          description: 'Section id,'
+          type: integer
+        name:
+          description: 'Section name,'
+          type: string
+        order:
+          description: 'Order of section in the tab,'
+          type: integer
+        tabId:
+          description: 'Section tab id,'
+          type: integer
+        items:
+          description: 'Section items list,'
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+      type: object
+    Tab:
+      properties:
+        id:
+          description: 'Tab id,'
+          type: integer
+        name:
+          description: 'Tab name,'
+          type: string
+        order:
+          description: 'Order of the tab in the ticket,'
+          type: integer
+        ticketId:
+          description: 'Tab ticket id,'
+          type: integer
+        sections:
+          description: 'Tab sections list,'
+          type: array
+          items:
+            $ref: '#/components/schemas/Section'
+      type: object
+    Ticket:
+      properties:
+        id:
+          description: 'Ticket id,'
+          type: integer
+        title:
+          description: 'Ticket title,'
+          type: string
+        description:
+          description: 'Ticket description,'
+          type: string
+        userId:
+          description: 'User id of the user that created the ticket,'
+          type: integer
+        tabs:
+          description: 'Ticket tabs list,'
+          type: array
+          items:
+            $ref: '#/components/schemas/Tab'
+      type: object
+    User:
+      properties:
+        id:
+          description: 'User id,'
+          type: integer
+        name:
+          description: 'User name,'
+          type: string
+        email:
+          description: 'User email,'
+          type: string
+        password:
+          description: 'User password,'
+          type: string
+      type: object

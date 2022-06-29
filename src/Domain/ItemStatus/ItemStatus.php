@@ -5,10 +5,30 @@ namespace App\Domain\ItemStatus;
 
 use JsonSerializable;
 
+/**
+ * @OA\Schema ()
+ */
 class ItemStatus implements JsonSerializable {
 
+    /**
+     * Status id,
+     * @var int
+     * @OA\Property ()
+     */
     private $id;
+
+    /**
+     * Status label,
+     * @var string
+     * @OA\Property ()
+     */
     private $label;
+
+    /**
+     * Status color,
+     * @var string
+     * @OA\Property ()
+     */
     private $color;
 
     /**

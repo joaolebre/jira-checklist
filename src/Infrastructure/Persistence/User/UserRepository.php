@@ -48,7 +48,6 @@ class UserRepository extends AbstractRepository
         $statement = $this->database->prepare($query);
 
         $statement->bindParam(':email', $email);
-        $statement->bindParam(':password', $password);
 
         $statement->execute();
 

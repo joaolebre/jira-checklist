@@ -5,13 +5,45 @@ namespace App\Domain\Ticket;
 
 use JsonSerializable;
 
+/**
+ * @OA\Schema ()
+ */
 class Ticket implements JsonSerializable
 {
 
+    /**
+     * Ticket id,
+     * @var int
+     * @OA\Property ()
+     */
     private $id;
+
+    /**
+     * Ticket title,
+     * @var string
+     * @OA\Property ()
+     */
     private $title;
+
+    /**
+     * Ticket description,
+     * @var string
+     * @OA\Property ()
+     */
     private $description;
+
+    /**
+     * User id of the user that created the ticket,
+     * @var int
+     * @OA\Property ()
+     */
     private $userId;
+
+    /**
+     * Ticket tabs list,
+     * @var array
+     * @OA\Property (@OA\Items(ref="#/components/schemas/Tab"))
+     */
     private $tabs;
 
     /**

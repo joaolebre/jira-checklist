@@ -5,14 +5,58 @@ namespace App\Domain\Item;
 
 use JsonSerializable;
 
+/**
+ * @OA\Schema ()
+ */
 class Item implements JsonSerializable {
 
+    /**
+     * Item id,
+     * @var int
+     * @OA\Property ()
+     */
     private $id;
+
+    /**
+     * Item summary,
+     * @var string
+     * @OA\Property ()
+     */
     private $summary;
+
+    /**
+     * Check if item is checked,
+     * @var bool
+     * @OA\Property ()
+     */
     private $isChecked;
+
+    /**
+     * Check if item is important,
+     * @var bool
+     * @OA\Property ()
+     */
     private $isImportant;
+
+    /**
+     * Order of the item in the section,
+     * @var int
+     * @OA\Property ()
+     */
     private $order;
+
+    /**
+     * Item section id,
+     * @var int
+     * @OA\Property ()
+     */
     private $sectionId;
+
+    /**
+     * Item status id,
+     * @var int
+     * @OA\Property ()
+     */
     private $statusId;
 
     public static function fromJSON(array $data): Item

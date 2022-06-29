@@ -8,7 +8,20 @@ use Psr\Http\Message\ResponseInterface as Response;
 class ListUsersAction extends UserAction
 {
     /**
-     * {@inheritdoc}
+     * @OA\Get(
+     *     tags={"User"},
+     *     path="/api/users",
+     *     summary="Get a list of all users",
+     *     operationId="listUsers",
+     *      @OA\Response(
+     *          response=200,
+     *          description="List all users.",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(ref="#/components/schemas/User")
+     *          )
+     *      )
+     * )
      */
     protected function action(): Response
     {

@@ -5,25 +5,36 @@ namespace App\Domain\User;
 
 use JsonSerializable;
 
+/**
+ * @OA\Schema ()
+ */
 class User implements JsonSerializable
 {
     /**
-     * @var mixed
+     * User id,
+     * @var int
+     * @OA\Property ()
      */
     private $id;
 
     /**
+     * User name,
      * @var string
+     * @OA\Property ()
      */
     private $name;
 
     /**
+     * User email,
      * @var string
+     * @OA\Property ()
      */
     private $email;
 
     /**
+     * User password,
      * @var string
+     * @OA\Property ()
      */
     private $password;
 

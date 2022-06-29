@@ -11,7 +11,23 @@ class CreateUserAction extends UserAction
 {
 
     /**
-     * @return Response
+     * @OA\Post(
+     *     tags={"User"},
+     *     path="/api/users",
+     *     summary="Create a new user",
+     *     operationId="createUser",
+     *     @OA\Response(response=201, description="Creation successful"),
+     *     @OA\RequestBody(
+     *         description="Create user object",
+     *         required=true,
+     *         @OA\JsonContent(
+     *              required={"name","email","password"},
+     *              @OA\Property(property="name", type="string", format="text", example="Pedro"),
+     *              @OA\Property(property="email", type="email", format="text", example="pedro666@example.org"),
+     *              @OA\Property(property="password", type="string", format="text", example="password123456")
+     *         )
+     *     )
+     * )
      * @throws UserNotFoundException
      */
     protected function action(): Response
