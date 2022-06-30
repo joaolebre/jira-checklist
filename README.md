@@ -5,14 +5,13 @@ so that the ticket can be considered as validated. Built with the Slim framework
 
 ### ENDPOINTS:
 
-#### DOCS:
-
-- Documentation: `GET /api`
-
-
 #### USERS:
 
-- Login User: `POST /login`
+- List Users: `GET /api/users`
+
+- Get User: `GET /api/users/{id}`
+
+- Login User: `POST /api/users/login`
 
 - Create User: `POST /api/users`
 
@@ -23,7 +22,7 @@ so that the ticket can be considered as validated. Built with the Slim framework
 
 #### TICKETS:
 
-- Get All Tickets: `GET /api/tickets`
+- List Tickets: `GET /api/tickets`
 
 - Get Ticket: `GET /api/tickets/{id}`
 
@@ -36,20 +35,20 @@ so that the ticket can be considered as validated. Built with the Slim framework
 
 #### TABS:
 
-- Get All Tabs: `GET /api/tabs`
+- List: `GET /api/tabs`
 
 - Get Tab: `GET /api/tabs/{id}`
 
 - Create Tab: `POST /api/tabs`
 
-- Update Note: `PUT /api/tabs/{id}`
+- Update Tab: `PUT /api/tabs/{id}`
 
-- Delete Note: `DELETE /api/tabs/{id}`
+- Delete Tab: `DELETE /api/tabs/{id}`
 
 
 #### SECTIONS:
 
-- Get All Sections: `GET /api/sections`
+- List Sections: `GET /api/sections`
 
 - Get Section: `GET /api/sections/{id}`
 
@@ -62,7 +61,7 @@ so that the ticket can be considered as validated. Built with the Slim framework
 
 #### ITEMS:
 
-- Get All Items: `GET /api/items`
+- List Items: `GET /api/items`
 
 - Get Item: `GET /api/items/{id}`
 
@@ -71,3 +70,10 @@ so that the ticket can be considered as validated. Built with the Slim framework
 - Update Item: `PUT /api/items/{id}`
 
 - Delete Item: `DELETE /api/items/{id}`
+
+
+#### ITEM STATUSES:
+
+- List Item Statuses: `GET /api/item-statuses`
+
+- Get Item Status: `GET /api/items-statuses/{id}`
