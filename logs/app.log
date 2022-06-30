@@ -459,3 +459,21 @@
 [2022-06-30T06:46:09.721822-04:00] slim-app.INFO: Item of id `13` was viewed. [] {"uid":"2deb45a"}
 [2022-06-30T06:46:19.779201-04:00] slim-app.INFO: Item with id `13` was updated. [] {"uid":"24c19bf"}
 [2022-06-30T06:46:22.564089-04:00] slim-app.INFO: Item of id `13` was viewed. [] {"uid":"69cd551"}
+[2022-06-30T09:53:03.236192-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"436a0cb"}
+[2022-06-30T09:53:18.669832-04:00] slim-app.INFO: New user with id `9` was created. [] {"uid":"d07b813"}
+[2022-06-30T09:53:36.454450-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"ac8ec1a"}
+[2022-06-30T09:53:47.484806-04:00] slim-app.INFO: New user with id `11` was created. [] {"uid":"9e54941"}
+[2022-06-30T09:53:53.351359-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"93c828d"}
+[2022-06-30T09:55:02.148154-04:00] slim-app.INFO: User with id `11 deleted successfully`. [] {"uid":"d32e5fb"}
+[2022-06-30T09:55:06.147625-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"471bbb8"}
+[2022-06-30T10:04:36.551285-04:00] slim-app.INFO: New user with id `13` was created. [] {"uid":"cc431dd"}
+[2022-06-30T10:04:40.356170-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"ce60dbe"}
+[2022-06-30T10:04:49.598300-04:00] slim-app.INFO: User with id `13 deleted successfully`. [] {"uid":"f64a552"}
+[2022-06-30T10:06:50.479004-04:00] slim-app.INFO: New user with id `15` was created. [] {"uid":"7144d32"}
+[2022-06-30T10:06:55.719281-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"077a16d"}
+[2022-06-30T10:07:03.211553-04:00] slim-app.INFO: User with id `15 deleted successfully`. [] {"uid":"0a96f1c"}
+[2022-06-30T10:07:05.942517-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"81a8e69"}
+[2022-06-30T10:10:24.647575-04:00] slim-app.INFO: New user with id `17` was created. [] {"uid":"f1ec957"}
+[2022-06-30T10:10:28.458464-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"b2ccf5e"}
+[2022-06-30T10:10:36.925771-04:00] slim-app.INFO: User with id `17 deleted successfully`. [] {"uid":"9c256f7"}
+[2022-06-30T10:13:16.992027-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"7374f14"}

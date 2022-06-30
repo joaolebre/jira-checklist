@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Domain\User;
 
 use JsonSerializable;
+use Respect\Validation\Exceptions\NestedValidationException;
+use Respect\Validation\Validator as v;
 
 /**
  * @OA\Schema ()
@@ -38,6 +40,28 @@ class User implements JsonSerializable
      */
     private $password;
 
+    /**
+     * @throws UserValidationException
+     */
+    public static function validateUserData($name, $email, $password) {
+        try {
+            v::stringVal()->length(3, 70)->assert($name);
+        } catch (NestedValidationException $ex) {
+            throw new UserValidationException('Name must be between 3 and 70 characters.', 405);
+        }
+
+        try {
+            v::email()->assert($email);
+        } catch (NestedValidationException $ex) {
+            throw new UserValidationException('Email format is invalid.', 405);
+        }
+
+        try {
+            v::alnum()->length(8)->assert($password);
+        } catch (NestedValidationException $ex) {
+            throw new UserValidationException('Password must be alpha numeric.', 405);
+        }
+    }
 
     /**
      * @return mixed

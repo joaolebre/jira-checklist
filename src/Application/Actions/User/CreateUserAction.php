@@ -5,6 +5,7 @@ namespace App\Application\Actions\User;
 
 use App\Domain\User\User;
 use App\Domain\User\UserNotFoundException;
+use App\Domain\User\UserValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class CreateUserAction extends UserAction
@@ -17,6 +18,10 @@ class CreateUserAction extends UserAction
      *     summary="Create a new user",
      *     operationId="createUser",
      *     @OA\Response(response=201, description="Creation successful"),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Validation exception"
+     *     ),
      *     @OA\RequestBody(
      *         description="User object",
      *         required=true,
@@ -29,10 +34,13 @@ class CreateUserAction extends UserAction
      *     )
      * )
      * @throws UserNotFoundException
+     * @throws UserValidationException
      */
     protected function action(): Response
     {
         $data = $this->request->getParsedBody();
+
+        User::validateUserData($data['name'], $data['email'], $data['password']);
 
         $newUser = new User();
         $newUser->setName($data['name']);

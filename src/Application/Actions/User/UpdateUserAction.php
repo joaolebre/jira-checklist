@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Application\Actions\User;
 
+use App\Domain\User\User;
 use App\Domain\User\UserNotFoundException;
+use App\Domain\User\UserValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
 
@@ -55,6 +57,7 @@ class UpdateUserAction extends UserAction
      * @return Response
      * @throws UserNotFoundException
      * @throws HttpBadRequestException
+     * @throws UserValidationException
      */
     protected function action(): Response
     {
@@ -62,6 +65,8 @@ class UpdateUserAction extends UserAction
         $user = $this->userRepository->findUserById((int) $userId);
 
         $data = $this->request->getParsedBody();
+
+        User::validateUserData($data['name'], $data['email'], $data['password']);
 
         $user->setName($data['name']);
         $user->setEmail($data['email']);
