@@ -11,6 +11,23 @@ class CreateSectionAction extends SectionAction
 {
 
     /**
+     * @OA\Post(
+     *     tags={"Section"},
+     *     path="/api/sections",
+     *     summary="Create a new section",
+     *     operationId="createSection",
+     *     @OA\Response(response=201, description="Creation successful"),
+     *     @OA\RequestBody(
+     *         description="Section object",
+     *         required=true,
+     *         @OA\JsonContent(
+     *              required={"name","order","tab_id"},
+     *              @OA\Property(property="name", type="string", format="text", example="Section 1"),
+     *              @OA\Property(property="order", type="integer", format="int64", example=1),
+     *              @OA\Property(property="tab_id", type="integer", format="int64", example=1)
+     *         )
+     *     )
+     * )
      * @return Response
      * @throws SectionNotFoundException
      */

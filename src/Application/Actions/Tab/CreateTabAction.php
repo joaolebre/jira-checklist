@@ -11,6 +11,23 @@ class CreateTabAction extends TabAction
 {
 
     /**
+     * @OA\Post(
+     *     tags={"Tab"},
+     *     path="/api/tabs",
+     *     summary="Create a new tab",
+     *     operationId="createTab",
+     *     @OA\Response(response=201, description="Creation successful"),
+     *     @OA\RequestBody(
+     *         description="Tab object",
+     *         required=true,
+     *         @OA\JsonContent(
+     *              required={"name","order","ticket_id"},
+     *              @OA\Property(property="name", type="string", format="text", example="Tab 1"),
+     *              @OA\Property(property="order", type="integer", format="int64", example=1),
+     *              @OA\Property(property="ticket_id", type="integer", format="int64", example=1)
+     *         )
+     *     )
+     * )
      * @return Response
      * @throws TabNotFoundException
      */

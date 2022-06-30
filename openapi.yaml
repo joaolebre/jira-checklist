@@ -6,6 +6,584 @@ servers:
   -
     url: 'https://sandbox.exads.rocks'
 paths:
+  /api/items:
+    get:
+      tags:
+        - Item
+      summary: 'Get a list of all items'
+      operationId: listItems
+      responses:
+        '200':
+          description: 'List all items.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+    post:
+      tags:
+        - Item
+      summary: 'Create a new item'
+      operationId: createItem
+      requestBody:
+        description: 'Item object'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - summary
+                - order
+                - section_id
+              properties:
+                summary:
+                  type: string
+                  format: text
+                  example: 'This is an item summary'
+                order:
+                  type: integer
+                  format: int64
+                  example: 6
+                section_id:
+                  type: integer
+                  format: int64
+                  example: 1
+              type: object
+      responses:
+        '201':
+          description: 'Creation successful'
+  '/api/items/{id}':
+    get:
+      tags:
+        - Item
+      summary: 'Get a item by id'
+      operationId: getItemById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Item id.'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Get a single item.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '404':
+          description: 'Item not found.'
+    put:
+      tags:
+        - Item
+      summary: 'Update a specific item'
+      operationId: updateItem
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Item id.'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'Item object'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - summary
+                - is_checked
+                - is_important
+                - order
+                - status_id
+              properties:
+                summary:
+                  type: string
+                  format: text
+                  example: 'This is an item summary'
+                is_checked:
+                  type: boolean
+                  example: false
+                is_important:
+                  type: boolean
+                  example: true
+                order:
+                  type: integer
+                  format: int64
+                  example: 6
+                status_id:
+                  type: integer
+                  format: int64
+                  example: 1
+              type: object
+      responses:
+        '200':
+          description: 'Item updated'
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Item not found'
+        '405':
+          description: 'Validation exception'
+    delete:
+      tags:
+        - Item
+      summary: 'Deletes a item'
+      operationId: deleteItem
+      parameters:
+        -
+          name: itemId
+          in: path
+          description: 'Item id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Item deleted'
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Item not found'
+  '/api/item-statuses/{id}':
+    get:
+      tags:
+        - 'Item Status'
+      summary: 'Get a item status by id'
+      operationId: getItemStatusById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Item status id.'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Get a single item status.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemStatus'
+        '404':
+          description: 'Item status not found.'
+  /api/item-statuses:
+    get:
+      tags:
+        - 'Item Status'
+      summary: 'Get a list of all item statuses available'
+      operationId: listItemStatuses
+      responses:
+        '200':
+          description: 'List all item statuses.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemStatus'
+  /api/sections:
+    get:
+      tags:
+        - Section
+      summary: 'Get a list of all sections'
+      operationId: listSections
+      responses:
+        '200':
+          description: 'List all sections.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section'
+    post:
+      tags:
+        - Section
+      summary: 'Create a new section'
+      operationId: createSection
+      requestBody:
+        description: 'Section object'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - order
+                - tab_id
+              properties:
+                name:
+                  type: string
+                  format: text
+                  example: 'Section 1'
+                order:
+                  type: integer
+                  format: int64
+                  example: 1
+                tab_id:
+                  type: integer
+                  format: int64
+                  example: 1
+              type: object
+      responses:
+        '201':
+          description: 'Creation successful'
+  '/api/sections/{id}':
+    get:
+      tags:
+        - Section
+      summary: 'Get a section by id'
+      operationId: getSectionById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Section id.'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Get a single section.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Section'
+        '404':
+          description: 'Section not found.'
+    put:
+      tags:
+        - Section
+      summary: 'Update a specific section'
+      operationId: updateSection
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Section id.'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'Section object'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - order
+              properties:
+                name:
+                  type: string
+                  format: text
+                  example: 'Section 1'
+                order:
+                  type: integer
+                  format: int64
+                  example: 1
+              type: object
+      responses:
+        '200':
+          description: 'Section updated'
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Section not found'
+        '405':
+          description: 'Validation exception'
+    delete:
+      tags:
+        - Section
+      summary: 'Deletes a section'
+      operationId: deleteSection
+      parameters:
+        -
+          name: sectionId
+          in: path
+          description: 'Section id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Section deleted'
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Section not found'
+  /api/tabs:
+    get:
+      tags:
+        - Tab
+      summary: 'Get a list of all tabs'
+      operationId: listTabs
+      responses:
+        '200':
+          description: 'List all tabs.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tab'
+    post:
+      tags:
+        - Tab
+      summary: 'Create a new tab'
+      operationId: createTab
+      requestBody:
+        description: 'Tab object'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - order
+                - ticket_id
+              properties:
+                name:
+                  type: string
+                  format: text
+                  example: 'Tab 1'
+                order:
+                  type: integer
+                  format: int64
+                  example: 1
+                ticket_id:
+                  type: integer
+                  format: int64
+                  example: 1
+              type: object
+      responses:
+        '201':
+          description: 'Creation successful'
+  '/api/tabs/{id}':
+    get:
+      tags:
+        - Tab
+      summary: 'Get a tab by id'
+      operationId: getTabById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Tab id.'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Get a single tab.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tab'
+        '404':
+          description: 'Tab not found.'
+    put:
+      tags:
+        - Tab
+      summary: 'Update a specific tab'
+      operationId: updateTab
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Tab id.'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'Tab object'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - order
+              properties:
+                name:
+                  type: string
+                  format: text
+                  example: 'Tab 1'
+                order:
+                  type: integer
+                  format: int64
+                  example: 1
+              type: object
+      responses:
+        '200':
+          description: 'Tab updated'
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Tab not found'
+        '405':
+          description: 'Validation exception'
+    delete:
+      tags:
+        - Tab
+      summary: 'Deletes a tab'
+      operationId: deleteTab
+      parameters:
+        -
+          name: tabId
+          in: path
+          description: 'Tab id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Tab deleted'
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Tab not found'
+  /api/tickets:
+    get:
+      tags:
+        - Ticket
+      summary: 'Get a list of all tickets'
+      operationId: listTickets
+      responses:
+        '200':
+          description: 'List all tickets.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticket'
+    post:
+      tags:
+        - Ticket
+      summary: 'Create a new ticket'
+      operationId: createTicket
+      requestBody:
+        description: 'Ticket object'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - title
+                - user_id
+              properties:
+                title:
+                  type: string
+                  format: text
+                  example: 'Ticket 1'
+                description:
+                  type: string
+                  format: text
+                  example: 'This ticket is about this...'
+                user_id:
+                  type: integer
+                  format: int64
+                  example: 1
+              type: object
+      responses:
+        '201':
+          description: 'Creation successful'
+  '/api/tickets/{id}':
+    get:
+      tags:
+        - Ticket
+      summary: 'Get a ticket by id'
+      operationId: getTicketById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Ticket id.'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Get a single ticket.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+        '404':
+          description: 'Ticket not found.'
+    put:
+      tags:
+        - Ticket
+      summary: 'Update a specific ticket'
+      operationId: updateTicket
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Ticket id.'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'Ticket object'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - title
+                - description
+              properties:
+                title:
+                  type: string
+                  format: text
+                  example: 'Ticket About Things'
+                description:
+                  type: string
+                  format: text
+                  example: 'This ticket is about...'
+              type: object
+      responses:
+        '200':
+          description: 'Ticket updated'
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Ticket not found'
+        '405':
+          description: 'Validation exception'
+    delete:
+      tags:
+        - Ticket
+      summary: 'Deletes a ticket'
+      operationId: deleteTicket
+      parameters:
+        -
+          name: ticketId
+          in: path
+          description: 'Ticket id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'Ticket deleted'
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Ticket not found'
   /api/users:
     get:
       tags:
@@ -27,7 +605,7 @@ paths:
       summary: 'Create a new user'
       operationId: createUser
       requestBody:
-        description: 'Create user object'
+        description: 'User object'
         required: true
         content:
           application/json:
@@ -74,6 +652,103 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+        '404':
+          description: 'User not found.'
+    put:
+      tags:
+        - User
+      summary: 'Update a specific user'
+      operationId: updateUser
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'User id.'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'User object'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - email
+                - password
+              properties:
+                name:
+                  type: string
+                  format: text
+                  example: João
+                email:
+                  type: string
+                  format: text
+                  example: joao@gmail.com
+                password:
+                  type: string
+                  format: text
+                  example: password123456
+              type: object
+      responses:
+        '200':
+          description: 'User updated'
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'User not found'
+        '405':
+          description: 'Validation exception'
+    delete:
+      tags:
+        - User
+      summary: 'Deletes a user'
+      operationId: deleteUser
+      parameters:
+        -
+          name: userId
+          in: path
+          description: 'User id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'User deleted'
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'User not found'
+  /api/users/login:
+    post:
+      tags:
+        - User
+      summary: 'Login with a certain user'
+      operationId: loginUser
+      requestBody:
+        description: 'Login data'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: email
+                  format: text
+                  example: pedro666@example.org
+                password:
+                  type: string
+                  format: text
+                  example: password123456
+              type: object
+      responses:
+        '200':
+          description: 'Login successful'
 components:
   schemas:
     Item:

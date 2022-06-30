@@ -11,6 +11,46 @@ class UpdateTicketAction extends TicketAction
 {
 
     /**
+     * @OA\Put(
+     *     tags={"Ticket"},
+     *     path="/api/tickets/{id}",
+     *     summary="Update a specific ticket",
+     *     operationId="updateTicket",
+     *     @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          description="Ticket id.",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Ticket updated"
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Ticket not found"
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Validation exception"
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Ticket object",
+     *         required=true,
+     *         @OA\JsonContent(
+     *              required={"title","description"},
+     *              @OA\Property(property="title", type="string", format="text", example="Ticket About Things"),
+     *              @OA\Property(property="description", type="string", format="text", example="This ticket is about...")
+     *         )
+     *     )
+     * )
      * @return Response
      * @throws HttpBadRequestException
      * @throws TicketNotFoundException

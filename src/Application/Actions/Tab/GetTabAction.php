@@ -11,6 +11,30 @@ class GetTabAction extends TabAction
 {
 
     /**
+     * @OA\Get(
+     *     tags={"Tab"},
+     *     path="/api/tabs/{id}",
+     *     summary="Get a tab by id",
+     *     operationId="getTabById",
+     *     @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          description="Tab id.",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Get a single tab.",
+     *          @OA\JsonContent(ref="#/components/schemas/Tab")
+     *      ),
+     *     @OA\Response(
+     *          response=404,
+     *          description="Tab not found."
+     *      )
+     * )
      * @return Response
      * @throws TabNotFoundException|HttpBadRequestException
      */

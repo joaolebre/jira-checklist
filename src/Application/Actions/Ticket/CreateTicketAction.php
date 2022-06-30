@@ -15,6 +15,23 @@ class CreateTicketAction extends TicketAction
 {
 
     /**
+     * @OA\Post(
+     *     tags={"Ticket"},
+     *     path="/api/tickets",
+     *     summary="Create a new ticket",
+     *     operationId="createTicket",
+     *     @OA\Response(response=201, description="Creation successful"),
+     *     @OA\RequestBody(
+     *         description="Ticket object",
+     *         required=true,
+     *         @OA\JsonContent(
+     *              required={"title", "user_id"},
+     *              @OA\Property(property="title", type="string", format="text", example="Ticket 1"),
+     *              @OA\Property(property="description", type="string", format="text", example="This ticket is about this..."),
+     *              @OA\Property(property="user_id", type="integer", format="int64", example=1)
+     *         )
+     *     )
+     * )
      * @return Response
      * @throws TicketNotFoundException
      * @throws TabNotFoundException

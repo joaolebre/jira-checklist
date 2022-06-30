@@ -11,6 +11,22 @@ class LoginUserAction extends UserAction
 {
 
     /**
+     * @OA\Post(
+     *     tags={"User"},
+     *     path="/api/users/login",
+     *     summary="Login with a certain user",
+     *     operationId="loginUser",
+     *     @OA\Response(response=200, description="Login successful"),
+     *     @OA\RequestBody(
+     *         description="Login data",
+     *         required=true,
+     *         @OA\JsonContent(
+     *              required={"email","password"},
+     *              @OA\Property(property="email", type="email", format="text", example="pedro666@example.org"),
+     *              @OA\Property(property="password", type="string", format="text", example="password123456")
+     *         )
+     *     )
+     * )
      * @return Response
      * @throws UserException
      * @throws UserLoginFailedException

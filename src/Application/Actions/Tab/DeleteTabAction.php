@@ -11,6 +11,34 @@ class DeleteTabAction extends TabAction
 {
 
     /**
+     * @OA\Delete(
+     *     tags={"Tab"},
+     *     path="/api/tabs/{id}",
+     *     summary="Deletes a tab",
+     *     operationId="deleteTab",
+     *     @OA\Parameter(
+     *         name="tabId",
+     *         in="path",
+     *         description="Tab id to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Tab deleted",
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Tab not found",
+     *     )
+     * )
      * @return Response
      * @throws HttpBadRequestException
      * @throws TabNotFoundException

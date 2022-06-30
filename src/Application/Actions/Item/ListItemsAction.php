@@ -9,7 +9,20 @@ class ListItemsAction extends ItemAction
 {
 
     /**
-     * @return Response
+     * @OA\Get(
+     *     tags={"Item"},
+     *     path="/api/items",
+     *     summary="Get a list of all items",
+     *     operationId="listItems",
+     *      @OA\Response(
+     *          response=200,
+     *          description="List all items.",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(ref="#/components/schemas/Item")
+     *          )
+     *      )
+     * )
      */
     protected function action(): Response
     {

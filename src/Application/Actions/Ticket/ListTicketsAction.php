@@ -9,7 +9,20 @@ class ListTicketsAction extends TicketAction
 {
 
     /**
-     * @inheritDoc
+     * @OA\Get(
+     *     tags={"Ticket"},
+     *     path="/api/tickets",
+     *     summary="Get a list of all tickets",
+     *     operationId="listTickets",
+     *      @OA\Response(
+     *          response=200,
+     *          description="List all tickets.",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(ref="#/components/schemas/Ticket")
+     *          )
+     *      )
+     * )
      */
     protected function action(): Response
     {

@@ -11,6 +11,34 @@ class DeleteUserAction extends UserAction
 {
 
     /**
+     * @OA\Delete(
+     *     tags={"User"},
+     *     path="/api/users/{id}",
+     *     summary="Deletes a user",
+     *     operationId="deleteUser",
+     *     @OA\Parameter(
+     *         name="userId",
+     *         in="path",
+     *         description="User id to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="User deleted",
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="User not found",
+     *     )
+     * )
      * @return Response
      * @throws UserNotFoundException|HttpBadRequestException
      */

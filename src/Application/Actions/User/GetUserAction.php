@@ -28,6 +28,10 @@ class GetUserAction extends UserAction
      *          response=200,
      *          description="Get a single user.",
      *          @OA\JsonContent(ref="#/components/schemas/User")
+     *      ),
+     *     @OA\Response(
+     *          response=404,
+     *          description="User not found."
      *      )
      * )
      * @throws HttpBadRequestException

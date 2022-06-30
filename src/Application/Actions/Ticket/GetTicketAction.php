@@ -11,6 +11,30 @@ class GetTicketAction extends TicketAction
 {
 
     /**
+     * @OA\Get(
+     *     tags={"Ticket"},
+     *     path="/api/tickets/{id}",
+     *     summary="Get a ticket by id",
+     *     operationId="getTicketById",
+     *     @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          description="Ticket id.",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Get a single ticket.",
+     *          @OA\JsonContent(ref="#/components/schemas/Ticket")
+     *      ),
+     *     @OA\Response(
+     *          response=404,
+     *          description="Ticket not found."
+     *      )
+     * )
      * @return Response
      * @throws HttpBadRequestException
      * @throws TicketNotFoundException

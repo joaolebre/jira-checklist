@@ -11,6 +11,34 @@ class DeleteTicketAction extends TicketAction
 {
 
     /**
+     * @OA\Delete(
+     *     tags={"Ticket"},
+     *     path="/api/tickets/{id}",
+     *     summary="Deletes a ticket",
+     *     operationId="deleteTicket",
+     *     @OA\Parameter(
+     *         name="ticketId",
+     *         in="path",
+     *         description="Ticket id to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Ticket deleted",
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Ticket not found",
+     *     )
+     * )
      * @return Response
      * @throws HttpBadRequestException
      * @throws TabNotFoundException

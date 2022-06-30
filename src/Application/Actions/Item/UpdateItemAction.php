@@ -10,6 +10,49 @@ class UpdateItemAction extends ItemAction
 {
 
     /**
+     * @OA\Put(
+     *     tags={"Item"},
+     *     path="/api/items/{id}",
+     *     summary="Update a specific item",
+     *     operationId="updateItem",
+     *     @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          description="Item id.",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Item updated"
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Item not found"
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Validation exception"
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Item object",
+     *         required=true,
+     *         @OA\JsonContent(
+     *              required={"summary","is_checked","is_important","order","status_id"},
+     *              @OA\Property(property="summary", type="string", format="text", example="This is an item summary"),
+     *              @OA\Property(property="is_checked", type="boolean", example=false),
+     *              @OA\Property(property="is_important", type="boolean", example=true),
+     *              @OA\Property(property="order", type="integer", format="int64", example=6),
+     *              @OA\Property(property="status_id", type="integer", format="int64", example=1)
+     *         )
+     *     )
+     * )
      * @return Response
      * @throws HttpBadRequestException
      * @throws ItemNotFoundException

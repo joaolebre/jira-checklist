@@ -11,6 +11,46 @@ class UpdateTabAction extends TabAction
 {
 
     /**
+     * @OA\Put(
+     *     tags={"Tab"},
+     *     path="/api/tabs/{id}",
+     *     summary="Update a specific tab",
+     *     operationId="updateTab",
+     *     @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          description="Tab id.",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Tab updated"
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Tab not found"
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Validation exception"
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Tab object",
+     *         required=true,
+     *         @OA\JsonContent(
+     *              required={"name","order"},
+     *              @OA\Property(property="name", type="string", format="text", example="Tab 1"),
+     *              @OA\Property(property="order", type="integer", format="int64", example=1)
+     *         )
+     *     )
+     * )
      * @return Response
      * @throws TabNotFoundException|HttpBadRequestException
      */

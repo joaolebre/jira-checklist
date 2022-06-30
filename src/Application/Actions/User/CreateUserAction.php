@@ -18,7 +18,7 @@ class CreateUserAction extends UserAction
      *     operationId="createUser",
      *     @OA\Response(response=201, description="Creation successful"),
      *     @OA\RequestBody(
-     *         description="Create user object",
+     *         description="User object",
      *         required=true,
      *         @OA\JsonContent(
      *              required={"name","email","password"},

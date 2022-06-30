@@ -11,6 +11,30 @@ class GetSectionAction extends SectionAction
 {
 
     /**
+     * @OA\Get(
+     *     tags={"Section"},
+     *     path="/api/sections/{id}",
+     *     summary="Get a section by id",
+     *     operationId="getSectionById",
+     *     @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          description="Section id.",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Get a single section.",
+     *          @OA\JsonContent(ref="#/components/schemas/Section")
+     *      ),
+     *     @OA\Response(
+     *          response=404,
+     *          description="Section not found."
+     *      )
+     * )
      * @return Response
      * @throws SectionNotFoundException|HttpBadRequestException
      */

@@ -11,6 +11,30 @@ class GetItemAction extends ItemAction
 {
 
     /**
+     * @OA\Get(
+     *     tags={"Item"},
+     *     path="/api/items/{id}",
+     *     summary="Get a item by id",
+     *     operationId="getItemById",
+     *     @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          description="Item id.",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Get a single item.",
+     *          @OA\JsonContent(ref="#/components/schemas/Item")
+     *      ),
+     *     @OA\Response(
+     *          response=404,
+     *          description="Item not found."
+     *      )
+     * )
      * @return Response
      * @throws ItemNotFoundException|HttpBadRequestException
      */

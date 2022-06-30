@@ -9,7 +9,20 @@ class ListSectionsAction extends SectionAction
 {
 
     /**
-     * @return Response
+     * @OA\Get(
+     *     tags={"Section"},
+     *     path="/api/sections",
+     *     summary="Get a list of all sections",
+     *     operationId="listSections",
+     *      @OA\Response(
+     *          response=200,
+     *          description="List all sections.",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(ref="#/components/schemas/Section")
+     *          )
+     *      )
+     * )
      */
     protected function action(): Response
     {

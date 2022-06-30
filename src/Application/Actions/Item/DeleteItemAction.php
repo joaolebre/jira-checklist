@@ -11,6 +11,34 @@ class DeleteItemAction extends ItemAction
 {
 
     /**
+     * @OA\Delete(
+     *     tags={"Item"},
+     *     path="/api/items/{id}",
+     *     summary="Deletes a item",
+     *     operationId="deleteItem",
+     *     @OA\Parameter(
+     *         name="itemId",
+     *         in="path",
+     *         description="Item id to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Item deleted",
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Item not found",
+     *     )
+     * )
      * @return Response
      * @throws HttpBadRequestException|ItemNotFoundException
      */

@@ -35,7 +35,7 @@ so that the ticket can be considered as validated. Built with the Slim framework
 
 #### TABS:
 
-- List: `GET /api/tabs`
+- List Tabs: `GET /api/tabs`
 
 - Get Tab: `GET /api/tabs/{id}`
 
