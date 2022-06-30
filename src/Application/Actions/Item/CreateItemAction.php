@@ -4,6 +4,7 @@ namespace App\Application\Actions\Item;
 
 use App\Domain\Item\Item;
 use App\Domain\Item\ItemNotFoundException;
+use App\Domain\Item\ItemValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class CreateItemAction extends ItemAction
@@ -28,11 +29,13 @@ class CreateItemAction extends ItemAction
      *     )
      * )
      * @return Response
-     * @throws ItemNotFoundException
+     * @throws ItemNotFoundException|ItemValidationException
      */
     protected function action(): Response
     {
         $data = $this->request->getParsedBody();
+
+        Item::validateItemData($data['summary'], true, true, $data['order'], 1, $data['section_id']);
         $newItem = Item::fromJSON($data);
         $createdItem = $this->itemRepository->createItem($newItem);
 

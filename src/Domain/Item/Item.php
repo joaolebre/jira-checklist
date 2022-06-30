@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Domain\Item;
 
 use JsonSerializable;
+use Respect\Validation\Exceptions\NestedValidationException;
+use Respect\Validation\Validator as v;
 
 /**
  * @OA\Schema ()
@@ -58,6 +60,47 @@ class Item implements JsonSerializable {
      * @OA\Property ()
      */
     private $statusId;
+
+    /**
+     * @throws ItemValidationException
+     */
+    public static function validateItemData($summary, $isChecked, $isImportant, $order, $statusId, $sectionId) {
+        try {
+            v::stringVal()->assert($summary);
+        } catch (NestedValidationException $ex) {
+            throw new ItemValidationException('Summary must be a string.', 405);
+        }
+
+        try {
+            v::boolVal()->assert($isChecked);
+        } catch (NestedValidationException $ex) {
+            throw new ItemValidationException('Is checked must evaluate to a boolean value.', 405);
+        }
+
+        try {
+            v::boolVal()->assert($isImportant);
+        } catch (NestedValidationException $ex) {
+            throw new ItemValidationException('Is important must evaluate to a boolean value.', 405);
+        }
+
+        try {
+            v::number()->assert($order);
+        } catch (NestedValidationException $ex) {
+            throw new ItemValidationException('Order must be an integer.', 405);
+        }
+
+        try {
+            v::number()->assert($statusId);
+        } catch (NestedValidationException $ex) {
+            throw new ItemValidationException('Status id must be an integer.', 405);
+        }
+
+        try {
+            v::number()->assert($sectionId);
+        } catch (NestedValidationException $ex) {
+            throw new ItemValidationException('Tab id must be an integer.', 405);
+        }
+    }
 
     public static function fromJSON(array $data): Item
     {

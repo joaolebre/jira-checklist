@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Domain\Tab;
 
 use JsonSerializable;
+use Respect\Validation\Exceptions\NestedValidationException;
+use Respect\Validation\Validator as v;
 
 /**
  * @OA\Schema ()
@@ -45,6 +47,29 @@ class Tab implements JsonSerializable
      * @OA\Property (@OA\Items(ref="#/components/schemas/Section"))
      */
     private $sections;
+
+    /**
+     * @throws TabValidationException
+     */
+    public static function validateTabData($name, $order, $ticketId) {
+        try {
+            v::stringVal()->assert($name);
+        } catch (NestedValidationException $ex) {
+            throw new TabValidationException('Name must be a string.', 405);
+        }
+
+        try {
+            v::number()->assert($order);
+        } catch (NestedValidationException $ex) {
+            throw new TabValidationException('Order must be an integer.', 405);
+        }
+
+        try {
+            v::number()->assert($ticketId);
+        } catch (NestedValidationException $ex) {
+            throw new TabValidationException('Ticket id must be an integer.', 405);
+        }
+    }
 
     /**
      * @return mixed

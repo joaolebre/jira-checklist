@@ -5,6 +5,7 @@ namespace App\Application\Actions\Section;
 
 use App\Domain\Section\Section;
 use App\Domain\Section\SectionNotFoundException;
+use App\Domain\Section\SectionValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class CreateSectionAction extends SectionAction
@@ -29,11 +30,13 @@ class CreateSectionAction extends SectionAction
      *     )
      * )
      * @return Response
-     * @throws SectionNotFoundException
+     * @throws SectionNotFoundException|SectionValidationException
      */
     protected function action(): Response
     {
         $data = $this->request->getParsedBody();
+
+        Section::validateSectionData($data['name'], $data['order'], $data['tab_id']);
 
         $newSection = new Section();
         $newSection->setName($data['name']);

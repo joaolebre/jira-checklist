@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Application\Actions\Ticket;
 
+use App\Domain\Ticket\Ticket;
 use App\Domain\Ticket\TicketNotFoundException;
+use App\Domain\Ticket\TicketValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
 
@@ -54,6 +56,7 @@ class UpdateTicketAction extends TicketAction
      * @return Response
      * @throws HttpBadRequestException
      * @throws TicketNotFoundException
+     * @throws TicketValidationException
      */
     protected function action(): Response
     {
@@ -61,6 +64,8 @@ class UpdateTicketAction extends TicketAction
         $ticket = $this->ticketRepository->findTicketById($ticketId);
 
         $data = $this->request->getParsedBody();
+
+        Ticket::validateTicketData($data['title'], $data['description'], 1);
 
         $ticket->setTitle($data['title']);
         $ticket->setDescription($data['description']);

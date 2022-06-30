@@ -2,7 +2,9 @@
 
 namespace App\Application\Actions\Item;
 
+use App\Domain\Item\Item;
 use App\Domain\Item\ItemNotFoundException;
+use App\Domain\Item\ItemValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
 
@@ -56,6 +58,7 @@ class UpdateItemAction extends ItemAction
      * @return Response
      * @throws HttpBadRequestException
      * @throws ItemNotFoundException
+     * @throws ItemValidationException
      */
     protected function action(): Response
     {
@@ -63,6 +66,9 @@ class UpdateItemAction extends ItemAction
         $item = $this->itemRepository->findItemById($itemId);
 
         $data = $this->request->getParsedBody();
+
+        Item::validateItemData($data['summary'], $data['is_checked'], $data['is_important'],
+            $data['order'], $data['status_id'], 1);
 
         $item->setSummary($data['summary']);
         $item->setIsChecked($data['is_checked']);

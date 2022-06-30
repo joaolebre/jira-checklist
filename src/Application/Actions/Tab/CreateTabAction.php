@@ -5,6 +5,7 @@ namespace App\Application\Actions\Tab;
 
 use App\Domain\Tab\Tab;
 use App\Domain\Tab\TabNotFoundException;
+use App\Domain\Tab\TabValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class CreateTabAction extends TabAction
@@ -30,10 +31,13 @@ class CreateTabAction extends TabAction
      * )
      * @return Response
      * @throws TabNotFoundException
+     * @throws TabValidationException
      */
     protected function action(): Response
     {
         $data = $this->request->getParsedBody();
+
+        Tab::validateTabData($data['name'], $data['order'], $data['ticket_id']);
 
         $newTab = new Tab();
         $newTab->setName($data['name']);

@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Application\Actions\Section;
 
+use App\Domain\Section\Section;
 use App\Domain\Section\SectionNotFoundException;
+use App\Domain\Section\SectionValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
 
@@ -54,6 +56,7 @@ class UpdateSectionAction extends SectionAction
      * @return Response
      * @throws SectionNotFoundException
      * @throws HttpBadRequestException
+     * @throws SectionValidationException
      */
     protected function action(): Response
     {
@@ -61,6 +64,8 @@ class UpdateSectionAction extends SectionAction
         $section = $this->sectionRepository->findSectionById($sectionId);
 
         $data = $this->request->getParsedBody();
+
+        Section::validateSectionData($data['name'], $data['order'], 1);
 
         $section->setName($data['name']);
         $section->setOrder((int) $data['order']);

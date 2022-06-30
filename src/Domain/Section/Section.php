@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Domain\Section;
 
 use JsonSerializable;
+use Respect\Validation\Exceptions\NestedValidationException;
+use Respect\Validation\Validator as v;
 
 /**
  * @OA\Schema ()
@@ -45,6 +47,29 @@ class Section implements JsonSerializable
      * @OA\Property (@OA\Items(ref="#/components/schemas/Item"))
      */
     private $items;
+
+    /**
+     * @throws SectionValidationException
+     */
+    public static function validateSectionData($name, $order, $tabId) {
+        try {
+            v::stringVal()->assert($name);
+        } catch (NestedValidationException $ex) {
+            throw new SectionValidationException('Name must be a string.', 405);
+        }
+
+        try {
+            v::number()->assert($order);
+        } catch (NestedValidationException $ex) {
+            throw new SectionValidationException('Order must be an integer.', 405);
+        }
+
+        try {
+            v::number()->assert($tabId);
+        } catch (NestedValidationException $ex) {
+            throw new SectionValidationException('Tab id must be an integer.', 405);
+        }
+    }
 
     /**
      * @param int $id

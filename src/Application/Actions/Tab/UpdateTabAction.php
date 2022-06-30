@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Application\Actions\Tab;
 
+use App\Domain\Tab\Tab;
 use App\Domain\Tab\TabNotFoundException;
+use App\Domain\Tab\TabValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
 
@@ -53,6 +55,7 @@ class UpdateTabAction extends TabAction
      * )
      * @return Response
      * @throws TabNotFoundException|HttpBadRequestException
+     * @throws TabValidationException
      */
     protected function action(): Response
     {
@@ -60,6 +63,8 @@ class UpdateTabAction extends TabAction
         $tab = $this->tabRepository->findTabById((int) $tabId);
 
         $data = $this->request->getParsedBody();
+
+        Tab::validateTabData($data['name'], $data['order'], 1);
 
         $tab->setName($data['name']);
         $tab->setOrder((int) $data['order']);
