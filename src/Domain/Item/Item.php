@@ -98,7 +98,7 @@ class Item implements JsonSerializable {
         try {
             v::number()->assert($sectionId);
         } catch (NestedValidationException $ex) {
-            throw new ItemValidationException('Tab id must be an integer.', 405);
+            throw new ItemValidationException('Section id must be an integer.', 405);
         }
     }
 
