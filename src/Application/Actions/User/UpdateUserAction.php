@@ -32,10 +32,6 @@ class UpdateUserAction extends UserAction
      *         description="User updated"
      *     ),
      *     @OA\Response(
-     *         response=400,
-     *         description="Invalid ID supplied"
-     *     ),
-     *     @OA\Response(
      *         response=404,
      *         description="User not found"
      *     ),

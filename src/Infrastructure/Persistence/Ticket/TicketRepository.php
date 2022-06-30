@@ -6,10 +6,19 @@ namespace App\Infrastructure\Persistence\Ticket;
 use App\Domain\Ticket\Ticket;
 use App\Domain\Ticket\TicketNotFoundException;
 use App\Infrastructure\Persistence\AbstractRepository;
+use App\Infrastructure\Persistence\Section\SectionRepository;
+use App\Infrastructure\Persistence\Tab\TabRepository;
 use PDO;
 
 class TicketRepository extends AbstractRepository
 {
+    private $tabRepository;
+
+    public function __construct(PDO $database, TabRepository $tabRepository)
+    {
+        parent::__construct($database);
+        $this->tabRepository = $tabRepository;
+    }
 
     public function findAll(): array {
         $query = 'SELECT * FROM tickets';
@@ -51,11 +60,37 @@ class TicketRepository extends AbstractRepository
         $description = $ticket->getDescription();
         $userId = $ticket->getUserId();
 
+        $tabQuery = '
+            INSERT INTO tabs(name, `order`, ticket_id)
+            VALUES (:name, :order, :ticket_id)
+        ';
+
+        $sectionQuery = '
+            INSERT INTO sections(name, `order`, tab_id)
+            VALUES (:name, :order, :tab_id)
+        ';
+
+        $tabStatement = $this->database->prepare($tabQuery);
+        $sectionStatement = $this->database->prepare($sectionQuery);
+
+        $this->database->beginTransaction();
+
         $statement->bindParam(':title', $title);
         $statement->bindParam(':description', $description);
         $statement->bindParam(':user_id', $userId);
-
         $statement->execute();
+
+        $tabStatement->bindValue(':name', "Tab 1");
+        $tabStatement->bindValue(':order', 1);
+        $tabStatement->bindValue(':ticket_id', $this->database->lastInsertId());
+        $tabStatement->execute();
+
+        $sectionStatement->bindValue(':name', "Section 1");
+        $sectionStatement->bindValue(':order', 1);
+        $sectionStatement->bindValue(':tab_id', $this->tabRepository->database->lastInsertId());
+        $sectionStatement->execute();
+
+        $this->database->commit();
 
         return $this->findTicketById((int) $this->database->lastInsertId());
     }
@@ -76,7 +111,6 @@ class TicketRepository extends AbstractRepository
         $statement->bindParam(':id', $ticketId);
         $statement->bindParam(':title', $title);
         $statement->bindParam(':description', $description);
-
         $statement->execute();
 
         return $ticket;

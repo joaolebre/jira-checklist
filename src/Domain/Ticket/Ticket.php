@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Domain\Ticket;
 
 use JsonSerializable;
+use Respect\Validation\Exceptions\NestedValidationException;
+use Respect\Validation\Validator as v;
 
 /**
  * @OA\Schema ()
@@ -45,6 +47,29 @@ class Ticket implements JsonSerializable
      * @OA\Property (@OA\Items(ref="#/components/schemas/Tab"))
      */
     private $tabs;
+
+    /**
+     * @throws TicketValidationException
+     */
+    public static function validateTicketData($title, $description, $userId) {
+        try {
+            v::stringVal()->length(3)->assert($title);
+        } catch (NestedValidationException $ex) {
+            throw new TicketValidationException('Title must be at least 3 characters.', 405);
+        }
+
+        try {
+            v::optional(v::stringVal())->assert($description);
+        } catch (NestedValidationException $ex) {
+            throw new TicketValidationException('Description must be a string.', 405);
+        }
+
+        try {
+            v::Number()->assert($userId);
+        } catch (NestedValidationException $ex) {
+            throw new TicketValidationException('User id must be an integer.', 405);
+        }
+    }
 
     /**
      * @return mixed
