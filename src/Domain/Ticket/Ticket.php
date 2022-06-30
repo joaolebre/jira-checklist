@@ -152,7 +152,8 @@ class Ticket implements JsonSerializable
     {
        return [
            'id' => $this->id,
-           'name' => $this->title,
+           'title' => $this->title,
+           'description' => $this->description,
            'user' => $this->user_id,
            'tabs' => $this->tabs
        ];
