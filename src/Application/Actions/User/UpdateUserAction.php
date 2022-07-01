@@ -43,10 +43,9 @@ class UpdateUserAction extends UserAction
      *         description="User object",
      *         required=true,
      *         @OA\JsonContent(
-     *              required={"name","email","password"},
+     *              required={"name","email"},
      *              @OA\Property(property="name", type="string", format="text", example="João"),
-     *              @OA\Property(property="email", type="string", format="text", example="joao@gmail.com"),
-     *              @OA\Property(property="password", type="string", format="text", example="password123456")
+     *              @OA\Property(property="email", type="string", format="text", example="joao@gmail.com")
      *         )
      *     )
      * )
@@ -62,11 +61,10 @@ class UpdateUserAction extends UserAction
 
         $data = $this->request->getParsedBody();
 
-        User::validateUserData($data['name'], $data['email'], $data['password']);
+        User::validateUserData($data['name'], $data['email'], 'GoodPassword123456?');
 
         $user->setName($data['name']);
         $user->setEmail($data['email']);
-        $user->setPassword($data['password']);
 
         $this->userRepository->updateUser($user);
 

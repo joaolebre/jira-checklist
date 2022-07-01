@@ -499,6 +499,8 @@ paths:
       responses:
         '201':
           description: 'Creation successful'
+        '405':
+          description: 'Validation exception'
   '/api/tickets/{id}':
     get:
       tags:
@@ -696,8 +698,6 @@ paths:
       responses:
         '200':
           description: 'User updated'
-        '400':
-          description: 'Invalid ID supplied'
         '404':
           description: 'User not found'
         '405':
@@ -751,6 +751,41 @@ paths:
       responses:
         '200':
           description: 'Login successful'
+  '/api/users/password/{id}':
+    patch:
+      tags:
+        - User
+      summary: 'Update the password of a specific user'
+      operationId: updateUserPassword
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'User id.'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Password
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - password
+              properties:
+                password:
+                  type: string
+                  format: text
+                  example: password123456
+              type: object
+      responses:
+        '200':
+          description: 'User password updated'
+        '404':
+          description: 'User not found'
+        '405':
+          description: 'Validation exception'
 components:
   schemas:
     Item:

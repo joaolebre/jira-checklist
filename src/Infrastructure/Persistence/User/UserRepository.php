@@ -116,6 +116,22 @@ class UserRepository extends BaseRepository
         return $user;
     }
 
+    public function updateUserPassword(int $userId, string $password) {
+        $query = '
+            UPDATE users
+            SET password = :password
+            WHERE id = :id
+        ';
+        $statement = $this->database->prepare($query);
+
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        $statement->bindParam(':id', $userId);
+        $statement->bindParam(':password', $hashed_password);
+
+        $statement->execute();
+    }
+
     /**
      * @throws UserNotFoundException
      */

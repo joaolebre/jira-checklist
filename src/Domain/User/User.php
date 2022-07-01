@@ -57,18 +57,19 @@ class User implements JsonSerializable
         }
 
         try {
-            v::alnum()->length(8)->assert($password);
+            v::regex('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$^')->assert($password);
         } catch (NestedValidationException $ex) {
-            throw new UserValidationException('Password must be alpha numeric.', 405);
+            throw new UserValidationException('Password must have at least 8 characters,
+                1 lowercase letter, 1 uppercase letter, 1 number and 1 symbol.', 405);
         }
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
-        return $this->id;
+        return (int) $this->id;
     }
 
     /**
