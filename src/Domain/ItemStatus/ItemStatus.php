@@ -32,11 +32,11 @@ class ItemStatus implements JsonSerializable {
     private $color;
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getId(): ?int
+    public function getId(): int
     {
-        return $this->id;
+        return (int) $this->id;
     }
 
     /**

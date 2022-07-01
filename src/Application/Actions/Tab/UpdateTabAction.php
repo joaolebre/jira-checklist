@@ -73,6 +73,6 @@ class UpdateTabAction extends TabAction
 
         $this->logger->info("Tab with id `{$tabId}` was updated.");
 
-        return $this->respondWithData($tab)->withHeader('Location', "/sections/{$tabId}");
+        return $this->respondWithData($tab)->withHeader('Location', "/api/tabs/{$tabId}");
     }
 }

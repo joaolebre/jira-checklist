@@ -80,6 +80,6 @@ class UpdateItemAction extends ItemAction
 
         $this->logger->info("Item with id `{$itemId}` was updated.");
 
-        return $this->respondWithData($item)->withHeader('Location', "/items/{$itemId}");
+        return $this->respondWithData($item)->withHeader('Location', "/api/items/{$itemId}");
     }
 }
