@@ -5,10 +5,10 @@ namespace App\Infrastructure\Persistence\ItemStatus;
 
 use App\Domain\ItemStatus\ItemStatus;
 use App\Domain\ItemStatus\ItemStatusNotFoundException;
-use App\Infrastructure\Persistence\AbstractRepository;
+use App\Infrastructure\Persistence\BaseRepository;
 use PDO;
 
-class ItemStatusRepository extends AbstractRepository
+class ItemStatusRepository extends BaseRepository
 {
 
     public function findAll(): array {

@@ -5,7 +5,7 @@ namespace App\Infrastructure\Persistence;
 
 use PDO;
 
-abstract class AbstractRepository
+abstract class BaseRepository
 {
     protected $database;
 

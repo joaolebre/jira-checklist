@@ -5,10 +5,10 @@ namespace App\Infrastructure\Persistence\User;
 use App\Domain\User\User;
 use App\Domain\User\UserLoginFailedException;
 use App\Domain\User\UserNotFoundException;
-use App\Infrastructure\Persistence\AbstractRepository;
+use App\Infrastructure\Persistence\BaseRepository;
 use PDO;
 
-class UserRepository extends AbstractRepository
+class UserRepository extends BaseRepository
 {
 
     public function findAll(): array {

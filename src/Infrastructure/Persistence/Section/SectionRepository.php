@@ -5,13 +5,13 @@ namespace App\Infrastructure\Persistence\Section;
 
 use App\Domain\Section\Section;
 use App\Domain\Section\SectionNotFoundException;
-use App\Infrastructure\Persistence\AbstractRepository;
+use App\Infrastructure\Persistence\BaseRepository;
 use PDO;
 
-class SectionRepository extends AbstractRepository
+class SectionRepository extends BaseRepository
 {
     public function findAll(): array {
-        $query = 'SELECT * FROM sections';
+        $query = 'SELECT id, name, `order`, tab_id FROM sections';
         $statement = $this->database->prepare($query);
         $statement->execute();
 
@@ -38,7 +38,7 @@ class SectionRepository extends AbstractRepository
 
     public function findSectionsByTabId(int $tabId): array {
         $query = '
-            SELECT * FROM sections 
+            SELECT id, name, `order` FROM sections 
             WHERE sections.tab_id = :tab_id 
             ORDER BY sections.`order`
             ';

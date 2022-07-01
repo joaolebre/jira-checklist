@@ -5,14 +5,14 @@ namespace App\Infrastructure\Persistence\Tab;
 
 use App\Domain\Tab\Tab;
 use App\Domain\Tab\TabNotFoundException;
-use App\Infrastructure\Persistence\AbstractRepository;
+use App\Infrastructure\Persistence\BaseRepository;
 use PDO;
 
-class TabRepository extends AbstractRepository
+class TabRepository extends BaseRepository
 {
 
     public function findAll(): array {
-        $query = 'SELECT * FROM tabs';
+        $query = 'SELECT id, name, `order`, ticket_id FROM tabs';
         $statement = $this->database->prepare($query);
         $statement->execute();
 
@@ -40,7 +40,7 @@ class TabRepository extends AbstractRepository
     public function findTabsByTicketId($ticketId): array
     {
         $query = '
-            SELECT * FROM tabs 
+            SELECT id, name, `order` FROM tabs 
             WHERE tabs.ticket_id = :ticket_id 
             ORDER BY tabs.`order`
             ';

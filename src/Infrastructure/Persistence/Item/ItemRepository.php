@@ -5,13 +5,13 @@ namespace App\Infrastructure\Persistence\Item;
 
 use App\Domain\Item\Item;
 use App\Domain\Item\ItemNotFoundException;
-use App\Infrastructure\Persistence\AbstractRepository;
+use App\Infrastructure\Persistence\BaseRepository;
 use PDO;
 
-class ItemRepository extends AbstractRepository
+class ItemRepository extends BaseRepository
 {
     public function findAll(): array {
-        $query = 'SELECT * FROM items';
+        $query = 'SELECT id, summary, is_checked, is_important, `order`, section_id, status_id FROM items';
         $statement = $this->database->prepare($query);
         $statement->execute();
 
@@ -38,7 +38,7 @@ class ItemRepository extends AbstractRepository
 
     public function findItemsBySectionId(int $sectionId): array {
         $query = '
-            SELECT * FROM items 
+            SELECT id, summary, is_checked, is_important, `order`, status_id FROM items 
             WHERE items.section_id = :section_id
             ORDER BY items.`order`
         ';

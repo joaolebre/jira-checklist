@@ -5,12 +5,12 @@ namespace App\Infrastructure\Persistence\Ticket;
 
 use App\Domain\Ticket\Ticket;
 use App\Domain\Ticket\TicketNotFoundException;
-use App\Infrastructure\Persistence\AbstractRepository;
-use App\Infrastructure\Persistence\Section\SectionRepository;
+use App\Infrastructure\Persistence\BaseRepository;
 use App\Infrastructure\Persistence\Tab\TabRepository;
 use PDO;
+use Throwable;
 
-class TicketRepository extends AbstractRepository
+class TicketRepository extends BaseRepository
 {
     private $tabRepository;
 
@@ -21,7 +21,7 @@ class TicketRepository extends AbstractRepository
     }
 
     public function findAll(): array {
-        $query = 'SELECT * FROM tickets';
+        $query = 'SELECT id, title, description, user_id FROM tickets';
         $statement = $this->database->prepare($query);
         $statement->execute();
 
@@ -48,6 +48,7 @@ class TicketRepository extends AbstractRepository
 
     /**
      * @throws TicketNotFoundException
+     * @throws Throwable
      */
     public function createTicket(Ticket $ticket): Ticket {
         $query = '
@@ -75,20 +76,25 @@ class TicketRepository extends AbstractRepository
 
         $this->database->beginTransaction();
 
-        $statement->bindParam(':title', $title);
-        $statement->bindParam(':description', $description);
-        $statement->bindParam(':user_id', $userId);
-        $statement->execute();
+        try {
+            $statement->bindParam(':title', $title);
+            $statement->bindParam(':description', $description);
+            $statement->bindParam(':user_id', $userId);
+            $statement->execute();
 
-        $tabStatement->bindValue(':name', "Tab 1");
-        $tabStatement->bindValue(':order', 1);
-        $tabStatement->bindValue(':ticket_id', $this->database->lastInsertId());
-        $tabStatement->execute();
+            $tabStatement->bindValue(':name', "Tab 1");
+            $tabStatement->bindValue(':order', 1);
+            $tabStatement->bindValue(':ticket_id', $this->database->lastInsertId());
+            $tabStatement->execute();
 
-        $sectionStatement->bindValue(':name', "Section 1");
-        $sectionStatement->bindValue(':order', 1);
-        $sectionStatement->bindValue(':tab_id', $this->tabRepository->database->lastInsertId());
-        $sectionStatement->execute();
+            $sectionStatement->bindValue(':name', "Section 1");
+            $sectionStatement->bindValue(':order', 1);
+            $sectionStatement->bindValue(':tab_id', $this->tabRepository->database->lastInsertId());
+            $sectionStatement->execute();
+        } catch (Throwable $ex) {
+            $this->database->rollBack();
+            throw $ex;
+        }
 
         $this->database->commit();
 
