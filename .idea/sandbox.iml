@@ -70,8 +70,11 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/respect/validation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/respect/stringifier" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/twig/twig" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/slim/twig-view" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="swagger-ui" level="application" />
   </component>
 </module>

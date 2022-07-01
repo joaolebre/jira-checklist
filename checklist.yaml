@@ -680,7 +680,6 @@ paths:
               required:
                 - name
                 - email
-                - password
               properties:
                 name:
                   type: string
@@ -690,10 +689,6 @@ paths:
                   type: string
                   format: text
                   example: joao@gmail.com
-                password:
-                  type: string
-                  format: text
-                  example: password123456
               type: object
       responses:
         '200':

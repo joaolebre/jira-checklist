@@ -11,10 +11,12 @@ use App\Application\Actions\ItemStatus;
 use App\Application\Actions\Item;
 use App\Application\Actions\Section;
 use App\Application\Actions\Tab;
+use Slim\Views\Twig;
+use Symfony\Component\Yaml\Yaml;
 
 return function (App $app) {
     $app->get('/', function (Request $request, Response $response) {
-        $response->getBody()->write('JIRA Checklist API!');
+        $response->getBody()->write('Hello World!');
         return $response;
     });
 
@@ -23,6 +25,19 @@ return function (App $app) {
     });
 
     $app->group('/api', function (Group $group) {
+        $group->get('', function (Request $request, Response $response) {
+            $response->getBody()->write('Welcome to the JIRA Checklist API! Go to https://sandbox.exads.rocks/api/docs for more info.');
+            return $response;
+        });
+
+        $group->get('/docs', function ($request, $response, $args) {
+            $view = Twig::fromRequest($request);
+            $yamlFile = __DIR__ . '/../checklist.yaml';
+            return $view->render($response, 'docs/swagger.twig', [
+                'spec' =>json_encode(Yaml::parseFile($yamlFile)),
+            ]);
+        });
+
         $group->group('/users', function (Group $group) {
             $group->get('', User\ListUsersAction::class);
             $group->get('/{id}', User\GetUserAction::class);
