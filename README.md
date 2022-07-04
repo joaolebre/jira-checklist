@@ -1,9 +1,14 @@
 ### Jira Checklist
 
 API that covers all the actions needed to create a checklist of tasks that need to be completed,
-so that the ticket can be considered as validated. Built with the Slim framework.
+so that the ticket can be considered as validated. Built with the Slim framework. Link: 
+https://sandbox.exads.rocks
 
 ### ENDPOINTS:
+
+#### DOCS:
+
+- View API Documents: `/api/docs`
 
 #### USERS:
 
@@ -16,6 +21,8 @@ so that the ticket can be considered as validated. Built with the Slim framework
 - Create User: `POST /api/users`
 
 - Update User: `PUT /api/users/{id}`
+
+- Update User Password: `PATCH /api/users/password/{id}`
 
 - Delete User: `DELETE /api/users/{id}`
 
