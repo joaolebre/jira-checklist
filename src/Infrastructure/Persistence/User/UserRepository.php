@@ -66,6 +66,19 @@ class UserRepository extends BaseRepository
         return $user;
     }
 
+    public function isEmailUnique(string $email): bool {
+        $query = '
+            SELECT * FROM users
+            WHERE email = :email
+        ';
+        $statement = $this->database->prepare($query);
+        $statement->bindParam(':email', $email);
+        $statement->execute();
+
+        return ! $statement->fetchObject(User::class);
+    }
+
+
     /**
      * @throws UserNotFoundException
      */

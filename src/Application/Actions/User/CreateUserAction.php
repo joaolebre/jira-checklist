@@ -42,6 +42,12 @@ class CreateUserAction extends UserAction
 
         User::validateUserData($data['name'], $data['email'], $data['password']);
 
+        if (! $this->userRepository->isEmailUnique($data['email'])) {
+            $this->logger->error("Email `{$data['email']}` already exists.");
+
+            throw new UserValidationException('Email already exists.', 405);
+        }
+
         $newUser = new User();
         $newUser->setName($data['name']);
         $newUser->setEmail($data['email']);

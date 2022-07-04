@@ -624,3 +624,8 @@
 [2022-07-01T12:59:07.637041-04:00] slim-app.INFO: Item list was viewed [] {"uid":"3dca9cf"}
 [2022-07-01T12:59:07.848553-04:00] slim-app.INFO: Item list was viewed [] {"uid":"002858c"}
 [2022-07-01T12:59:08.031692-04:00] slim-app.INFO: Item list was viewed [] {"uid":"34a9c93"}
+[2022-07-04T04:08:23.825158-04:00] slim-app.INFO: Item list was viewed [] {"uid":"6d1bae1"}
+[2022-07-04T04:08:35.362926-04:00] slim-app.INFO: Item list was viewed [] {"uid":"a325d93"}
+[2022-07-04T04:28:29.975527-04:00] slim-app.INFO: Item list was viewed [] {"uid":"2ae97c4"}
+[2022-07-04T12:23:33.834635-04:00] slim-app.INFO: New user with id `19` was created. [] {"uid":"513a8b5"}
+[2022-07-04T12:23:48.528157-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"27a5ce3"}
