@@ -21,10 +21,10 @@ return function (ContainerBuilder $containerBuilder) {
                     'level' => Logger::DEBUG,
                 ],
                 'db' => [
-                    'host' => '10.42.0.2:3306',
-                    'database' => 'sandbox',
-                    'username' => 'sandbox',
-                    'password' => 'sandbox',
+                    'host' => $_ENV['DB_HOST'],
+                    'database' => $_ENV['DB_NAME'],
+                    'username' => $_ENV['DB_USER'],
+                    'password' => $_ENV['DB_PASSWORD'],
                     'charset' => 'utf8mb4',
                     'collation' => 'utf8mb4_unicode_ci',
                     'flags' => [

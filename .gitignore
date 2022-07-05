@@ -143,3 +143,5 @@ Temporary Items
 # Vendor directory
 vendor/
 
+# ENV File
+.env

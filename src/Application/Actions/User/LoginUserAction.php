@@ -70,7 +70,7 @@ class LoginUserAction extends UserAction
             'exp' => time() + (7 * 24 * 60 * 60)
         ];
 
-        $jwt = JWT::encode($token, $_SERVER['SECRET']);
+        $jwt = JWT::encode($token, $_ENV['SECRET']);
 
         $responseData = array(
             'statusCode' => 200,
