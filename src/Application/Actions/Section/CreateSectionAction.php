@@ -18,6 +18,10 @@ class CreateSectionAction extends SectionAction
      *     summary="Create a new section",
      *     operationId="createSection",
      *     @OA\Response(response=201, description="Creation successful"),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad Request / Validation Error"
+     *     ),
      *     @OA\RequestBody(
      *         description="Section object",
      *         required=true,
@@ -36,7 +40,7 @@ class CreateSectionAction extends SectionAction
     {
         $data = $this->request->getParsedBody();
 
-        Section::validateSectionData($data['name'], $data['order'], $data['tab_id']);
+        Section::validateSectionData($this->request, $data['name'], $data['order'], $data['tab_id']);
 
         $newSection = new Section();
         $newSection->setName($data['name']);

@@ -18,6 +18,10 @@ class CreateTabAction extends TabAction
      *     summary="Create a new tab",
      *     operationId="createTab",
      *     @OA\Response(response=201, description="Creation successful"),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad Request / Validation Error"
+     *     ),
      *     @OA\RequestBody(
      *         description="Tab object",
      *         required=true,
@@ -37,7 +41,7 @@ class CreateTabAction extends TabAction
     {
         $data = $this->request->getParsedBody();
 
-        Tab::validateTabData($data['name'], $data['order'], $data['ticket_id']);
+        Tab::validateTabData($this->request, $data['name'], $data['order'], $data['ticket_id']);
 
         $newTab = new Tab();
         $newTab->setName($data['name']);

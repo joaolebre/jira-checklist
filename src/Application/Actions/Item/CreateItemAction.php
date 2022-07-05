@@ -17,6 +17,10 @@ class CreateItemAction extends ItemAction
      *     summary="Create a new item",
      *     operationId="createItem",
      *     @OA\Response(response=201, description="Creation successful"),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad Request / Validation Error"
+     *     ),
      *     @OA\RequestBody(
      *         description="Item object",
      *         required=true,
@@ -35,7 +39,7 @@ class CreateItemAction extends ItemAction
     {
         $data = $this->request->getParsedBody();
 
-        Item::validateItemData($data['summary'], true, true, $data['order'], 1, $data['section_id']);
+        Item::validateItemData($this->request, $data['summary'], true, true, $data['order'], 1, $data['section_id']);
         $newItem = Item::fromJSON($data);
         $createdItem = $this->itemRepository->createItem($newItem);
 

@@ -32,16 +32,12 @@ class UpdateTicketAction extends TicketAction
      *         description="Ticket updated"
      *     ),
      *     @OA\Response(
-     *         response=400,
-     *         description="Invalid ID supplied"
-     *     ),
-     *     @OA\Response(
      *         response=404,
      *         description="Ticket not found"
      *     ),
      *     @OA\Response(
-     *         response=405,
-     *         description="Validation exception"
+     *         response=400,
+     *         description="Bad Request / Validation Error"
      *     ),
      *     @OA\RequestBody(
      *         description="Ticket object",
@@ -65,7 +61,7 @@ class UpdateTicketAction extends TicketAction
 
         $data = $this->request->getParsedBody();
 
-        Ticket::validateTicketData($data['title'], $data['description'], 1);
+        Ticket::validateTicketData($this->request, $data['title'], $data['description'], 1);
 
         $ticket->setTitle($data['title']);
         $ticket->setDescription($data['description']);

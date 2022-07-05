@@ -53,6 +53,8 @@ paths:
       responses:
         '201':
           description: 'Creation successful'
+        '400':
+          description: 'Bad Request / Validation Error'
   '/api/items/{id}':
     get:
       tags:
@@ -124,12 +126,10 @@ paths:
       responses:
         '200':
           description: 'Item updated'
-        '400':
-          description: 'Invalid ID supplied'
         '404':
           description: 'Item not found'
-        '405':
-          description: 'Validation exception'
+        '400':
+          description: 'Bad Request / Validation Error'
     delete:
       tags:
         - Item
@@ -236,6 +236,8 @@ paths:
       responses:
         '201':
           description: 'Creation successful'
+        '400':
+          description: 'Bad Request / Validation Error'
   '/api/sections/{id}':
     get:
       tags:
@@ -294,12 +296,10 @@ paths:
       responses:
         '200':
           description: 'Section updated'
-        '400':
-          description: 'Invalid ID supplied'
         '404':
           description: 'Section not found'
-        '405':
-          description: 'Validation exception'
+        '400':
+          description: 'Bad Request / Validation Error'
     delete:
       tags:
         - Section
@@ -368,6 +368,8 @@ paths:
       responses:
         '201':
           description: 'Creation successful'
+        '400':
+          description: 'Bad Request / Validation Error'
   '/api/tabs/{id}':
     get:
       tags:
@@ -426,12 +428,10 @@ paths:
       responses:
         '200':
           description: 'Tab updated'
-        '400':
-          description: 'Invalid ID supplied'
         '404':
           description: 'Tab not found'
-        '405':
-          description: 'Validation exception'
+        '400':
+          description: 'Bad Request / Validation Error'
     delete:
       tags:
         - Tab
@@ -559,12 +559,10 @@ paths:
       responses:
         '200':
           description: 'Ticket updated'
-        '400':
-          description: 'Invalid ID supplied'
         '404':
           description: 'Ticket not found'
-        '405':
-          description: 'Validation exception'
+        '400':
+          description: 'Bad Request / Validation Error'
     delete:
       tags:
         - Ticket

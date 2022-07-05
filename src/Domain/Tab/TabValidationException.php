@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Tab;
 
-class TabValidationException extends \Exception
+use Slim\Exception\HttpBadRequestException;
+
+class TabValidationException extends HttpBadRequestException
 {
 
 }

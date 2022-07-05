@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Ticket;
 
-class TicketValidationException extends \Exception
+use Slim\Exception\HttpBadRequestException;
+
+class TicketValidationException extends HttpBadRequestException
 {
 
 }

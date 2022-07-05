@@ -32,16 +32,12 @@ class UpdateSectionAction extends SectionAction
      *         description="Section updated"
      *     ),
      *     @OA\Response(
-     *         response=400,
-     *         description="Invalid ID supplied"
-     *     ),
-     *     @OA\Response(
      *         response=404,
      *         description="Section not found"
      *     ),
      *     @OA\Response(
-     *         response=405,
-     *         description="Validation exception"
+     *         response=400,
+     *         description="Bad Request / Validation Error"
      *     ),
      *     @OA\RequestBody(
      *         description="Section object",
@@ -65,7 +61,7 @@ class UpdateSectionAction extends SectionAction
 
         $data = $this->request->getParsedBody();
 
-        Section::validateSectionData($data['name'], $data['order'], 1);
+        Section::validateSectionData($this->request, $data['name'], $data['order'], 1);
 
         $section->setName($data['name']);
         $section->setOrder((int) $data['order']);

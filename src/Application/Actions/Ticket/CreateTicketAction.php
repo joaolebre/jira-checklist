@@ -7,6 +7,7 @@ use App\Domain\Ticket\Ticket;
 use App\Domain\Ticket\TicketNotFoundException;
 use App\Domain\Ticket\TicketValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
+use Throwable;
 
 class CreateTicketAction extends TicketAction
 {
@@ -35,13 +36,13 @@ class CreateTicketAction extends TicketAction
      * )
      * @return Response
      * @throws TicketNotFoundException
-     * @throws TicketValidationException
+     * @throws TicketValidationException|Throwable
      */
     protected function action(): Response
     {
         $data = $this->request->getParsedBody();
 
-        Ticket::validateTicketData($data['title'], $data['description'], $data['user_id']);
+        Ticket::validateTicketData($this->request, $data['title'], $data['description'], $data['user_id']);
 
         $newTicket = new Ticket();
         $newTicket->setTitle($data['title']);

@@ -32,16 +32,12 @@ class UpdateTabAction extends TabAction
      *         description="Tab updated"
      *     ),
      *     @OA\Response(
-     *         response=400,
-     *         description="Invalid ID supplied"
-     *     ),
-     *     @OA\Response(
      *         response=404,
      *         description="Tab not found"
      *     ),
      *     @OA\Response(
-     *         response=405,
-     *         description="Validation exception"
+     *         response=400,
+     *         description="Bad Request / Validation Error"
      *     ),
      *     @OA\RequestBody(
      *         description="Tab object",
@@ -64,7 +60,7 @@ class UpdateTabAction extends TabAction
 
         $data = $this->request->getParsedBody();
 
-        Tab::validateTabData($data['name'], $data['order'], 1);
+        Tab::validateTabData($this->request, $data['name'], $data['order'], 1);
 
         $tab->setName($data['name']);
         $tab->setOrder((int) $data['order']);

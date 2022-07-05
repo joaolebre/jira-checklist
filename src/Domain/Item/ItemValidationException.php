@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Item;
 
-class ItemValidationException extends \Exception
+use Slim\Exception\HttpBadRequestException;
+
+class ItemValidationException extends HttpBadRequestException
 {
 
 }

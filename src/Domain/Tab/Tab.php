@@ -51,23 +51,23 @@ class Tab implements JsonSerializable
     /**
      * @throws TabValidationException
      */
-    public static function validateTabData($name, $order, $ticketId) {
+    public static function validateTabData($request, $name, $order, $ticketId) {
         try {
             v::stringVal()->assert($name);
         } catch (NestedValidationException $ex) {
-            throw new TabValidationException('Name must be a string.', 405);
+            throw new TabValidationException($request, 'Name must be a string.');
         }
 
         try {
             v::number()->assert($order);
         } catch (NestedValidationException $ex) {
-            throw new TabValidationException('Order must be an integer.', 405);
+            throw new TabValidationException($request, 'Order must be an integer.');
         }
 
         try {
             v::number()->assert($ticketId);
         } catch (NestedValidationException $ex) {
-            throw new TabValidationException('Ticket id must be an integer.', 405);
+            throw new TabValidationException($request, 'Ticket id must be an integer.');
         }
     }
 

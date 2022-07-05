@@ -51,23 +51,23 @@ class Ticket implements JsonSerializable
     /**
      * @throws TicketValidationException
      */
-    public static function validateTicketData($title, $description, $userId) {
+    public static function validateTicketData($request, $title, $description, $userId) {
         try {
             v::stringVal()->length(3)->assert($title);
         } catch (NestedValidationException $ex) {
-            throw new TicketValidationException('Title must be at least 3 characters.', 405);
+            throw new TicketValidationException($request, 'Title must be at least 3 characters.');
         }
 
         try {
             v::optional(v::stringVal())->assert($description);
         } catch (NestedValidationException $ex) {
-            throw new TicketValidationException('Description must be a string.', 405);
+            throw new TicketValidationException($request, 'Description must be a string.');
         }
 
         try {
             v::number()->assert($userId);
         } catch (NestedValidationException $ex) {
-            throw new TicketValidationException('User id must be an integer.', 405);
+            throw new TicketValidationException($request, 'User id must be an integer.');
         }
     }
 

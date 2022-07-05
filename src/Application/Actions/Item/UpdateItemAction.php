@@ -31,16 +31,12 @@ class UpdateItemAction extends ItemAction
      *         description="Item updated"
      *     ),
      *     @OA\Response(
-     *         response=400,
-     *         description="Invalid ID supplied"
-     *     ),
-     *     @OA\Response(
      *         response=404,
      *         description="Item not found"
      *     ),
      *     @OA\Response(
-     *         response=405,
-     *         description="Validation exception"
+     *         response=400,
+     *         description="Bad Request / Validation Error"
      *     ),
      *     @OA\RequestBody(
      *         description="Item object",
@@ -67,7 +63,7 @@ class UpdateItemAction extends ItemAction
 
         $data = $this->request->getParsedBody();
 
-        Item::validateItemData($data['summary'], $data['is_checked'], $data['is_important'],
+        Item::validateItemData($this->request, $data['summary'], $data['is_checked'], $data['is_important'],
             $data['order'], $data['status_id'], 1);
 
         $item->setSummary($data['summary']);

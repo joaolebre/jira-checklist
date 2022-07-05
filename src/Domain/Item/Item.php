@@ -64,41 +64,41 @@ class Item implements JsonSerializable {
     /**
      * @throws ItemValidationException
      */
-    public static function validateItemData($summary, $isChecked, $isImportant, $order, $statusId, $sectionId) {
+    public static function validateItemData($request, $summary, $isChecked, $isImportant, $order, $statusId, $sectionId) {
         try {
             v::stringVal()->assert($summary);
         } catch (NestedValidationException $ex) {
-            throw new ItemValidationException('Summary must be a string.', 405);
+            throw new ItemValidationException($request, 'Summary must be a string.');
         }
 
         try {
             v::boolVal()->assert($isChecked);
         } catch (NestedValidationException $ex) {
-            throw new ItemValidationException('Is checked must evaluate to a boolean value.', 405);
+            throw new ItemValidationException($request, 'Is checked must evaluate to a boolean value.');
         }
 
         try {
             v::boolVal()->assert($isImportant);
         } catch (NestedValidationException $ex) {
-            throw new ItemValidationException('Is important must evaluate to a boolean value.', 405);
+            throw new ItemValidationException($request, 'Is important must evaluate to a boolean value.');
         }
 
         try {
             v::number()->assert($order);
         } catch (NestedValidationException $ex) {
-            throw new ItemValidationException('Order must be an integer.', 405);
+            throw new ItemValidationException($request, 'Order must be an integer.');
         }
 
         try {
             v::number()->assert($statusId);
         } catch (NestedValidationException $ex) {
-            throw new ItemValidationException('Status id must be an integer.', 405);
+            throw new ItemValidationException($request, 'Status id must be an integer.');
         }
 
         try {
             v::number()->assert($sectionId);
         } catch (NestedValidationException $ex) {
-            throw new ItemValidationException('Section id must be an integer.', 405);
+            throw new ItemValidationException($request, 'Section id must be an integer.');
         }
     }
 
