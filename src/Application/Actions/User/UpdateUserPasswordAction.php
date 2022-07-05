@@ -56,7 +56,7 @@ class UpdateUserPasswordAction extends UserAction
         $userId = $this->resolveArg('id');
         $password = $this->request->getParsedBody()['password'];
 
-        User::validateUserData('Valid Name', 'validemail@email.com', $password);
+        User::validateUserData($this->request, 'Valid Name', 'validemail@email.com', $password);
 
         $this->userRepository->updateUserPassword((int) $userId, $password);
 

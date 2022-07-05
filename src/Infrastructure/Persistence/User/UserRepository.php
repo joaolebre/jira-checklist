@@ -11,7 +11,7 @@ class UserRepository extends BaseRepository
 {
 
     public function findAll(): array {
-        $query = 'SELECT name, email, password FROM users';
+        $query = 'SELECT id, name, email, password FROM users';
         $statement = $this->database->prepare($query);
         $statement->execute();
 

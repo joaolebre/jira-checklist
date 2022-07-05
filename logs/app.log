@@ -698,3 +698,11 @@
 [2022-07-05T05:05:31.557502-04:00] slim-app.INFO: Item of id `13` was viewed. [] {"uid":"6a25d43"}
 [2022-07-05T05:34:03.716737-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"2d77c9e"}
 [2022-07-05T05:42:07.949216-04:00] slim-app.ERROR: Email `pedro@gmail.com` already exists. [] {"uid":"642be73"}
+[2022-07-05T06:58:48.313793-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"3fe0fde"}
+[2022-07-05T08:52:24.176096-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"cfd4619"}
+[2022-07-05T08:52:48.871023-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"a456337"}
+[2022-07-05T08:53:06.576407-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"111528a"}
+[2022-07-05T08:54:11.129196-04:00] slim-app.INFO: Password of user with id `5` was updated. [] {"uid":"e423818"}
+[2022-07-05T08:54:22.951648-04:00] slim-app.INFO: User of id `5` was viewed. [] {"uid":"5804ab7"}
+[2022-07-05T08:54:34.665540-04:00] slim-app.INFO: Password of user with id `5` was updated. [] {"uid":"d0b2fb8"}
+[2022-07-05T08:54:37.827777-04:00] slim-app.INFO: User of id `5` was viewed. [] {"uid":"9e29040"}
