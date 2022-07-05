@@ -43,24 +43,23 @@ class User implements JsonSerializable
     /**
      * @throws UserValidationException
      */
-    public static function validateUserData($name, $email, $password) {
+    public static function validateUserData($request, $name, $email, $password) {
         try {
             v::stringVal()->length(3, 70)->assert($name);
         } catch (NestedValidationException $ex) {
-            throw new UserValidationException('Name must be between 3 and 70 characters.', 405);
+            throw new UserValidationException($request, 'Name must be between 3 and 70 characters.');
         }
 
         try {
             v::email()->assert($email);
         } catch (NestedValidationException $ex) {
-            throw new UserValidationException('Email format is invalid.', 405);
+            throw new UserValidationException($request, 'Email format is invalid.');
         }
 
         try {
             v::regex('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$^')->assert($password);
         } catch (NestedValidationException $ex) {
-            throw new UserValidationException('Password must have at least 8 characters,
-                1 lowercase letter, 1 uppercase letter, 1 number and 1 symbol.', 405);
+            throw new UserValidationException($request, 'Password must have at least 8 characters, 1 lowercase letter, 1 uppercase letter, 1 number and 1 symbol.');
         }
     }
 

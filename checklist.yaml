@@ -633,8 +633,8 @@ paths:
       responses:
         '201':
           description: 'Creation successful'
-        '405':
-          description: 'Validation exception'
+        '400':
+          description: 'Bad Request / Validation Error'
   '/api/users/{id}':
     get:
       tags:
@@ -695,8 +695,8 @@ paths:
           description: 'User updated'
         '404':
           description: 'User not found'
-        '405':
-          description: 'Validation exception'
+        '400':
+          description: 'Bad Request / Validation Error'
     delete:
       tags:
         - User
@@ -746,6 +746,8 @@ paths:
       responses:
         '200':
           description: 'Login successful'
+        '400':
+          description: 'Bad Request / Validation Error / Login Failed'
   '/api/users/password/{id}':
     patch:
       tags:

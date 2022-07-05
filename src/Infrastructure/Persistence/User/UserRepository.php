@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Persistence\User;
 
 use App\Domain\User\User;
-use App\Domain\User\UserLoginFailedException;
 use App\Domain\User\UserNotFoundException;
 use App\Infrastructure\Persistence\BaseRepository;
 use PDO;
@@ -38,7 +37,7 @@ class UserRepository extends BaseRepository
     }
 
     /**
-     * @throws UserLoginFailedException
+     * User login
      */
     public function loginUser(string $email, string $password) {
         $query = '
@@ -51,19 +50,7 @@ class UserRepository extends BaseRepository
 
         $statement->execute();
 
-        $user = $statement->fetchObject(User::class);
-
-        if (! $user) {
-            throw new UserLoginFailedException();
-        } else {
-            $hashedPassword = $user->getPassword();
-
-            if (! password_verify($password, $hashedPassword)) {
-                throw new UserLoginFailedException();
-            }
-        }
-
-        return $user;
+        return $statement->fetchObject(User::class);
     }
 
     public function isEmailUnique(string $email): bool {

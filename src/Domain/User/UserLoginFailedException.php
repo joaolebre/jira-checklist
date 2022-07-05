@@ -2,8 +2,9 @@
 
 namespace App\Domain\User;
 
-class UserLoginFailedException extends \Exception
+use Slim\Exception\HttpBadRequestException;
+
+class UserLoginFailedException extends HttpBadRequestException
 {
     public $message = 'Login failed! Wrong email or password.';
-    public $code = 400;
 }

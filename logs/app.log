@@ -629,3 +629,72 @@
 [2022-07-04T04:28:29.975527-04:00] slim-app.INFO: Item list was viewed [] {"uid":"2ae97c4"}
 [2022-07-04T12:23:33.834635-04:00] slim-app.INFO: New user with id `19` was created. [] {"uid":"513a8b5"}
 [2022-07-04T12:23:48.528157-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"27a5ce3"}
+[2022-07-04T12:33:31.074069-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"bb4d34a"}
+[2022-07-04T12:34:02.066444-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"b534480"}
+[2022-07-04T12:34:05.030455-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"99d756e"}
+[2022-07-04T12:34:15.784303-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"768c26d"}
+[2022-07-04T12:34:16.488481-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"c2ac90d"}
+[2022-07-04T12:34:17.013518-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"3b4825e"}
+[2022-07-04T12:34:17.393131-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"b268ffc"}
+[2022-07-04T12:34:17.687231-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"e60d8e4"}
+[2022-07-04T12:34:17.964668-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"1fb0d0d"}
+[2022-07-04T12:34:18.215872-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"a9fc8d3"}
+[2022-07-04T12:34:18.429674-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"ed655fe"}
+[2022-07-04T12:34:18.635113-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"51b10df"}
+[2022-07-04T12:34:18.843290-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"c1b3f14"}
+[2022-07-04T12:34:19.049704-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"105dd54"}
+[2022-07-04T12:34:19.259054-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"d5df52e"}
+[2022-07-04T12:34:19.424667-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"2353f9c"}
+[2022-07-04T12:34:19.628411-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"30c3a2a"}
+[2022-07-04T12:34:19.818764-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"cd9c3ea"}
+[2022-07-04T12:34:20.013519-04:00] slim-app.ERROR: Email `newperson@gmail.com` already exists. [] {"uid":"e7fd340"}
+[2022-07-04T12:44:41.742382-04:00] slim-app.INFO: Section with id `3` was viewed. [] {"uid":"79af593"}
+[2022-07-04T13:40:33.958591-04:00] slim-app.INFO: Item status with id `1` was viewed. [] {"uid":"cdf0465"}
+[2022-07-05T04:15:02.231427-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"00cbb16"}
+[2022-07-05T04:16:17.382270-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"118106b"}
+[2022-07-05T04:16:44.393405-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"cf8850a"}
+[2022-07-05T04:17:22.771756-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"65676b5"}
+[2022-07-05T04:18:54.632190-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"4ebcaa0"}
+[2022-07-05T04:18:57.345652-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"1538b13"}
+[2022-07-05T04:23:25.218073-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"10ee180"}
+[2022-07-05T04:23:31.467959-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"cff8a8c"}
+[2022-07-05T04:24:30.886265-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"abb8979"}
+[2022-07-05T04:26:12.952393-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"c18aa23"}
+[2022-07-05T04:29:25.138095-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"444de71"}
+[2022-07-05T04:29:28.610182-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"3970716"}
+[2022-07-05T04:29:36.883765-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"31b8af4"}
+[2022-07-05T04:35:29.810230-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"990d057"}
+[2022-07-05T04:35:34.289848-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"676f4ce"}
+[2022-07-05T04:35:35.013286-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"b885033"}
+[2022-07-05T04:35:35.677147-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"bf98a5d"}
+[2022-07-05T04:35:36.425858-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"7ae37df"}
+[2022-07-05T04:35:37.158879-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"d3d25f5"}
+[2022-07-05T04:35:37.568464-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"a5d434f"}
+[2022-07-05T04:35:37.838836-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"4ee4bb7"}
+[2022-07-05T04:35:38.164047-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"4117385"}
+[2022-07-05T04:35:38.396835-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"3a60852"}
+[2022-07-05T04:35:38.701409-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"52f7fd9"}
+[2022-07-05T04:35:38.982788-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"dee90b3"}
+[2022-07-05T04:35:39.265558-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"f976608"}
+[2022-07-05T04:35:39.569698-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"c3a7100"}
+[2022-07-05T04:35:39.863612-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"6847809"}
+[2022-07-05T04:35:40.162832-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"f74e948"}
+[2022-07-05T04:35:40.450321-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"774f518"}
+[2022-07-05T04:35:40.733579-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"c597657"}
+[2022-07-05T04:35:41.062324-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"a11734b"}
+[2022-07-05T04:35:41.383063-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"596ecd2"}
+[2022-07-05T04:35:41.700817-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"06b990b"}
+[2022-07-05T04:35:42.002545-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"eb6cdb1"}
+[2022-07-05T04:35:42.412467-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"4300015"}
+[2022-07-05T04:35:42.672854-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"881eece"}
+[2022-07-05T04:38:41.367205-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"c442960"}
+[2022-07-05T04:38:42.842867-04:00] slim-app.ERROR: Email `miguel@gmail.com` already exists. [] {"uid":"24f1ac1"}
+[2022-07-05T04:52:47.674938-04:00] slim-app.INFO: User of id `1` was viewed. [] {"uid":"1f17a67"}
+[2022-07-05T04:53:04.395857-04:00] slim-app.INFO: User of id `1` was viewed. [] {"uid":"554efa9"}
+[2022-07-05T04:57:49.619050-04:00] slim-app.INFO: Section with id `3` was viewed. [] {"uid":"f62c1ef"}
+[2022-07-05T04:58:06.026423-04:00] slim-app.INFO: Section with id `3` was viewed. [] {"uid":"9d3acf5"}
+[2022-07-05T04:58:18.690515-04:00] slim-app.INFO: Section with id `3` was viewed. [] {"uid":"5af82f0"}
+[2022-07-05T05:03:59.355050-04:00] slim-app.INFO: Item of id `13` was viewed. [] {"uid":"dad9210"}
+[2022-07-05T05:05:31.557502-04:00] slim-app.INFO: Item of id `13` was viewed. [] {"uid":"6a25d43"}
+[2022-07-05T05:34:03.716737-04:00] slim-app.INFO: Users list was viewed. [] {"uid":"2d77c9e"}
+[2022-07-05T05:42:07.949216-04:00] slim-app.ERROR: Email `pedro@gmail.com` already exists. [] {"uid":"642be73"}

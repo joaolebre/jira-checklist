@@ -19,8 +19,8 @@ class CreateUserAction extends UserAction
      *     operationId="createUser",
      *     @OA\Response(response=201, description="Creation successful"),
      *     @OA\Response(
-     *         response=405,
-     *         description="Validation exception"
+     *         response=400,
+     *         description="Bad Request / Validation Error"
      *     ),
      *     @OA\RequestBody(
      *         description="User object",
@@ -40,12 +40,12 @@ class CreateUserAction extends UserAction
     {
         $data = $this->request->getParsedBody();
 
-        User::validateUserData($data['name'], $data['email'], $data['password']);
+        User::validateUserData($this->request, $data['name'], $data['email'], $data['password']);
 
         if (! $this->userRepository->isEmailUnique($data['email'])) {
             $this->logger->error("Email `{$data['email']}` already exists.");
 
-            throw new UserValidationException('Email already exists.', 405);
+            throw new UserValidationException($this->request, 'Email already exists.');
         }
 
         $newUser = new User();

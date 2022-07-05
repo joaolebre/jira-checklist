@@ -36,8 +36,8 @@ class UpdateUserAction extends UserAction
      *         description="User not found"
      *     ),
      *     @OA\Response(
-     *         response=405,
-     *         description="Validation exception"
+     *         response=400,
+     *         description="Bad Request / Validation Error"
      *     ),
      *     @OA\RequestBody(
      *         description="User object",
@@ -61,7 +61,7 @@ class UpdateUserAction extends UserAction
 
         $data = $this->request->getParsedBody();
 
-        User::validateUserData($data['name'], $data['email'], 'GoodPassword123456?');
+        User::validateUserData($this->request, $data['name'], $data['email'], 'GoodPassword123456?');
 
         $user->setName($data['name']);
         $user->setEmail($data['email']);

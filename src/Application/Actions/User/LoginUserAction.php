@@ -5,6 +5,7 @@ namespace App\Application\Actions\User;
 
 use App\Domain\User\UserException;
 use App\Domain\User\UserLoginFailedException;
+use App\Domain\User\UserValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class LoginUserAction extends UserAction
@@ -17,6 +18,10 @@ class LoginUserAction extends UserAction
      *     summary="Login with a certain user",
      *     operationId="loginUser",
      *     @OA\Response(response=200, description="Login successful"),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad Request / Validation Error / Login Failed"
+     *     ),
      *     @OA\RequestBody(
      *         description="Login data",
      *         required=true,
@@ -28,22 +33,32 @@ class LoginUserAction extends UserAction
      *     )
      * )
      * @return Response
-     * @throws UserException
      * @throws UserLoginFailedException
+     * @throws UserValidationException
      */
     protected function action(): Response
     {
         $data = $this->request->getParsedBody();
 
         if (! isset($data['email'])) {
-            throw new UserException('Email is required.', 400);
+            throw new UserValidationException($this->request, 'Email is required.');
         }
 
         if (! isset($data['password'])) {
-            throw new UserException('Password is required.', 400);
+            throw new UserValidationException($this->request, 'Password is required.');
         }
 
-        $this->userRepository->loginUser($data['email'], $data['password']);
+        $user = $this->userRepository->loginUser($data['email'], $data['password']);
+
+        if (! $user) {
+            throw new UserLoginFailedException($this->request);
+        } else {
+            $hashedPassword = $user->getPassword();
+
+            if (! password_verify($data['password'], $hashedPassword)) {
+                throw new UserLoginFailedException($this->request);
+            }
+        }
 
         $responseData = array('statusCode' => 200,'message' => 'Login successful!');
         $responsePayload = json_encode($responseData);
