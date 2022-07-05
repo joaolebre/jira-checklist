@@ -15,6 +15,9 @@ class GetUserAction extends UserAction
      *     path="/api/users/{id}",
      *     summary="Get a user by id",
      *     operationId="getUserById",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *          name="id",
      *          in="path",
@@ -32,7 +35,11 @@ class GetUserAction extends UserAction
      *     @OA\Response(
      *          response=404,
      *          description="User not found."
-     *      )
+     *      ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
+     *     )
      * )
      * @throws HttpBadRequestException
      * @throws UserNotFoundException

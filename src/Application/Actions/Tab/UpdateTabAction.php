@@ -18,6 +18,9 @@ class UpdateTabAction extends TabAction
      *     path="/api/tabs/{id}",
      *     summary="Update a specific tab",
      *     operationId="updateTab",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *          name="id",
      *          in="path",
@@ -38,6 +41,10 @@ class UpdateTabAction extends TabAction
      *     @OA\Response(
      *         response=400,
      *         description="Bad Request / Validation Error"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
      *     ),
      *     @OA\RequestBody(
      *         description="Tab object",

@@ -13,6 +13,10 @@ use Slim\Views\TwigMiddleware;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+// Load .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
 // Instantiate PHP-DI ContainerBuilder
 $containerBuilder = new ContainerBuilder();
 
@@ -45,6 +49,22 @@ $twig = Twig::create(__DIR__ . '/../templates', ['cache' => false]);
 
 // Add Twig-View Middleware
 $app->add(TwigMiddleware::create($app, $twig));
+
+// Add JWT Middleware
+$app->add(new \Tuupola\Middleware\JwtAuthentication([
+    'secret' => $_SERVER['SECRET'],
+    'ignore' => ['/api/docs', '/api/users/login', '/api/users/register', '/api/item-statuses'],
+    "error" => function ($response, $arguments) {
+        $data["status"] = "Unauthorized";
+        $data["message"] = $arguments["message"];
+
+        $response->getBody()->write(
+            json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
+        );
+
+        return $response->withHeader("Content-Type", "application/json");
+    }
+]));
 
 // Register middleware
 $middleware = require __DIR__ . '/../app/middleware.php';

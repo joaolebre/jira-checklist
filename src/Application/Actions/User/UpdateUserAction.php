@@ -18,6 +18,9 @@ class UpdateUserAction extends UserAction
      *     path="/api/users/{id}",
      *     summary="Update a specific user",
      *     operationId="updateUser",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *          name="id",
      *          in="path",
@@ -38,6 +41,10 @@ class UpdateUserAction extends UserAction
      *     @OA\Response(
      *         response=400,
      *         description="Bad Request / Validation Error"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
      *     ),
      *     @OA\RequestBody(
      *         description="User object",

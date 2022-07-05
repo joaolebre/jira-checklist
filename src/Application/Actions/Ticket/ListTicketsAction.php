@@ -14,6 +14,9 @@ class ListTicketsAction extends TicketAction
      *     path="/api/tickets",
      *     summary="Get a list of all tickets",
      *     operationId="listTickets",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *      @OA\Response(
      *          response=200,
      *          description="List all tickets.",
@@ -21,7 +24,11 @@ class ListTicketsAction extends TicketAction
      *              type="array",
      *              @OA\Items(ref="#/components/schemas/Ticket")
      *          )
-     *      )
+     *      ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
+     *     )
      * )
      */
     protected function action(): Response

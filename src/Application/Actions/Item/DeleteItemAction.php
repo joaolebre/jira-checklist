@@ -16,6 +16,9 @@ class DeleteItemAction extends ItemAction
      *     path="/api/items/{id}",
      *     summary="Deletes a item",
      *     operationId="deleteItem",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *         name="itemId",
      *         in="path",
@@ -37,7 +40,11 @@ class DeleteItemAction extends ItemAction
      *     @OA\Response(
      *         response=404,
      *         description="Item not found",
-     *     )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
+     *     ),
      * )
      * @return Response
      * @throws HttpBadRequestException|ItemNotFoundException

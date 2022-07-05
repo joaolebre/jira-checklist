@@ -18,6 +18,9 @@ class UpdateSectionAction extends SectionAction
      *     path="/api/sections/{id}",
      *     summary="Update a specific section",
      *     operationId="updateSection",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *          name="id",
      *          in="path",
@@ -38,6 +41,10 @@ class UpdateSectionAction extends SectionAction
      *     @OA\Response(
      *         response=400,
      *         description="Bad Request / Validation Error"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
      *     ),
      *     @OA\RequestBody(
      *         description="Section object",

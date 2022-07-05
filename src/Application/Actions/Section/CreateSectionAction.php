@@ -17,10 +17,17 @@ class CreateSectionAction extends SectionAction
      *     path="/api/sections",
      *     summary="Create a new section",
      *     operationId="createSection",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Response(response=201, description="Creation successful"),
      *     @OA\Response(
      *         response=400,
      *         description="Bad Request / Validation Error"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
      *     ),
      *     @OA\RequestBody(
      *         description="Section object",

@@ -16,6 +16,9 @@ class GetTabAction extends TabAction
      *     path="/api/tabs/{id}",
      *     summary="Get a tab by id",
      *     operationId="getTabById",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *          name="id",
      *          in="path",
@@ -33,7 +36,11 @@ class GetTabAction extends TabAction
      *     @OA\Response(
      *          response=404,
      *          description="Tab not found."
-     *      )
+     *      ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
+     *     ),
      * )
      * @return Response
      * @throws TabNotFoundException|HttpBadRequestException

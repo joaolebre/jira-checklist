@@ -21,6 +21,11 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Item'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     post:
       tags:
         - Item
@@ -55,6 +60,11 @@ paths:
           description: 'Creation successful'
         '400':
           description: 'Bad Request / Validation Error'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
   '/api/items/{id}':
     get:
       tags:
@@ -78,6 +88,11 @@ paths:
                 $ref: '#/components/schemas/Item'
         '404':
           description: 'Item not found.'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     put:
       tags:
         - Item
@@ -130,6 +145,11 @@ paths:
           description: 'Item not found'
         '400':
           description: 'Bad Request / Validation Error'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     delete:
       tags:
         - Item
@@ -151,6 +171,11 @@ paths:
           description: 'Invalid ID supplied'
         '404':
           description: 'Item not found'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
   '/api/item-statuses/{id}':
     get:
       tags:
@@ -204,6 +229,11 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Section'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     post:
       tags:
         - Section
@@ -238,6 +268,11 @@ paths:
           description: 'Creation successful'
         '400':
           description: 'Bad Request / Validation Error'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
   '/api/sections/{id}':
     get:
       tags:
@@ -261,6 +296,11 @@ paths:
                 $ref: '#/components/schemas/Section'
         '404':
           description: 'Section not found.'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     put:
       tags:
         - Section
@@ -300,6 +340,11 @@ paths:
           description: 'Section not found'
         '400':
           description: 'Bad Request / Validation Error'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     delete:
       tags:
         - Section
@@ -321,6 +366,11 @@ paths:
           description: 'Invalid ID supplied'
         '404':
           description: 'Section not found'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
   /api/tabs:
     get:
       tags:
@@ -336,6 +386,11 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Tab'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     post:
       tags:
         - Tab
@@ -370,6 +425,11 @@ paths:
           description: 'Creation successful'
         '400':
           description: 'Bad Request / Validation Error'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
   '/api/tabs/{id}':
     get:
       tags:
@@ -393,6 +453,11 @@ paths:
                 $ref: '#/components/schemas/Tab'
         '404':
           description: 'Tab not found.'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     put:
       tags:
         - Tab
@@ -432,6 +497,11 @@ paths:
           description: 'Tab not found'
         '400':
           description: 'Bad Request / Validation Error'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     delete:
       tags:
         - Tab
@@ -453,6 +523,11 @@ paths:
           description: 'Invalid ID supplied'
         '404':
           description: 'Tab not found'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
   /api/tickets:
     get:
       tags:
@@ -468,6 +543,11 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Ticket'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     post:
       tags:
         - Ticket
@@ -501,6 +581,11 @@ paths:
           description: 'Creation successful'
         '405':
           description: 'Validation exception'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
   '/api/tickets/{id}':
     get:
       tags:
@@ -524,6 +609,11 @@ paths:
                 $ref: '#/components/schemas/Ticket'
         '404':
           description: 'Ticket not found.'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     put:
       tags:
         - Ticket
@@ -563,6 +653,11 @@ paths:
           description: 'Ticket not found'
         '400':
           description: 'Bad Request / Validation Error'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     delete:
       tags:
         - Ticket
@@ -584,25 +679,16 @@ paths:
           description: 'Invalid ID supplied'
         '404':
           description: 'Ticket not found'
-  /api/users:
-    get:
-      tags:
-        - User
-      summary: 'Get a list of all users'
-      operationId: listUsers
-      responses:
-        '200':
-          description: 'List all users.'
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
+  /api/users/register:
     post:
       tags:
         - User
-      summary: 'Create a new user'
+      summary: 'Register a new user'
       operationId: createUser
       requestBody:
         description: 'User object'
@@ -656,6 +742,11 @@ paths:
                 $ref: '#/components/schemas/User'
         '404':
           description: 'User not found.'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     put:
       tags:
         - User
@@ -695,6 +786,11 @@ paths:
           description: 'User not found'
         '400':
           description: 'Bad Request / Validation Error'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
     delete:
       tags:
         - User
@@ -716,6 +812,31 @@ paths:
           description: 'Invalid ID supplied'
         '404':
           description: 'User not found'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
+  /api/users:
+    get:
+      tags:
+        - User
+      summary: 'Get a list of all users'
+      operationId: listUsers
+      responses:
+        '200':
+          description: 'List all users.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
   /api/users/login:
     post:
       tags:
@@ -781,6 +902,11 @@ paths:
           description: 'User not found'
         '405':
           description: 'Validation exception'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
 components:
   schemas:
     Item:
@@ -894,3 +1020,10 @@ components:
           description: 'User password,'
           type: string
       type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      name: bearerAuth
+      in: header
+      bearerFormat: JWT
+      scheme: bearer

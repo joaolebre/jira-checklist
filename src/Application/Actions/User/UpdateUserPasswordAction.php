@@ -17,6 +17,9 @@ class UpdateUserPasswordAction extends UserAction
      *     path="/api/users/password/{id}",
      *     summary="Update the password of a specific user",
      *     operationId="updateUserPassword",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *          name="id",
      *          in="path",
@@ -37,6 +40,10 @@ class UpdateUserPasswordAction extends UserAction
      *     @OA\Response(
      *         response=405,
      *         description="Validation exception"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
      *     ),
      *     @OA\RequestBody(
      *         description="Password",

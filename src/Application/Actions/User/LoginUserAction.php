@@ -6,6 +6,7 @@ namespace App\Application\Actions\User;
 use App\Domain\User\UserException;
 use App\Domain\User\UserLoginFailedException;
 use App\Domain\User\UserValidationException;
+use Firebase\JWT\JWT;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class LoginUserAction extends UserAction
@@ -60,7 +61,22 @@ class LoginUserAction extends UserAction
             }
         }
 
-        $responseData = array('statusCode' => 200,'message' => 'Login successful!');
+        $token = [
+            'iss' => 'JIRA Checklist API',
+            'sub' => $user->getId(),
+            'name' => $user->getName(),
+            'email' => $user->getEmail(),
+            'iat' => time(),
+            'exp' => time() + (7 * 24 * 60 * 60)
+        ];
+
+        $jwt = JWT::encode($token, $_SERVER['SECRET']);
+
+        $responseData = array(
+            'statusCode' => 200,
+            'message' => 'Login successful!',
+            'auth' => 'Bearer ' . $jwt
+            );
         $responsePayload = json_encode($responseData);
 
         $this->response->getBody()->write($responsePayload);

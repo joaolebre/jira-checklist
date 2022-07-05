@@ -17,10 +17,17 @@ class CreateTabAction extends TabAction
      *     path="/api/tabs",
      *     summary="Create a new tab",
      *     operationId="createTab",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Response(response=201, description="Creation successful"),
      *     @OA\Response(
      *         response=400,
      *         description="Bad Request / Validation Error"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
      *     ),
      *     @OA\RequestBody(
      *         description="Tab object",

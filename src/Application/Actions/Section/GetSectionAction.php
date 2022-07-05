@@ -16,6 +16,9 @@ class GetSectionAction extends SectionAction
      *     path="/api/sections/{id}",
      *     summary="Get a section by id",
      *     operationId="getSectionById",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *          name="id",
      *          in="path",
@@ -33,7 +36,11 @@ class GetSectionAction extends SectionAction
      *     @OA\Response(
      *          response=404,
      *          description="Section not found."
-     *      )
+     *      ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
+     *     )
      * )
      * @return Response
      * @throws SectionNotFoundException|HttpBadRequestException

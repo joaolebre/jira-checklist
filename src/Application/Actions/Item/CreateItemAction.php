@@ -16,10 +16,17 @@ class CreateItemAction extends ItemAction
      *     path="/api/items",
      *     summary="Create a new item",
      *     operationId="createItem",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Response(response=201, description="Creation successful"),
      *     @OA\Response(
      *         response=400,
      *         description="Bad Request / Validation Error"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
      *     ),
      *     @OA\RequestBody(
      *         description="Item object",

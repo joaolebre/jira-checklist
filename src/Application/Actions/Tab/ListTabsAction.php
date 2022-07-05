@@ -14,6 +14,9 @@ class ListTabsAction extends TabAction
      *     path="/api/tabs",
      *     summary="Get a list of all tabs",
      *     operationId="listTabs",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *      @OA\Response(
      *          response=200,
      *          description="List all tabs.",
@@ -21,7 +24,11 @@ class ListTabsAction extends TabAction
      *              type="array",
      *              @OA\Items(ref="#/components/schemas/Tab")
      *          )
-     *      )
+     *      ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
+     *     )
      * )
      */
     protected function action(): Response

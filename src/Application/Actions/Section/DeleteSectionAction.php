@@ -16,6 +16,9 @@ class DeleteSectionAction extends SectionAction
      *     path="/api/sections/{id}",
      *     summary="Deletes a section",
      *     operationId="deleteSection",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *         name="sectionId",
      *         in="path",
@@ -37,7 +40,11 @@ class DeleteSectionAction extends SectionAction
      *     @OA\Response(
      *         response=404,
      *         description="Section not found",
-     *     )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
+     *     ),
      * )
      * @return Response
      * @throws HttpBadRequestException

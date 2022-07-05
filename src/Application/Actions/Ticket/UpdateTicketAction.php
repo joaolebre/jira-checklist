@@ -18,6 +18,9 @@ class UpdateTicketAction extends TicketAction
      *     path="/api/tickets/{id}",
      *     summary="Update a specific ticket",
      *     operationId="updateTicket",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *          name="id",
      *          in="path",
@@ -38,6 +41,10 @@ class UpdateTicketAction extends TicketAction
      *     @OA\Response(
      *         response=400,
      *         description="Bad Request / Validation Error"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
      *     ),
      *     @OA\RequestBody(
      *         description="Ticket object",

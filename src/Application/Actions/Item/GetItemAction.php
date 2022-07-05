@@ -16,6 +16,9 @@ class GetItemAction extends ItemAction
      *     path="/api/items/{id}",
      *     summary="Get a item by id",
      *     operationId="getItemById",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *          name="id",
      *          in="path",
@@ -33,7 +36,11 @@ class GetItemAction extends ItemAction
      *     @OA\Response(
      *          response=404,
      *          description="Item not found."
-     *      )
+     *      ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
+     *     ),
      * )
      * @return Response
      * @throws ItemNotFoundException|HttpBadRequestException

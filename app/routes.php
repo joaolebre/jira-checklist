@@ -41,7 +41,7 @@ return function (App $app) {
         $group->group('/users', function (Group $group) {
             $group->get('', User\ListUsersAction::class);
             $group->get('/{id}', User\GetUserAction::class);
-            $group->post('', User\CreateUserAction::class);
+            $group->post('/register', User\CreateUserAction::class);
             $group->post('/login', User\LoginUserAction::class);
             $group->put('/{id}', User\UpdateUserAction::class);
             $group->patch('/password/{id}', User\UpdateUserPasswordAction::class);

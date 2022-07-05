@@ -16,6 +16,9 @@ class DeleteUserAction extends UserAction
      *     path="/api/users/{id}",
      *     summary="Deletes a user",
      *     operationId="deleteUser",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *         name="userId",
      *         in="path",
@@ -37,6 +40,10 @@ class DeleteUserAction extends UserAction
      *     @OA\Response(
      *         response=404,
      *         description="User not found",
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
      *     )
      * )
      * @return Response

@@ -18,10 +18,17 @@ class CreateTicketAction extends TicketAction
      *     path="/api/tickets",
      *     summary="Create a new ticket",
      *     operationId="createTicket",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Response(response=201, description="Creation successful"),
      *     @OA\Response(
      *         response=405,
      *         description="Validation exception"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
      *     ),
      *     @OA\RequestBody(
      *         description="Ticket object",

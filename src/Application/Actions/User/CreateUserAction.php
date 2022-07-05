@@ -14,8 +14,8 @@ class CreateUserAction extends UserAction
     /**
      * @OA\Post(
      *     tags={"User"},
-     *     path="/api/users",
-     *     summary="Create a new user",
+     *     path="/api/users/register",
+     *     summary="Register a new user",
      *     operationId="createUser",
      *     @OA\Response(response=201, description="Creation successful"),
      *     @OA\Response(

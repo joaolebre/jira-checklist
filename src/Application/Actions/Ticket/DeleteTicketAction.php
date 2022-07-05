@@ -16,6 +16,9 @@ class DeleteTicketAction extends TicketAction
      *     path="/api/tickets/{id}",
      *     summary="Deletes a ticket",
      *     operationId="deleteTicket",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *         name="ticketId",
      *         in="path",
@@ -37,7 +40,11 @@ class DeleteTicketAction extends TicketAction
      *     @OA\Response(
      *         response=404,
      *         description="Ticket not found",
-     *     )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
+     *     ),
      * )
      * @return Response
      * @throws HttpBadRequestException

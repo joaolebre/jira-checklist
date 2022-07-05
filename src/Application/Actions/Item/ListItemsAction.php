@@ -14,6 +14,9 @@ class ListItemsAction extends ItemAction
      *     path="/api/items",
      *     summary="Get a list of all items",
      *     operationId="listItems",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *      @OA\Response(
      *          response=200,
      *          description="List all items.",
@@ -21,7 +24,11 @@ class ListItemsAction extends ItemAction
      *              type="array",
      *              @OA\Items(ref="#/components/schemas/Item")
      *          )
-     *      )
+     *      ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
+     *     )
      * )
      */
     protected function action(): Response

@@ -16,6 +16,14 @@ use Slim\Exception\HttpNotFoundException;
  * @OA\Info(
  *     title="JIRA Checklist API",
  *     version="0.1"
+ * ),
+ * @OA\SecurityScheme(
+ *      securityScheme="bearerAuth",
+ *      in="header",
+ *      name="bearerAuth",
+ *      type="http",
+ *      scheme="bearer",
+ *      bearerFormat="JWT",
  * )
  */
 abstract class Action

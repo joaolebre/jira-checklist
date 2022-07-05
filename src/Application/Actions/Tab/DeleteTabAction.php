@@ -16,6 +16,9 @@ class DeleteTabAction extends TabAction
      *     path="/api/tabs/{id}",
      *     summary="Deletes a tab",
      *     operationId="deleteTab",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *         name="tabId",
      *         in="path",
@@ -37,7 +40,11 @@ class DeleteTabAction extends TabAction
      *     @OA\Response(
      *         response=404,
      *         description="Tab not found",
-     *     )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
+     *     ),
      * )
      * @return Response
      * @throws HttpBadRequestException

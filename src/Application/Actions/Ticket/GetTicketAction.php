@@ -16,6 +16,9 @@ class GetTicketAction extends TicketAction
      *     path="/api/tickets/{id}",
      *     summary="Get a ticket by id",
      *     operationId="getTicketById",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *          name="id",
      *          in="path",
@@ -33,7 +36,11 @@ class GetTicketAction extends TicketAction
      *     @OA\Response(
      *          response=404,
      *          description="Ticket not found."
-     *      )
+     *      ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
+     *     )
      * )
      * @return Response
      * @throws HttpBadRequestException

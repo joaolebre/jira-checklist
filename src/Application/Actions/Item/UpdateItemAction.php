@@ -17,6 +17,9 @@ class UpdateItemAction extends ItemAction
      *     path="/api/items/{id}",
      *     summary="Update a specific item",
      *     operationId="updateItem",
+     *     security={
+     *           {"bearerAuth": {}}
+     *       },
      *     @OA\Parameter(
      *          name="id",
      *          in="path",
@@ -37,6 +40,10 @@ class UpdateItemAction extends ItemAction
      *     @OA\Response(
      *         response=400,
      *         description="Bad Request / Validation Error"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized / Token missing or invalid"
      *     ),
      *     @OA\RequestBody(
      *         description="Item object",
