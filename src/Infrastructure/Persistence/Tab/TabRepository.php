@@ -12,7 +12,7 @@ class TabRepository extends BaseRepository
 {
 
     public function findAll(): array {
-        $query = 'SELECT id, name, `order`, ticket_id FROM tabs';
+        $query = 'SELECT id, name, position, ticket_id FROM tabs';
         $statement = $this->database->prepare($query);
         $statement->execute();
 
@@ -40,9 +40,9 @@ class TabRepository extends BaseRepository
     public function findTabsByTicketId($ticketId): array
     {
         $query = '
-            SELECT id, name, `order` FROM tabs 
+            SELECT id, name, position FROM tabs 
             WHERE tabs.ticket_id = :ticket_id 
-            ORDER BY tabs.`order`
+            ORDER BY tabs.position
             ';
         $statement = $this->database->prepare($query);
         $statement->bindParam(':ticket_id', $ticketId);
@@ -57,17 +57,17 @@ class TabRepository extends BaseRepository
     public function createTab(Tab $tab)
     {
         $query = '
-            INSERT INTO tabs (name, `order`, ticket_id)
-            VALUES (:name, :order, :ticket_id)
+            INSERT INTO tabs (name, position, ticket_id)
+            VALUES (:name, :position, :ticket_id)
         ';
         $statement = $this->database->prepare($query);
 
         $name = $tab->getName();
-        $order = $tab->getOrder();
+        $position = $tab->getPosition();
         $ticketId = $tab->getTicketId();
 
         $statement->bindParam(':name', $name);
-        $statement->bindParam(':order', $order);
+        $statement->bindParam(':position', $position);
         $statement->bindParam(':ticket_id', $ticketId);
 
         $statement->execute();
@@ -79,17 +79,17 @@ class TabRepository extends BaseRepository
         $query = '
             UPDATE tabs
             SET name = :name,
-                `order` = :order
+                position = :position
             WHERE id = :id
         ';
         $statement = $this->database->prepare($query);
 
         $tabId = $tab->getId();
         $name = $tab->getName();
-        $order = $tab->getOrder();
+        $position = $tab->getPosition();
 
         $statement->bindParam(':name', $name);
-        $statement->bindParam(':order', $order);
+        $statement->bindParam(':position', $position);
         $statement->bindParam(':id', $tabId);
 
         $statement->execute();

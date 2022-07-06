@@ -53,7 +53,7 @@ class UpdateItemAction extends ItemAction
      *              @OA\Property(property="summary", type="string", format="text", example="This is an item summary"),
      *              @OA\Property(property="is_checked", type="boolean", example=false),
      *              @OA\Property(property="is_important", type="boolean", example=true),
-     *              @OA\Property(property="order", type="integer", format="int64", example=6),
+     *              @OA\Property(property="position", type="integer", format="int64", example=6),
      *              @OA\Property(property="status_id", type="integer", format="int64", example=1)
      *         )
      *     )
@@ -71,12 +71,12 @@ class UpdateItemAction extends ItemAction
         $data = $this->request->getParsedBody();
 
         Item::validateItemData($this->request, $data['summary'], $data['is_checked'], $data['is_important'],
-            $data['order'], $data['status_id'], 1);
+            $data['position'], $data['status_id'], 1);
 
         $item->setSummary($data['summary']);
         $item->setIsChecked($data['is_checked']);
         $item->setIsImportant($data['is_important']);
-        $item->setOrder($data['order']);
+        $item->setPosition($data['position']);
         $item->setStatusId($data['status_id']);
 
         $item = $this->itemRepository->updateItem($item);

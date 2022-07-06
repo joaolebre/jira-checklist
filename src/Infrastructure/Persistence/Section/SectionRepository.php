@@ -11,7 +11,7 @@ use PDO;
 class SectionRepository extends BaseRepository
 {
     public function findAll(): array {
-        $query = 'SELECT id, name, `order`, tab_id FROM sections';
+        $query = 'SELECT id, name, position, tab_id FROM sections';
         $statement = $this->database->prepare($query);
         $statement->execute();
 
@@ -38,9 +38,9 @@ class SectionRepository extends BaseRepository
 
     public function findSectionsByTabId(int $tabId): array {
         $query = '
-            SELECT id, name, `order` FROM sections 
+            SELECT id, name, position FROM sections 
             WHERE sections.tab_id = :tab_id 
-            ORDER BY sections.`order`
+            ORDER BY sections.position
             ';
         $statement = $this->database->prepare($query);
         $statement->bindParam(':tab_id', $tabId);
@@ -54,17 +54,17 @@ class SectionRepository extends BaseRepository
      */
     public function createSection(Section $section): Section {
         $query = '
-            INSERT INTO sections(name, `order`, tab_id)
-            VALUES (:name, :order, :tab_id)
+            INSERT INTO sections(name, position, tab_id)
+            VALUES (:name, :position, :tab_id)
         ';
         $statement = $this->database->prepare($query);
 
         $name = $section->getName();
-        $order = $section->getOrder();
+        $position = $section->getPosition();
         $tabId = $section->getTabId();
 
         $statement->bindParam(':name', $name);
-        $statement->bindParam(':order', $order);
+        $statement->bindParam(':position', $position);
         $statement->bindParam(':tab_id', $tabId);
 
         $statement->execute();
@@ -76,17 +76,17 @@ class SectionRepository extends BaseRepository
         $query = '
             UPDATE sections
             SET name = :name,
-                `order` = :order
+                position = :position
             WHERE id = :id
         ';
         $statement = $this->database->prepare($query);
 
         $sectionId = $section->getId();
         $name = $section->getName();
-        $order = $section->getOrder();
+        $position = $section->getPosition();
 
         $statement->bindParam(':name', $name);
-        $statement->bindParam(':order', $order);
+        $statement->bindParam(':position', $position);
         $statement->bindParam(':id', $sectionId);
 
         $statement->execute();

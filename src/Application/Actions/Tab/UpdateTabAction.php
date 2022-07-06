@@ -52,7 +52,7 @@ class UpdateTabAction extends TabAction
      *         @OA\JsonContent(
      *              required={"name","order"},
      *              @OA\Property(property="name", type="string", format="text", example="Tab 1"),
-     *              @OA\Property(property="order", type="integer", format="int64", example=1)
+     *              @OA\Property(property="position", type="integer", format="int64", example=1)
      *         )
      *     )
      * )
@@ -67,10 +67,10 @@ class UpdateTabAction extends TabAction
 
         $data = $this->request->getParsedBody();
 
-        Tab::validateTabData($this->request, $data['name'], $data['order'], 1);
+        Tab::validateTabData($this->request, $data['name'], $data['position'], 1);
 
         $tab->setName($data['name']);
-        $tab->setOrder((int) $data['order']);
+        $tab->setOrder((int) $data['position']);
 
         $this->tabRepository->updateTab($tab);
 

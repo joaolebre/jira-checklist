@@ -41,11 +41,11 @@ class Item implements JsonSerializable {
     private $isImportant;
 
     /**
-     * Order of the item in the section,
+     * Position of the item in the section,
      * @var int
      * @OA\Property ()
      */
-    private $order;
+    private $position;
 
     /**
      * Item section id,
@@ -64,7 +64,7 @@ class Item implements JsonSerializable {
     /**
      * @throws ItemValidationException
      */
-    public static function validateItemData($request, $summary, $isChecked, $isImportant, $order, $statusId, $sectionId) {
+    public static function validateItemData($request, $summary, $isChecked, $isImportant, $position, $statusId, $sectionId) {
         try {
             v::stringVal()->assert($summary);
         } catch (NestedValidationException $ex) {
@@ -84,9 +84,9 @@ class Item implements JsonSerializable {
         }
 
         try {
-            v::number()->assert($order);
+            v::number()->assert($position);
         } catch (NestedValidationException $ex) {
-            throw new ItemValidationException($request, 'Order must be an integer.');
+            throw new ItemValidationException($request, 'Position must be an integer.');
         }
 
         try {
@@ -106,13 +106,13 @@ class Item implements JsonSerializable {
     {
         [
             'summary' => $summary,
-            'order' => $order,
+            '$position' => $position,
             'section_id' => $sectionId
         ] = $data;
 
         $newItem = new self();
         $newItem->setSummary($summary);
-        $newItem->setOrder($order);
+        $newItem->setPosition($position);
         $newItem->setSectionId($sectionId);
 
         return $newItem;
@@ -175,11 +175,11 @@ class Item implements JsonSerializable {
     }
 
     /**
-     * @param int $order
+     * @param int $position
      */
-    public function setOrder(int $order): void
+    public function setPosition(int $position): void
     {
-        $this->order = $order;
+        $this->position = $position;
     }
 
     /**
@@ -209,9 +209,9 @@ class Item implements JsonSerializable {
     /**
      * @return int
      */
-    public function getOrder(): int
+    public function getPosition(): int
     {
-        return $this->order;
+        return $this->position;
     }
 
     /**
@@ -238,7 +238,7 @@ class Item implements JsonSerializable {
             'summary' => $this->summary,
             'is_checked' => $this->is_checked,
             'is_important' => $this->is_important,
-            'order' => $this->order,
+            'position' => $this->position,
             'section_id' => $this->section_id,
             'status_id' => $this->status_id
         ];

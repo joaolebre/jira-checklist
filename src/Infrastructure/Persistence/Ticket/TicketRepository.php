@@ -62,12 +62,12 @@ class TicketRepository extends BaseRepository
         $userId = $ticket->getUserId();
 
         $tabQuery = '
-            INSERT INTO tabs(name, `order`, ticket_id)
+            INSERT INTO tabs(name, position, ticket_id)
             VALUES (:name, :order, :ticket_id)
         ';
 
         $sectionQuery = '
-            INSERT INTO sections(name, `order`, tab_id)
+            INSERT INTO sections(name, position, tab_id)
             VALUES (:name, :order, :tab_id)
         ';
 

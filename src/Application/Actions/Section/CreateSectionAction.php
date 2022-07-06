@@ -35,7 +35,7 @@ class CreateSectionAction extends SectionAction
      *         @OA\JsonContent(
      *              required={"name","order","tab_id"},
      *              @OA\Property(property="name", type="string", format="text", example="Section 1"),
-     *              @OA\Property(property="order", type="integer", format="int64", example=1),
+     *              @OA\Property(property="position", type="integer", format="int64", example=1),
      *              @OA\Property(property="tab_id", type="integer", format="int64", example=1)
      *         )
      *     )
@@ -47,11 +47,11 @@ class CreateSectionAction extends SectionAction
     {
         $data = $this->request->getParsedBody();
 
-        Section::validateSectionData($this->request, $data['name'], $data['order'], $data['tab_id']);
+        Section::validateSectionData($this->request, $data['name'], $data['position'], $data['tab_id']);
 
         $newSection = new Section();
         $newSection->setName($data['name']);
-        $newSection->setOrder((int) $data['order']);
+        $newSection->setPosition((int) $data['position']);
         $newSection->setTabId((int) $data['tab_id']);
 
         $createdSection = $this->sectionRepository->createSection($newSection);

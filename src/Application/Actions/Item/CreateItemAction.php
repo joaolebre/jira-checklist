@@ -34,7 +34,7 @@ class CreateItemAction extends ItemAction
      *         @OA\JsonContent(
      *              required={"summary","order","section_id"},
      *              @OA\Property(property="summary", type="string", format="text", example="This is an item summary"),
-     *              @OA\Property(property="order", type="integer", format="int64", example=6),
+     *              @OA\Property(property="position", type="integer", format="int64", example=6),
      *              @OA\Property(property="section_id", type="integer", format="int64", example=1)
      *         )
      *     )
@@ -46,7 +46,7 @@ class CreateItemAction extends ItemAction
     {
         $data = $this->request->getParsedBody();
 
-        Item::validateItemData($this->request, $data['summary'], true, true, $data['order'], 1, $data['section_id']);
+        Item::validateItemData($this->request, $data['summary'], true, true, $data['position'], 1, $data['section_id']);
         $newItem = Item::fromJSON($data);
         $createdItem = $this->itemRepository->createItem($newItem);
 

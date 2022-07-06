@@ -32,6 +32,7 @@
         "slim/slim": "^4.7",
         "slim/twig-view": "^3.2",
         "symfony/yaml": "^5.4",
+        "tebazil/db-seeder": "^1.0",
         "tuupola/slim-jwt-auth": "^3.6",
         "vlucas/phpdotenv": "^5.4",
         "zircote/swagger-php": "^4.4"

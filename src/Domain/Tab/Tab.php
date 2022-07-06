@@ -28,11 +28,11 @@ class Tab implements JsonSerializable
     private $name;
 
     /**
-     * Order of the tab in the ticket,
+     * Position of the tab in the ticket,
      * @var int
      * @OA\Property ()
      */
-    private $order;
+    private $position;
 
     /**
      * Tab ticket id,
@@ -51,7 +51,7 @@ class Tab implements JsonSerializable
     /**
      * @throws TabValidationException
      */
-    public static function validateTabData($request, $name, $order, $ticketId) {
+    public static function validateTabData($request, $name, $position, $ticketId) {
         try {
             v::stringVal()->assert($name);
         } catch (NestedValidationException $ex) {
@@ -59,9 +59,9 @@ class Tab implements JsonSerializable
         }
 
         try {
-            v::number()->assert($order);
+            v::number()->assert($position);
         } catch (NestedValidationException $ex) {
-            throw new TabValidationException($request, 'Order must be an integer.');
+            throw new TabValidationException($request, 'Position must be an integer.');
         }
 
         try {
@@ -96,11 +96,11 @@ class Tab implements JsonSerializable
     }
 
     /**
-     * @param int $order
+     * @param int $position
      */
-    public function setOrder(int $order): void
+    public function setPosition(int $position): void
     {
-        $this->order = $order;
+        $this->position = $position;
     }
 
     /**
@@ -114,9 +114,9 @@ class Tab implements JsonSerializable
     /**
      * @return int
      */
-    public function getOrder(): int
+    public function getPosition(): int
     {
-        return $this->order;
+        return $this->position;
     }
 
     /**
@@ -149,7 +149,7 @@ class Tab implements JsonSerializable
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'order' => $this->order,
+            'position' => $this->position,
             'ticket_id' => $this->ticket_id,
             'sections' => $this->sections
         ];

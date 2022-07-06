@@ -52,7 +52,7 @@ class UpdateSectionAction extends SectionAction
      *         @OA\JsonContent(
      *              required={"name","order"},
      *              @OA\Property(property="name", type="string", format="text", example="Section 1"),
-     *              @OA\Property(property="order", type="integer", format="int64", example=1)
+     *              @OA\Property(property="position", type="integer", format="int64", example=1)
      *         )
      *     )
      * )
@@ -68,10 +68,10 @@ class UpdateSectionAction extends SectionAction
 
         $data = $this->request->getParsedBody();
 
-        Section::validateSectionData($this->request, $data['name'], $data['order'], 1);
+        Section::validateSectionData($this->request, $data['name'], $data['position'], 1);
 
         $section->setName($data['name']);
-        $section->setOrder((int) $data['order']);
+        $section->setPosition((int) $data['position']);
 
         $this->sectionRepository->updateSection($section);
 

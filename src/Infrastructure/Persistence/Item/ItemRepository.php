@@ -11,7 +11,7 @@ use PDO;
 class ItemRepository extends BaseRepository
 {
     public function findAll(): array {
-        $query = 'SELECT id, summary, is_checked, is_important, `order`, section_id, status_id FROM items';
+        $query = 'SELECT id, summary, is_checked, is_important, position, section_id, status_id FROM items';
         $statement = $this->database->prepare($query);
         $statement->execute();
 
@@ -38,9 +38,9 @@ class ItemRepository extends BaseRepository
 
     public function findItemsBySectionId(int $sectionId): array {
         $query = '
-            SELECT id, summary, is_checked, is_important, `order`, status_id FROM items 
+            SELECT id, summary, is_checked, is_important, position, status_id FROM items 
             WHERE items.section_id = :section_id
-            ORDER BY items.`order`
+            ORDER BY items.position
         ';
         $statement = $this->database->prepare($query);
         $statement->bindParam(':section_id', $sectionId);
@@ -54,17 +54,17 @@ class ItemRepository extends BaseRepository
      */
     public function createItem(Item $item): Item {
         $query = '
-            INSERT INTO items (summary, `order`, section_id)
-            VALUES (:summary, :order, :section_id)
+            INSERT INTO items (summary, position, section_id)
+            VALUES (:summary, :position, :section_id)
         ';
         $statement = $this->database->prepare($query);
 
         $summary = $item->getSummary();
-        $order = $item->getOrder();
+        $position = $item->getPosition();
         $sectionId = $item->getSectionId();
 
         $statement->bindParam(':summary', $summary);
-        $statement->bindParam(':order', $order);
+        $statement->bindParam(':position', $position);
         $statement->bindParam(':section_id', $sectionId);
 
         $statement->execute();
@@ -80,7 +80,7 @@ class ItemRepository extends BaseRepository
             SET summary = :summary,
                 is_checked = :is_checked,
                 is_important = :is_important,
-                `order` = :order,
+                position = :position,
                 status_id = :status_id
             WHERE id = :id
         ';
@@ -90,14 +90,14 @@ class ItemRepository extends BaseRepository
         $summary = $item->getSummary();
         $isChecked = $item->getIsChecked();
         $isImportant = $item->getIsImportant();
-        $order = $item->getOrder();
+        $position = $item->getPosition();
         $statusId = $item->getStatusId();
 
         $statement->bindParam('id', $itemId);
         $statement->bindParam(':summary', $summary);
         $statement->bindParam(':is_checked', $isChecked);
         $statement->bindParam(':is_important', $isImportant);
-        $statement->bindParam(':order', $order);
+        $statement->bindParam(':position', $position);
         $statement->bindParam(':status_id', $statusId);
 
         $statement->execute();

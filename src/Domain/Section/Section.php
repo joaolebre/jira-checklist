@@ -28,11 +28,11 @@ class Section implements JsonSerializable
     private $name;
 
     /**
-     * Order of section in the tab,
+     * Position of section in the tab,
      * @var int
      * @OA\Property ()
      */
-    private $order;
+    private $position;
 
     /**
      * Section tab id,
@@ -51,7 +51,7 @@ class Section implements JsonSerializable
     /**
      * @throws SectionValidationException
      */
-    public static function validateSectionData($request, $name, $order, $tabId) {
+    public static function validateSectionData($request, $name, $position, $tabId) {
         try {
             v::stringVal()->assert($name);
         } catch (NestedValidationException $ex) {
@@ -59,9 +59,9 @@ class Section implements JsonSerializable
         }
 
         try {
-            v::number()->assert($order);
+            v::number()->assert($position);
         } catch (NestedValidationException $ex) {
-            throw new SectionValidationException($request, 'Order must be an integer.');
+            throw new SectionValidationException($request, 'Position must be an integer.');
         }
 
         try {
@@ -88,11 +88,11 @@ class Section implements JsonSerializable
     }
 
     /**
-     * @param int $order
+     * @param int $position
      */
-    public function setOrder(int $order): void
+    public function setPosition(int $position): void
     {
-        $this->order = $order;
+        $this->position = $position;
     }
 
     /**
@@ -122,9 +122,9 @@ class Section implements JsonSerializable
     /**
      * @return int
      */
-    public function getOrder(): int
+    public function getPosition(): int
     {
-        return $this->order;
+        return $this->position;
     }
 
     /**
@@ -156,7 +156,7 @@ class Section implements JsonSerializable
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'order' => $this->order,
+            'position' => $this->position,
             'tab_id' => $this->tab_id,
             'items' => $this->items
         ];
