@@ -5,8 +5,14 @@ so that the ticket can be considered as validated. Built with the Slim framework
 
 Register and login to get authorization token!
 
-Link: 
+Link:
 https://sandbox.exads.rocks/api
+
+To seed the database run:
+
+```bash
+php database/dbseeder.php
+```
 
 ### ENDPOINTS:
 
