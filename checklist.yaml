@@ -46,7 +46,7 @@ paths:
                   type: string
                   format: text
                   example: 'This is an item summary'
-                order:
+                position:
                   type: integer
                   format: int64
                   example: 6
@@ -129,7 +129,7 @@ paths:
                 is_important:
                   type: boolean
                   example: true
-                order:
+                position:
                   type: integer
                   format: int64
                   example: 6
@@ -254,7 +254,7 @@ paths:
                   type: string
                   format: text
                   example: 'Section 1'
-                order:
+                position:
                   type: integer
                   format: int64
                   example: 1
@@ -328,7 +328,7 @@ paths:
                   type: string
                   format: text
                   example: 'Section 1'
-                order:
+                position:
                   type: integer
                   format: int64
                   example: 1
@@ -411,7 +411,7 @@ paths:
                   type: string
                   format: text
                   example: 'Tab 1'
-                order:
+                position:
                   type: integer
                   format: int64
                   example: 1
@@ -485,7 +485,7 @@ paths:
                   type: string
                   format: text
                   example: 'Tab 1'
-                order:
+                position:
                   type: integer
                   format: int64
                   example: 1
@@ -923,8 +923,8 @@ components:
         isImportant:
           description: 'Check if item is important,'
           type: boolean
-        order:
-          description: 'Order of the item in the section,'
+        position:
+          description: 'Position of the item in the section,'
           type: integer
         sectionId:
           description: 'Item section id,'
@@ -953,8 +953,8 @@ components:
         name:
           description: 'Section name,'
           type: string
-        order:
-          description: 'Order of section in the tab,'
+        position:
+          description: 'Position of section in the tab,'
           type: integer
         tabId:
           description: 'Section tab id,'
@@ -973,8 +973,8 @@ components:
         name:
           description: 'Tab name,'
           type: string
-        order:
-          description: 'Order of the tab in the ticket,'
+        position:
+          description: 'Position of the tab in the ticket,'
           type: integer
         ticketId:
           description: 'Tab ticket id,'
