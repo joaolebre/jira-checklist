@@ -77,6 +77,6 @@ class UpdateSectionAction extends SectionAction
 
         $this->logger->info("Section with id `{$sectionId}` was updated.");
 
-        return $this->respondWithData($section)->withHeader('Location', "/api/sections/{$sectionId}");
+        return $this->respondWithData($section);
     }
 }

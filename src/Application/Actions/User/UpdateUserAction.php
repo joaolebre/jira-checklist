@@ -77,6 +77,6 @@ class UpdateUserAction extends UserAction
 
         $this->logger->info("User with id `{$userId}` was updated.");
 
-        return $this->respondWithData($user)->withHeader('Location', "/api/users/{$userId}");
+        return $this->respondWithData($user);
     }
 }

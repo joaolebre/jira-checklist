@@ -77,6 +77,6 @@ class UpdateTicketAction extends TicketAction
 
         $this->logger->info("Ticket with id `{$ticketId}` was updated.");
 
-        return $this->respondWithData($ticket)->withHeader('Location', "/api/tickets/{$ticketId}");
+        return $this->respondWithData($ticket);
     }
 }
