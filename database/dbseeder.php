@@ -102,7 +102,7 @@ $seeder->table('tabs')->columns([
     'ticket_id' => $generator->relation('tickets', 'id'),
     'name' => $faker->word,
     'position'=> $faker->unique()->numberBetween(1, 200)
-])->rowQuantity(30);
+])->rowQuantity(20);
 
 $seeder->table('sections')->columns([
     'id',
