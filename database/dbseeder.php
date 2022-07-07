@@ -29,25 +29,25 @@ $seeder->table('tickets')->columns([
 $seeder->table('tabs')->columns([
     'id',
     'ticket_id' => $generator->relation('tickets', 'id'),
-    'name' => $faker->text(10),
-    'position'=> $faker->numberBetween(1, 200)
+    'name' => $faker->word,
+    'position'=> $faker->unique()->numberBetween(1, 200)
 ])->rowQuantity(30);
 
 $seeder->table('sections')->columns([
     'id',
     'tab_id' => $generator->relation('tabs', 'id'),
-    'name' => $faker->text(10),
-    'position'=> $faker->numberBetween(1, 200)
+    'name' => $faker->word,
+    'position'=> $faker->unique()->numberBetween(1, 200)
 ])->rowQuantity(30);
 
 $seeder->table('items')->columns([
    'id',
    'section_id' => $generator->relation('sections', 'id'),
    'status_id' => $faker->numberBetween(1, 6),
-    'summary' => $faker->text(),
+    'summary' => $faker->text(100),
     'is_checked' => $faker->boolean(),
     'is_important' => $faker->boolean(25),
-    'position' => $faker->numberBetween(1, 200)
+    'position' => $faker->unique()->numberBetween(1, 200)
 ])->rowQuantity(100);
 
 try {
