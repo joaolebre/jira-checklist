@@ -12,6 +12,77 @@ $seeder = new Seeder($pdo);
 $generator = $seeder->getGeneratorConfigurator();
 $faker = $generator->getFakerConfigurator();
 
+// Create database tables
+
+$statements = [
+        'CREATE TABLE users (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    );',
+        'CREATE TABLE tickets (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        user_id INT NOT NULL,
+        title VARCHAR(255) NOT NULL,
+        description TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id)
+    );',
+        'CREATE TABLE tabs (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        ticket_id INT NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        position INT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (ticket_id) REFERENCES tickets(id)
+    );',
+        'CREATE TABLE sections (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        tab_id INT NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        position INT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (tab_id) REFERENCES tabs(id)
+    );',
+        'CREATE TABLE item_statuses (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        label VARCHAR(255) NOT NULL,
+        color VARCHAR(255) NOT NULL
+    );',
+        "INSERT INTO item_statuses (label, color)
+        VALUES ('To Do', 'gray'),
+        ('In Progress', 'blue'),
+        ('Blocked', 'red'),
+        ('Skipped', 'yellow'),
+        ('Completed', 'green'
+    );",
+        'CREATE TABLE items (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        section_id INT NOT NULL,
+        status_id INT NOT NULL DEFAULT 1,
+        summary TEXT NOT NULL,
+        is_checked TINYINT(1) NOT NULL DEFAULT 0,
+        is_important TINYINT(1) NOT NULL DEFAULT 0,
+        position INT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (section_id) REFERENCES sections(id),
+        FOREIGN KEY (status_id) REFERENCES item_statuses(id)
+    );'
+];
+
+foreach ($statements as $statement) {
+    $pdo->exec($statement);
+}
+
+// Populate tables with data
+
 $seeder->table('users')->columns([
     'id',
     'name' => $faker->name,

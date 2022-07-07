@@ -1399,3 +1399,8 @@
 [2022-07-07T07:33:35.485288-04:00] slim-app.INFO: Item with id `1` was updated. [] {"uid":"dfbaabc"}
 [2022-07-07T07:33:35.502649-04:00] slim-app.INFO: Item with id `1` was updated. [] {"uid":"32970fa"}
 [2022-07-07T07:33:44.035424-04:00] slim-app.INFO: Item with id `1` was updated. [] {"uid":"a4b82e4"}
+[2022-07-07T08:45:31.734246-04:00] slim-app.INFO: Ticket of id `1` was viewed. [] {"uid":"7e50fd6"}
+[2022-07-07T08:48:14.635757-04:00] slim-app.INFO: Ticket list was viewed [] {"uid":"31665b5"}
+[2022-07-07T09:42:49.777345-04:00] slim-app.INFO: Ticket list was viewed [] {"uid":"7fd51c4"}
+[2022-07-07T09:43:02.940606-04:00] slim-app.INFO: Ticket of id `1` was viewed. [] {"uid":"0cdc0d2"}
+[2022-07-07T09:45:32.605883-04:00] slim-app.INFO: Ticket list was viewed [] {"uid":"a47d350"}
