@@ -51,23 +51,25 @@ class Section implements JsonSerializable
     /**
      * @throws SectionValidationException
      */
-    public static function validateSectionData($request, $name, $position, $tabId) {
+    public static function validateSectionData($request, $data) {
         try {
-            v::stringVal()->assert($name);
+            v::stringVal()->assert($data['name']);
         } catch (NestedValidationException $ex) {
             throw new SectionValidationException($request, 'Name must be a string.');
         }
 
         try {
-            v::number()->assert($position);
+            v::number()->assert($data['position']);
         } catch (NestedValidationException $ex) {
             throw new SectionValidationException($request, 'Position must be an integer.');
         }
 
-        try {
-            v::number()->assert($tabId);
-        } catch (NestedValidationException $ex) {
-            throw new SectionValidationException($request, 'Tab id must be an integer.');
+        if ($request->getMethod() == 'POST') {
+            try {
+                v::number()->assert($data['tab_id']);
+            } catch (NestedValidationException $ex) {
+                throw new SectionValidationException($request, 'Tab id must be an integer.');
+            }
         }
     }
 

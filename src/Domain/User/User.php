@@ -43,23 +43,25 @@ class User implements JsonSerializable
     /**
      * @throws UserValidationException
      */
-    public static function validateUserData($request, $name, $email, $password) {
+    public static function validateUserData($request, $data) {
         try {
-            v::stringVal()->length(3, 70)->assert($name);
+            v::stringVal()->length(3, 70)->assert($data['name']);
         } catch (NestedValidationException $ex) {
             throw new UserValidationException($request, 'Name must be between 3 and 70 characters.');
         }
 
         try {
-            v::email()->assert($email);
+            v::email()->assert($data['email']);
         } catch (NestedValidationException $ex) {
             throw new UserValidationException($request, 'Email format is invalid.');
         }
 
-        try {
-            v::regex('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$^')->assert($password);
-        } catch (NestedValidationException $ex) {
-            throw new UserValidationException($request, 'Password must have at least 8 characters, 1 lowercase letter, 1 uppercase letter, 1 number and 1 symbol.');
+        if ($request->getMethod() == 'POST') {
+            try {
+                v::regex('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$^')->assert($data['password']);
+            } catch (NestedValidationException $ex) {
+                throw new UserValidationException($request, 'Password must have at least 8 characters, 1 lowercase letter, 1 uppercase letter, 1 number and 1 symbol.');
+            }
         }
     }
 

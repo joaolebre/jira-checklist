@@ -68,7 +68,7 @@ class UpdateTicketAction extends TicketAction
 
         $data = $this->request->getParsedBody();
 
-        Ticket::validateTicketData($this->request, $data['title'], $data['description'], 1);
+        Ticket::validateTicketData($this->request, $data);
 
         $ticket->setTitle($data['title']);
         $ticket->setDescription($data['description']);

@@ -46,7 +46,7 @@ class CreateItemAction extends ItemAction
     {
         $data = $this->request->getParsedBody();
 
-        Item::validateItemData($this->request, $data['summary'], true, true, $data['position'], 1, $data['section_id']);
+        Item::validateItemData($this->request, $data);
         $newItem = Item::fromJSON($data);
         $createdItem = $this->itemRepository->createItem($newItem);
 

@@ -61,52 +61,58 @@ class Item implements JsonSerializable {
      */
     private $statusId;
 
+
     /**
      * @throws ItemValidationException
      */
-    public static function validateItemData($request, $summary, $isChecked, $isImportant, $position, $statusId, $sectionId) {
+    public static function validateItemData($request, $data) {
         try {
-            v::stringVal()->assert($summary);
+            v::stringVal()->assert($data['summary']);
         } catch (NestedValidationException $ex) {
             throw new ItemValidationException($request, 'Summary must be a string.');
         }
 
         try {
-            v::boolVal()->assert($isChecked);
-        } catch (NestedValidationException $ex) {
-            throw new ItemValidationException($request, 'Is checked must evaluate to a boolean value.');
-        }
-
-        try {
-            v::boolVal()->assert($isImportant);
-        } catch (NestedValidationException $ex) {
-            throw new ItemValidationException($request, 'Is important must evaluate to a boolean value.');
-        }
-
-        try {
-            v::number()->assert($position);
+            v::number()->assert($data['position']);
         } catch (NestedValidationException $ex) {
             throw new ItemValidationException($request, 'Position must be an integer.');
         }
 
-        try {
-            v::number()->assert($statusId);
-        } catch (NestedValidationException $ex) {
-            throw new ItemValidationException($request, 'Status id must be an integer.');
+        if ($request->getMethod() == 'POST') {
+            try {
+                v::number()->assert($data['section_id']);
+            } catch (NestedValidationException $ex) {
+                throw new ItemValidationException($request, 'Section id must be an integer.');
+            }
         }
 
-        try {
-            v::number()->assert($sectionId);
-        } catch (NestedValidationException $ex) {
-            throw new ItemValidationException($request, 'Section id must be an integer.');
+        if ($request->getMethod() == 'PUT') {
+            try {
+                v::boolVal()->assert($data['is_checked']);
+            } catch (NestedValidationException $ex) {
+                throw new ItemValidationException($request, 'Is checked must evaluate to a boolean value.');
+            }
+
+            try {
+                v::boolVal()->assert($data['is_important']);
+            } catch (NestedValidationException $ex) {
+                throw new ItemValidationException($request, 'Is important must evaluate to a boolean value.');
+            }
+
+            try {
+                v::number()->assert($data['status_id']);
+            } catch (NestedValidationException $ex) {
+                throw new ItemValidationException($request, 'Status id must be an integer.');
+            }
         }
     }
+
 
     public static function fromJSON(array $data): Item
     {
         [
             'summary' => $summary,
-            '$position' => $position,
+            'position' => $position,
             'section_id' => $sectionId
         ] = $data;
 

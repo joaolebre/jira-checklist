@@ -70,8 +70,7 @@ class UpdateItemAction extends ItemAction
 
         $data = $this->request->getParsedBody();
 
-        Item::validateItemData($this->request, $data['summary'], $data['is_checked'], $data['is_important'],
-            $data['position'], $data['status_id'], 1);
+        Item::validateItemData($this->request, $data);
 
         $item->setSummary($data['summary']);
         $item->setIsChecked($data['is_checked']);

@@ -29,7 +29,7 @@ class LoginUserAction extends UserAction
      *         @OA\JsonContent(
      *              required={"email","password"},
      *              @OA\Property(property="email", type="email", format="text", example="pedro666@example.org"),
-     *              @OA\Property(property="password", type="string", format="text", example="password123456")
+     *              @OA\Property(property="password", type="string", format="text", example="Password123456?")
      *         )
      *     )
      * )

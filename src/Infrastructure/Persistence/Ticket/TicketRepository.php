@@ -63,12 +63,12 @@ class TicketRepository extends BaseRepository
 
         $tabQuery = '
             INSERT INTO tabs(name, position, ticket_id)
-            VALUES (:name, :order, :ticket_id)
+            VALUES (:name, :position, :ticket_id)
         ';
 
         $sectionQuery = '
             INSERT INTO sections(name, position, tab_id)
-            VALUES (:name, :order, :tab_id)
+            VALUES (:name, :position, :tab_id)
         ';
 
         $tabStatement = $this->database->prepare($tabQuery);
@@ -83,12 +83,12 @@ class TicketRepository extends BaseRepository
             $statement->execute();
 
             $tabStatement->bindValue(':name', "Tab 1");
-            $tabStatement->bindValue(':order', 1);
+            $tabStatement->bindValue(':position', 1);
             $tabStatement->bindValue(':ticket_id', $this->database->lastInsertId());
             $tabStatement->execute();
 
             $sectionStatement->bindValue(':name', "Section 1");
-            $sectionStatement->bindValue(':order', 1);
+            $sectionStatement->bindValue(':position', 1);
             $sectionStatement->bindValue(':tab_id', $this->tabRepository->database->lastInsertId());
             $sectionStatement->execute();
         } catch (Throwable $ex) {

@@ -49,7 +49,7 @@ class CreateTicketAction extends TicketAction
     {
         $data = $this->request->getParsedBody();
 
-        Ticket::validateTicketData($this->request, $data['title'], $data['description'], $data['user_id']);
+        Ticket::validateTicketData($this->request, $data);
 
         $newTicket = new Ticket();
         $newTicket->setTitle($data['title']);

@@ -67,10 +67,10 @@ class UpdateTabAction extends TabAction
 
         $data = $this->request->getParsedBody();
 
-        Tab::validateTabData($this->request, $data['name'], $data['position'], 1);
+        Tab::validateTabData($this->request, $data);
 
         $tab->setName($data['name']);
-        $tab->setOrder((int) $data['position']);
+        $tab->setPosition((int) $data['position']);
 
         $this->tabRepository->updateTab($tab);
 

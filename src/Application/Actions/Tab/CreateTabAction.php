@@ -48,11 +48,11 @@ class CreateTabAction extends TabAction
     {
         $data = $this->request->getParsedBody();
 
-        Tab::validateTabData($this->request, $data['name'], $data['position'], $data['ticket_id']);
+        Tab::validateTabData($this->request, $data);
 
         $newTab = new Tab();
         $newTab->setName($data['name']);
-        $newTab->setOrder((int) $data['position']);
+        $newTab->setPosition((int) $data['position']);
         $newTab->setTicketId((int) $data['ticket_id']);
 
         $createdTab = $this->tabRepository->createTab($newTab);

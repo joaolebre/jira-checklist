@@ -68,7 +68,7 @@ class UpdateUserAction extends UserAction
 
         $data = $this->request->getParsedBody();
 
-        User::validateUserData($this->request, $data['name'], $data['email'], 'GoodPassword123456?');
+        User::validateUserData($this->request, $data);
 
         $user->setName($data['name']);
         $user->setEmail($data['email']);

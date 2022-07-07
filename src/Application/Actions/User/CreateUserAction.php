@@ -29,7 +29,7 @@ class CreateUserAction extends UserAction
      *              required={"name","email","password"},
      *              @OA\Property(property="name", type="string", format="text", example="Pedro"),
      *              @OA\Property(property="email", type="email", format="text", example="pedro666@example.org"),
-     *              @OA\Property(property="password", type="string", format="text", example="password123456")
+     *              @OA\Property(property="password", type="string", format="text", example="Password123456?")
      *         )
      *     )
      * )
@@ -40,7 +40,7 @@ class CreateUserAction extends UserAction
     {
         $data = $this->request->getParsedBody();
 
-        User::validateUserData($this->request, $data['name'], $data['email'], $data['password']);
+        User::validateUserData($this->request, $data);
 
         if (! $this->userRepository->isEmailUnique($data['email'])) {
             $this->logger->error("Email `{$data['email']}` already exists.");

@@ -47,7 +47,7 @@ class CreateSectionAction extends SectionAction
     {
         $data = $this->request->getParsedBody();
 
-        Section::validateSectionData($this->request, $data['name'], $data['position'], $data['tab_id']);
+        Section::validateSectionData($this->request, $data);
 
         $newSection = new Section();
         $newSection->setName($data['name']);

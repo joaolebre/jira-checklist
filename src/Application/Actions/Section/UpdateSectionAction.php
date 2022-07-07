@@ -68,7 +68,7 @@ class UpdateSectionAction extends SectionAction
 
         $data = $this->request->getParsedBody();
 
-        Section::validateSectionData($this->request, $data['name'], $data['position'], 1);
+        Section::validateSectionData($this->request, $data);
 
         $section->setName($data['name']);
         $section->setPosition((int) $data['position']);
