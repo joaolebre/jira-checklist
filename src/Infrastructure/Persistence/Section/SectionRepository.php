@@ -46,7 +46,7 @@ class SectionRepository extends BaseRepository
         $statement->bindParam(':tab_id', $tabId);
         $statement->execute();
 
-        return (array) $statement->fetchAll(PDO::FETCH_CLASS);
+        return (array) $statement->fetchAll(PDO::FETCH_CLASS, 'App\Domain\Section\Section');
     }
 
     /**

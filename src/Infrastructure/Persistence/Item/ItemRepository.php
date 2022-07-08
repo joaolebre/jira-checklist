@@ -46,7 +46,7 @@ class ItemRepository extends BaseRepository
         $statement->bindParam(':section_id', $sectionId);
         $statement->execute();
 
-        return (array) $statement->fetchAll(PDO::FETCH_CLASS);
+        return (array) $statement->fetchAll(PDO::FETCH_CLASS, 'App\Domain\Item\Item');
     }
 
     /**

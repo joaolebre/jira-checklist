@@ -28,6 +28,15 @@ class GetTicketAction extends TicketAction
      *              type="integer"
      *          )
      *      ),
+     *     @OA\Parameter(
+     *          name="full",
+     *          in="query",
+     *          required=false,
+     *          description="Set full to true to get the full ticket information.",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Get a single ticket.",
@@ -51,10 +60,39 @@ class GetTicketAction extends TicketAction
         $ticketId = (int) $this->resolveArg('id');
         $ticket = $this->ticketRepository->findTicketById($ticketId);
 
-        $ticket->setTabs($this->tabRepository->findTabsByTicketId($ticketId));
+        if (!empty($this->request->getQueryParams()) && $this->request->getQueryParams()['full'] == 'true') {
+            $ticket->setTabs($this->tabRepository->findTabsByTicketId($ticketId));
+
+            foreach ($ticket->getTabs() as $tab) {
+                $sections = $this->sectionRepository->findSectionsByTabId($tab->getId());
+                $tab->setTicketId($ticket->getId());
+                $tab->setSections($sections);
+
+                foreach ($sections as $section) {
+                    $items = $this->itemRepository->findItemsBySectionId($section->getId());
+                    $section->setTabId($tab->getId());
+                    $section->setItems($items);
+
+                    foreach ($items as $item) {
+                        $item->setSectionId($section->getId());
+                    }
+                }
+            }
+
+            $this->logger->info("Ticket of id `${ticketId}` was viewed.");
+
+            return $this->respondWithData($ticket);
+        }
+
+        $ticketData = [
+            'id' => (string) $ticket->getId(),
+            'title' => $ticket->getTitle(),
+            'description' => $ticket->getDescription(),
+            'user_id' => (string) $ticket->getUserId()
+        ];
 
         $this->logger->info("Ticket of id `${ticketId}` was viewed.");
 
-        return $this->respondWithData($ticket);
+        return $this->respondWithData($ticketData);
     }
 }

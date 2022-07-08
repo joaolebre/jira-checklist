@@ -28,6 +28,15 @@ class GetTabAction extends TabAction
      *              type="integer"
      *          )
      *      ),
+     *     @OA\Parameter(
+     *          name="full",
+     *          in="query",
+     *          required=false,
+     *          description="Set full to true to get the full tab information.",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Get a single tab.",
@@ -50,10 +59,33 @@ class GetTabAction extends TabAction
         $tabId = (int) $this->resolveArg('id');
         $tab = $this->tabRepository->findTabById($tabId);
 
-        $tab->setSections($this->sectionRepository->findSectionsByTabId($tabId));
+        if (!empty($this->request->getQueryParams()) && $this->request->getQueryParams()['full'] == 'true') {
+            $tab->setSections($this->sectionRepository->findSectionsByTabId($tabId));
+
+            foreach ($tab->getSections() as $section) {
+                $items = $this->itemRepository->findItemsBySectionId($section->getId());
+                $section->setTabId($tab->getId());
+                $section->setItems($items);
+
+                foreach ($items as $item) {
+                    $item->setSectionId($section->getId());
+                }
+            }
+
+            $this->logger->info("Tab with id `${tabId}` was viewed.");
+
+            return $this->respondWithData($tab);
+        }
+
+        $tabData = [
+            'id' => (string) $tab->getId(),
+            'name' => $tab->getName(),
+            'position' => (string) $tab->getPosition(),
+            'ticket_id' => (string) $tab->getTicketId()
+        ];
 
         $this->logger->info("Tab with id `${tabId}` was viewed.");
 
-        return $this->respondWithData($tab);
+        return $this->respondWithData($tabData);
     }
 }

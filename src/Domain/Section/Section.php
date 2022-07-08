@@ -39,7 +39,7 @@ class Section implements JsonSerializable
      * @var int
      * @OA\Property ()
      */
-    private $tabId;
+    private $tab_id;
 
     /**
      * Section items list,
@@ -98,11 +98,11 @@ class Section implements JsonSerializable
     }
 
     /**
-     * @param int $tabId
+     * @param int $tab_id
      */
-    public function setTabId(int $tabId): void
+    public function setTabId(int $tab_id): void
     {
-        $this->tabId = $tabId;
+        $this->tab_id = $tab_id;
     }
 
     /**
@@ -126,7 +126,7 @@ class Section implements JsonSerializable
      */
     public function getPosition(): int
     {
-        return $this->position;
+        return (int) $this->position;
     }
 
     /**
@@ -142,7 +142,7 @@ class Section implements JsonSerializable
      */
     public function getTabId(): int
     {
-        return $this->tabId;
+        return (int) $this->tab_id;
     }
 
     /**
@@ -159,7 +159,7 @@ class Section implements JsonSerializable
             'id' => $this->id,
             'name' => $this->name,
             'position' => $this->position,
-            'tab_id' => $this->tab_id,
+            'tab_id' => (string) $this->tab_id,
             'items' => $this->items
         ];
     }

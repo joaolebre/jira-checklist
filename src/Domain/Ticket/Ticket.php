@@ -39,7 +39,7 @@ class Ticket implements JsonSerializable
      * @var int
      * @OA\Property ()
      */
-    private $userId;
+    private $user_id;
 
     /**
      * Ticket tabs list,
@@ -90,11 +90,11 @@ class Ticket implements JsonSerializable
     }
 
     /**
-     * @param int $userId
+     * @param int $user_id
      */
-    public function setUserId(int $userId): void
+    public function setUserId(int $user_id): void
     {
-        $this->userId = $userId;
+        $this->user_id = $user_id;
     }
 
     /**
@@ -135,7 +135,7 @@ class Ticket implements JsonSerializable
      */
     public function getUserId(): int
     {
-        return $this->userId;
+        return (int) $this->user_id;
     }
 
     /**
@@ -156,7 +156,7 @@ class Ticket implements JsonSerializable
            'id' => $this->id,
            'title' => $this->title,
            'description' => $this->description,
-           'user' => $this->user_id,
+           'user_id' => $this->user_id,
            'tabs' => $this->tabs
        ];
     }

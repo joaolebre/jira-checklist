@@ -39,7 +39,7 @@ class Tab implements JsonSerializable
      * @var int
      * @OA\Property ()
      */
-    private $ticketId;
+    private $ticket_id;
 
     /**
      * Tab sections list,
@@ -106,11 +106,11 @@ class Tab implements JsonSerializable
     }
 
     /**
-     * @param int $ticketId
+     * @param int $ticket_id
      */
-    public function setTicketId(int $ticketId): void
+    public function setTicketId(int $ticket_id): void
     {
-        $this->ticketId = $ticketId;
+        $this->ticket_id = $ticket_id;
     }
 
     /**
@@ -118,7 +118,7 @@ class Tab implements JsonSerializable
      */
     public function getPosition(): int
     {
-        return $this->position;
+        return (int) $this->position;
     }
 
     /**
@@ -134,7 +134,7 @@ class Tab implements JsonSerializable
      */
     public function getTicketId(): int
     {
-        return $this->ticketId;
+        return (int) $this->ticket_id;
     }
 
     /**
@@ -152,7 +152,7 @@ class Tab implements JsonSerializable
             'id' => $this->id,
             'name' => $this->name,
             'position' => $this->position,
-            'ticket_id' => $this->ticket_id,
+            'ticket_id' => (string) $this->ticket_id,
             'sections' => $this->sections
         ];
     }

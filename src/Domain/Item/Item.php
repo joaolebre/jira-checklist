@@ -31,14 +31,14 @@ class Item implements JsonSerializable {
      * @var bool
      * @OA\Property ()
      */
-    private $isChecked;
+    private $is_checked;
 
     /**
      * Check if item is important,
      * @var bool
      * @OA\Property ()
      */
-    private $isImportant;
+    private $is_important;
 
     /**
      * Position of the item in the section,
@@ -52,14 +52,14 @@ class Item implements JsonSerializable {
      * @var int
      * @OA\Property ()
      */
-    private $sectionId;
+    private $section_id;
 
     /**
      * Item status id,
      * @var int
      * @OA\Property ()
      */
-    private $statusId;
+    private $status_id;
 
 
     /**
@@ -141,27 +141,27 @@ class Item implements JsonSerializable {
     }
 
     /**
-     * @param bool $isChecked
+     * @param bool $is_checked
      */
-    public function setIsChecked(bool $isChecked): void
+    public function setIsChecked(bool $is_checked): void
     {
-        $this->isChecked = $isChecked;
+        $this->is_checked = $is_checked;
     }
 
     /**
-     * @param bool $isImportant
+     * @param bool $is_important
      */
-    public function setIsImportant(bool $isImportant): void
+    public function setIsImportant(bool $is_important): void
     {
-        $this->isImportant = $isImportant;
+        $this->is_important = $is_important;
     }
 
     /**
-     * @param int $statusId
+     * @param int $status_id
      */
-    public function setStatusId(int $statusId): void
+    public function setStatusId(int $status_id): void
     {
-        $this->statusId = $statusId;
+        $this->status_id = $status_id;
     }
 
     /**
@@ -189,11 +189,11 @@ class Item implements JsonSerializable {
     }
 
     /**
-     * @param int $sectionId
+     * @param int $section_id
      */
-    public function setSectionId(int $sectionId): void
+    public function setSectionId(int $section_id): void
     {
-        $this->sectionId = $sectionId;
+        $this->section_id = $section_id;
     }
 
     /**
@@ -201,7 +201,7 @@ class Item implements JsonSerializable {
      */
     public function getIsChecked(): bool
     {
-        return $this->isChecked;
+        return $this->is_checked;
     }
 
     /**
@@ -209,7 +209,7 @@ class Item implements JsonSerializable {
      */
     public function getIsImportant(): bool
     {
-        return $this->isImportant;
+        return $this->is_important;
     }
 
     /**
@@ -225,7 +225,7 @@ class Item implements JsonSerializable {
      */
     public function getSectionId(): int
     {
-        return $this->sectionId;
+        return $this->section_id;
     }
 
     /**
@@ -233,7 +233,7 @@ class Item implements JsonSerializable {
      */
     public function getStatusId(): int
     {
-        return $this->statusId;
+        return $this->status_id;
     }
 
 
@@ -245,7 +245,7 @@ class Item implements JsonSerializable {
             'is_checked' => $this->is_checked,
             'is_important' => $this->is_important,
             'position' => $this->position,
-            'section_id' => $this->section_id,
+            'section_id' => (string) $this->section_id,
             'status_id' => $this->status_id
         ];
     }

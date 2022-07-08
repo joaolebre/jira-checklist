@@ -287,6 +287,13 @@ paths:
           required: true
           schema:
             type: integer
+        -
+          name: full
+          in: query
+          description: 'Set full to true to get the full section information.'
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: 'Get a single section.'
@@ -444,6 +451,13 @@ paths:
           required: true
           schema:
             type: integer
+        -
+          name: full
+          in: query
+          description: 'Set full to true to get the full tab information.'
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: 'Get a single tab.'
@@ -600,6 +614,13 @@ paths:
           required: true
           schema:
             type: integer
+        -
+          name: full
+          in: query
+          description: 'Set full to true to get the full ticket information.'
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: 'Get a single ticket.'
@@ -917,19 +938,19 @@ components:
         summary:
           description: 'Item summary,'
           type: string
-        isChecked:
+        is_checked:
           description: 'Check if item is checked,'
           type: boolean
-        isImportant:
+        is_important:
           description: 'Check if item is important,'
           type: boolean
         position:
           description: 'Position of the item in the section,'
           type: integer
-        sectionId:
+        section_id:
           description: 'Item section id,'
           type: integer
-        statusId:
+        status_id:
           description: 'Item status id,'
           type: integer
       type: object
@@ -956,7 +977,7 @@ components:
         position:
           description: 'Position of section in the tab,'
           type: integer
-        tabId:
+        tab_id:
           description: 'Section tab id,'
           type: integer
         items:
@@ -976,7 +997,7 @@ components:
         position:
           description: 'Position of the tab in the ticket,'
           type: integer
-        ticketId:
+        ticket_id:
           description: 'Tab ticket id,'
           type: integer
         sections:
@@ -996,7 +1017,7 @@ components:
         description:
           description: 'Ticket description,'
           type: string
-        userId:
+        user_id:
           description: 'User id of the user that created the ticket,'
           type: integer
         tabs:

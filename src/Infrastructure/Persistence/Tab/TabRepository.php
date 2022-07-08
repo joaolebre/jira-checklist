@@ -48,7 +48,7 @@ class TabRepository extends BaseRepository
         $statement->bindParam(':ticket_id', $ticketId);
         $statement->execute();
 
-        return (array) $statement->fetchAll(PDO::FETCH_CLASS);
+        return (array) $statement->fetchAll(PDO::FETCH_CLASS, 'App\Domain\Tab\Tab');
     }
 
     /**

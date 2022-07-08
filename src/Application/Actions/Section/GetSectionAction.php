@@ -28,6 +28,15 @@ class GetSectionAction extends SectionAction
      *              type="integer"
      *          )
      *      ),
+     *     @OA\Parameter(
+     *          name="full",
+     *          in="query",
+     *          required=false,
+     *          description="Set full to true to get the full section information.",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Get a single section.",
@@ -50,10 +59,28 @@ class GetSectionAction extends SectionAction
         $sectionId = (int) $this->resolveArg('id');
         $section = $this->sectionRepository->findSectionById($sectionId);
 
-        $section->setItems($this->itemRepository->findItemsBySectionId($sectionId));
+        if (!empty($this->request->getQueryParams()) && $this->request->getQueryParams()['full'] == 'true') {
+            $items = $this->itemRepository->findItemsBySectionId($section->getId());
+            $section->setItems($items);
+
+            foreach ($items as $item) {
+                $item->setSectionId($section->getId());
+            }
+
+            $this->logger->info("Section with id `${sectionId}` was viewed.");
+
+            return $this->respondWithData($section);
+        }
+
+        $sectionData = [
+            'id' => (string) $section->getId(),
+            'name' => $section->getName(),
+            'position' => (string) $section->getPosition(),
+            'tab_id' => (string) $section->getTabId()
+        ];
 
         $this->logger->info("Section with id `${sectionId}` was viewed.");
 
-        return $this->respondWithData($section);
+        return $this->respondWithData($sectionData);
     }
 }
