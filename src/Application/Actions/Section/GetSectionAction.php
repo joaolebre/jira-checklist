@@ -73,10 +73,10 @@ class GetSectionAction extends SectionAction
         }
 
         $sectionData = [
-            'id' => (string) $section->getId(),
+            'id' => $section->getId(),
             'name' => $section->getName(),
-            'position' => (string) $section->getPosition(),
-            'tab_id' => (string) $section->getTabId()
+            'position' => $section->getPosition(),
+            'tab_id' => $section->getTabId()
         ];
 
         $this->logger->info("Section with id `${sectionId}` was viewed.");

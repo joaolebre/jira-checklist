@@ -155,12 +155,22 @@ class Section implements JsonSerializable
 
     public function jsonSerialize(): array
     {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'position' => $this->position,
-            'tab_id' => (string) $this->tab_id,
-            'items' => $this->items
-        ];
+
+        if ($this->items != null) {
+            return [
+                'id' => (int) $this->id,
+                'name' => $this->name,
+                'position' => (int) $this->position,
+                'tab_id' => (int) $this->tab_id,
+                'items' => $this->items
+            ];
+        } else {
+            return [
+                'id' => (int) $this->id,
+                'name' => $this->name,
+                'position' => (int) $this->position,
+                'tab_id' => (int) $this->tab_id
+            ];
+        }
     }
 }

@@ -85,10 +85,10 @@ class GetTicketAction extends TicketAction
         }
 
         $ticketData = [
-            'id' => (string) $ticket->getId(),
+            'id' => $ticket->getId(),
             'title' => $ticket->getTitle(),
             'description' => $ticket->getDescription(),
-            'user_id' => (string) $ticket->getUserId()
+            'user_id' => $ticket->getUserId()
         ];
 
         $this->logger->info("Ticket of id `${ticketId}` was viewed.");

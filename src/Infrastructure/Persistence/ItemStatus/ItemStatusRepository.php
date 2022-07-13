@@ -16,7 +16,7 @@ class ItemStatusRepository extends BaseRepository
         $statement = $this->database->prepare($query);
         $statement->execute();
 
-        return (array) $statement->fetchAll(PDO::FETCH_CLASS);
+        return (array) $statement->fetchAll(PDO::FETCH_CLASS, 'App\Domain\ItemStatus\ItemStatus');
     }
 
     /**

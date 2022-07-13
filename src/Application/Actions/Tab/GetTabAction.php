@@ -78,10 +78,10 @@ class GetTabAction extends TabAction
         }
 
         $tabData = [
-            'id' => (string) $tab->getId(),
+            'id' => $tab->getId(),
             'name' => $tab->getName(),
-            'position' => (string) $tab->getPosition(),
-            'ticket_id' => (string) $tab->getTicketId()
+            'position' => $tab->getPosition(),
+            'ticket_id' => $tab->getTicketId()
         ];
 
         $this->logger->info("Tab with id `${tabId}` was viewed.");

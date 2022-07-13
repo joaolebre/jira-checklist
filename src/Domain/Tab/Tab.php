@@ -148,12 +148,21 @@ class Tab implements JsonSerializable
 
     public function jsonSerialize(): array
     {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'position' => $this->position,
-            'ticket_id' => (string) $this->ticket_id,
-            'sections' => $this->sections
-        ];
+        if ($this->sections != null) {
+            return [
+                'id' => (int) $this->id,
+                'name' => $this->name,
+                'position' => (int) $this->position,
+                'ticket_id' => (int) $this->ticket_id,
+                'sections' => $this->sections
+            ];
+        } else {
+            return [
+                'id' => (int) $this->id,
+                'name' => $this->name,
+                'position' => (int) $this->position,
+                'ticket_id' => (int) $this->ticket_id
+            ];
+        }
     }
 }

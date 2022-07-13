@@ -25,7 +25,7 @@ class TicketRepository extends BaseRepository
         $statement = $this->database->prepare($query);
         $statement->execute();
 
-        return (array) $statement->fetchAll(PDO::FETCH_CLASS);
+        return (array) $statement->fetchAll(PDO::FETCH_CLASS, 'App\Domain\Ticket\Ticket');
     }
 
     /**
@@ -130,7 +130,7 @@ class TicketRepository extends BaseRepository
 
         $query = 'DELETE FROM tickets WHERE tickets.id = :id';
         $statement = $this->database->prepare($query);
-        $statement->bindParam(':id', $tabId);
+        $statement->bindParam(':id', $ticketId);
         $statement->execute();
     }
 }

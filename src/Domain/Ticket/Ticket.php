@@ -152,12 +152,21 @@ class Ticket implements JsonSerializable
      */
     public function jsonSerialize(): array
     {
-       return [
-           'id' => $this->id,
-           'title' => $this->title,
-           'description' => $this->description,
-           'user_id' => $this->user_id,
-           'tabs' => $this->tabs
-       ];
+        if ($this->tabs != null) {
+            return [
+                'id' => (int) $this->id,
+                'title' => $this->title,
+                'description' => $this->description,
+                'user_id' => (int) $this->user_id,
+                'tabs' => $this->tabs
+            ];
+        } else {
+            return [
+                'id' => (int) $this->id,
+                'title' => $this->title,
+                'description' => $this->description,
+                'user_id' => (int) $this->user_id
+            ];
+        }
     }
 }
