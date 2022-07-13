@@ -695,7 +695,6 @@ paths:
             schema:
               required:
                 - title
-                - user_id
               properties:
                 title:
                   type: string
@@ -705,10 +704,6 @@ paths:
                   type: string
                   format: text
                   example: 'This ticket is about this...'
-                user_id:
-                  type: integer
-                  format: int64
-                  example: 1
               type: object
       responses:
         '201':

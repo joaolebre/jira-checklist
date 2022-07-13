@@ -63,14 +63,6 @@ class Ticket implements JsonSerializable
         } catch (NestedValidationException $ex) {
             throw new TicketValidationException($request, 'Description must be a string.');
         }
-
-        if ($request->getMethod() == 'POST') {
-            try {
-                v::number()->assert($data['user_id']);
-            } catch (NestedValidationException $ex) {
-                throw new TicketValidationException($request, 'User id must be a number.');
-            }
-        }
     }
 
     /**

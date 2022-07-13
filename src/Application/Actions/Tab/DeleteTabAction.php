@@ -52,7 +52,7 @@ class DeleteTabAction extends TabAction
      */
     protected function action(): Response
     {
-        $tabId = $this->resolveArg('id');
+        $tabId = (int) $this->resolveArg('id');
         $this->tabRepository->deleteTabById($tabId);
 
         $this->logger->info("Tab with id `${tabId} deleted successfully`.");

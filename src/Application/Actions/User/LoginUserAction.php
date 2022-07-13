@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Application\Actions\User;
 
-use App\Domain\User\UserException;
 use App\Domain\User\UserLoginFailedException;
 use App\Domain\User\UserValidationException;
 use Firebase\JWT\JWT;

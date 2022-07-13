@@ -57,7 +57,7 @@ class TicketRepository extends BaseRepository
         ';
         $statement = $this->database->prepare($query);
 
-        $title= $ticket->getTitle();
+        $title = $ticket->getTitle();
         $description = $ticket->getDescription();
         $userId = $ticket->getUserId();
 
@@ -82,6 +82,8 @@ class TicketRepository extends BaseRepository
             $statement->bindParam(':user_id', $userId);
             $statement->execute();
 
+            $newTicketId = $this->database->lastInsertId();
+
             $tabStatement->bindValue(':name', "Tab 1");
             $tabStatement->bindValue(':position', 1);
             $tabStatement->bindValue(':ticket_id', $this->database->lastInsertId());
@@ -98,7 +100,7 @@ class TicketRepository extends BaseRepository
 
         $this->database->commit();
 
-        return $this->findTicketById((int) $this->database->lastInsertId());
+        return $this->findTicketById((int) $newTicketId);
     }
 
     public function updateTicket(Ticket $ticket): Ticket {
