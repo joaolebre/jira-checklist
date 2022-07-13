@@ -55,16 +55,15 @@ class SectionRepository extends BaseRepository
     public function createSection(Section $section): Section {
         $query = '
             INSERT INTO sections(name, position, tab_id)
-            VALUES (:name, :position, :tab_id)
+            SELECT :name, MAX(position) + 1, :tab_id FROM sections
+            WHERE tab_id = :tab_id
         ';
         $statement = $this->database->prepare($query);
 
         $name = $section->getName();
-        $position = $section->getPosition();
         $tabId = $section->getTabId();
 
         $statement->bindParam(':name', $name);
-        $statement->bindParam(':position', $position);
         $statement->bindParam(':tab_id', $tabId);
 
         $statement->execute();

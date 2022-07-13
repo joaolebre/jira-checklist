@@ -55,16 +55,15 @@ class ItemRepository extends BaseRepository
     public function createItem(Item $item): Item {
         $query = '
             INSERT INTO items (summary, position, section_id)
-            VALUES (:summary, :position, :section_id)
+            SELECT :summary, MAX(position) + 1, :section_id FROM items
+            WHERE section_id = :section_id
         ';
         $statement = $this->database->prepare($query);
 
         $summary = $item->getSummary();
-        $position = $item->getPosition();
         $sectionId = $item->getSectionId();
 
         $statement->bindParam(':summary', $summary);
-        $statement->bindParam(':position', $position);
         $statement->bindParam(':section_id', $sectionId);
 
         $statement->execute();

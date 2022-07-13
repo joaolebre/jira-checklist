@@ -59,6 +59,9 @@ class Section implements JsonSerializable
                 throw new SectionValidationException($request, 'Name must be a string.');
             }
 
+        }
+
+        if ($request->getMethod() == 'PUT') {
             try {
                 v::number()->assert($data['position']);
             } catch (NestedValidationException $ex) {

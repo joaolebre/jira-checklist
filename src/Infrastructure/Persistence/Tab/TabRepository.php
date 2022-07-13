@@ -58,16 +58,15 @@ class TabRepository extends BaseRepository
     {
         $query = '
             INSERT INTO tabs (name, position, ticket_id)
-            VALUES (:name, :position, :ticket_id)
+            SELECT :name, MAX(position) + 1, :ticket_id FROM tabs
+            WHERE ticket_id = :ticket_id
         ';
         $statement = $this->database->prepare($query);
 
         $name = $tab->getName();
-        $position = $tab->getPosition();
         $ticketId = $tab->getTicketId();
 
         $statement->bindParam(':name', $name);
-        $statement->bindParam(':position', $position);
         $statement->bindParam(':ticket_id', $ticketId);
 
         $statement->execute();

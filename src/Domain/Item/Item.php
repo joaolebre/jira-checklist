@@ -72,12 +72,6 @@ class Item implements JsonSerializable {
             } catch (NestedValidationException $ex) {
                 throw new ItemValidationException($request, 'Summary must be a string.');
             }
-
-            try {
-                v::number()->assert($data['position']);
-            } catch (NestedValidationException $ex) {
-                throw new ItemValidationException($request, 'Position must be a number.');
-            }
         }
 
         if ($request->getMethod() == 'POST' || $request->getMethod() == 'PATCH') {
@@ -102,6 +96,12 @@ class Item implements JsonSerializable {
             }
 
             try {
+                v::number()->assert($data['position']);
+            } catch (NestedValidationException $ex) {
+                throw new ItemValidationException($request, 'Position must be a number.');
+            }
+
+            try {
                 v::number()->assert($data['status_id']);
             } catch (NestedValidationException $ex) {
                 throw new ItemValidationException($request, 'Status id must be a number.');
@@ -109,22 +109,6 @@ class Item implements JsonSerializable {
         }
     }
 
-
-    public static function fromJSON(array $data): Item
-    {
-        [
-            'summary' => $summary,
-            'position' => $position,
-            'section_id' => $sectionId
-        ] = $data;
-
-        $newItem = new self();
-        $newItem->setSummary($summary);
-        $newItem->setPosition($position);
-        $newItem->setSectionId($sectionId);
-
-        return $newItem;
-    }
 
     /**
      * @return int

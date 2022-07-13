@@ -39,17 +39,12 @@ paths:
             schema:
               required:
                 - summary
-                - order
                 - section_id
               properties:
                 summary:
                   type: string
                   format: text
                   example: 'This is an item summary'
-                position:
-                  type: integer
-                  format: int64
-                  example: 6
                 section_id:
                   type: integer
                   format: int64
@@ -287,17 +282,12 @@ paths:
             schema:
               required:
                 - name
-                - order
                 - tab_id
               properties:
                 name:
                   type: string
                   format: text
                   example: 'Section 1'
-                position:
-                  type: integer
-                  format: int64
-                  example: 1
                 tab_id:
                   type: integer
                   format: int64
@@ -491,17 +481,12 @@ paths:
             schema:
               required:
                 - name
-                - order
                 - ticket_id
               properties:
                 name:
                   type: string
                   format: text
                   example: 'Tab 1'
-                position:
-                  type: integer
-                  format: int64
-                  example: 1
                 ticket_id:
                   type: integer
                   format: int64

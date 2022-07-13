@@ -33,9 +33,8 @@ class CreateTabAction extends TabAction
      *         description="Tab object",
      *         required=true,
      *         @OA\JsonContent(
-     *              required={"name","order","ticket_id"},
+     *              required={"name","ticket_id"},
      *              @OA\Property(property="name", type="string", format="text", example="Tab 1"),
-     *              @OA\Property(property="position", type="integer", format="int64", example=1),
      *              @OA\Property(property="ticket_id", type="integer", format="int64", example=1)
      *         )
      *     )
@@ -52,7 +51,6 @@ class CreateTabAction extends TabAction
 
         $newTab = new Tab();
         $newTab->setName($data['name']);
-        $newTab->setPosition((int) $data['position']);
         $newTab->setTicketId((int) $data['ticket_id']);
 
         $createdTab = $this->tabRepository->createTab($newTab);
