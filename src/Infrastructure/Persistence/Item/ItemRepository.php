@@ -93,7 +93,7 @@ class ItemRepository extends BaseRepository
         $position = $item->getPosition();
         $statusId = $item->getStatusId();
 
-        $statement->bindParam('id', $itemId);
+        $statement->bindParam(':id', $itemId);
         $statement->bindParam(':summary', $summary);
         $statement->bindParam(':is_checked', $isChecked);
         $statement->bindParam(':is_important', $isImportant);
@@ -103,6 +103,26 @@ class ItemRepository extends BaseRepository
         $statement->execute();
 
         return $item;
+    }
+
+    /**
+     * @throws ItemNotFoundException
+     */
+    public function updateItemSection(int $itemId, int $sectionId): Item
+    {
+        $query = '
+            UPDATE items
+            SET section_id = :section_id
+            WHERE id = :id
+        ';
+        $statement = $this->database->prepare($query);
+
+        $statement->bindParam(':id', $itemId);
+        $statement->bindParam(':section_id', $sectionId);
+
+        $statement->execute();
+
+        return $this->findItemById((int) $itemId);
     }
 
     /**

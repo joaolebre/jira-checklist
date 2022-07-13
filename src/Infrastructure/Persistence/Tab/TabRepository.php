@@ -100,6 +100,25 @@ class TabRepository extends BaseRepository
     /**
      * @throws TabNotFoundException
      */
+    public function updateTabTicket(int $tabId, int $ticketId): Tab {
+        $query = '
+            UPDATE tabs
+            SET ticket_id = :ticket_id
+            WHERE id = :id
+        ';
+        $statement = $this->database->prepare($query);
+
+        $statement->bindParam(':id', $tabId);
+        $statement->bindParam(':ticket_id', $ticketId);
+
+        $statement->execute();
+
+        return $this->findTabById((int) $tabId);
+    }
+
+    /**
+     * @throws TabNotFoundException
+     */
     public function deleteTabById(int $tabId) {
         $this->findTabById($tabId);
 

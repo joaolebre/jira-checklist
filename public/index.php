@@ -53,6 +53,7 @@ $app->add(TwigMiddleware::create($app, $twig));
 // Add JWT Middleware
 $app->add(new \Tuupola\Middleware\JwtAuthentication([
     'secret' => $_ENV['SECRET'],
+    'path' => '/api',
     'ignore' => ['/api/docs', '/api/users/login', '/api/users/register', '/api/item-statuses'],
     "error" => function ($response, $arguments) {
         $data["status"] = "Unauthorized";

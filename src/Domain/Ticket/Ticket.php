@@ -68,7 +68,7 @@ class Ticket implements JsonSerializable
             try {
                 v::number()->assert($data['user_id']);
             } catch (NestedValidationException $ex) {
-                throw new TicketValidationException($request, 'User id must be an integer.');
+                throw new TicketValidationException($request, 'User id must be a number.');
             }
         }
     }

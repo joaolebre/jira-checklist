@@ -66,23 +66,25 @@ class Item implements JsonSerializable {
      * @throws ItemValidationException
      */
     public static function validateItemData($request, $data) {
-        try {
-            v::stringVal()->assert($data['summary']);
-        } catch (NestedValidationException $ex) {
-            throw new ItemValidationException($request, 'Summary must be a string.');
+        if ($request->getMethod() == 'POST' || $request->getMethod() == 'PUT') {
+            try {
+                v::stringVal()->assert($data['summary']);
+            } catch (NestedValidationException $ex) {
+                throw new ItemValidationException($request, 'Summary must be a string.');
+            }
+
+            try {
+                v::number()->assert($data['position']);
+            } catch (NestedValidationException $ex) {
+                throw new ItemValidationException($request, 'Position must be a number.');
+            }
         }
 
-        try {
-            v::number()->assert($data['position']);
-        } catch (NestedValidationException $ex) {
-            throw new ItemValidationException($request, 'Position must be an integer.');
-        }
-
-        if ($request->getMethod() == 'POST') {
+        if ($request->getMethod() == 'POST' || $request->getMethod() == 'PATCH') {
             try {
                 v::number()->assert($data['section_id']);
             } catch (NestedValidationException $ex) {
-                throw new ItemValidationException($request, 'Section id must be an integer.');
+                throw new ItemValidationException($request, 'Section id must be a number.');
             }
         }
 
@@ -102,7 +104,7 @@ class Item implements JsonSerializable {
             try {
                 v::number()->assert($data['status_id']);
             } catch (NestedValidationException $ex) {
-                throw new ItemValidationException($request, 'Status id must be an integer.');
+                throw new ItemValidationException($request, 'Status id must be a number.');
             }
         }
     }

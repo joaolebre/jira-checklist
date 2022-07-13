@@ -61,6 +61,7 @@ return function (App $app) {
             $group->get('/{id}', Tab\GetTabAction::class);
             $group->post('', Tab\CreateTabAction::class);
             $group->put('/{id}', Tab\UpdateTabAction::class);
+            $group->patch('/ticket/{id}', Tab\UpdateTabTicketAction::class);
             $group->delete('/{id}', Tab\DeleteTabAction::class);
         });
 
@@ -69,6 +70,7 @@ return function (App $app) {
             $group->get('/{id}', Section\GetSectionAction::class);
             $group->post('', Section\CreateSectionAction::class);
             $group->put('/{id}', Section\UpdateSectionAction::class);
+            $group->patch('/tab/{id}', Section\UpdateSectionTabAction::class);
             $group->delete('/{id}', Section\DeleteSectionAction::class);
         });
 
@@ -77,6 +79,7 @@ return function (App $app) {
             $group->get('/{id}', Item\GetItemAction::class);
             $group->post('', Item\CreateItemAction::class);
             $group->put('/{id}', Item\UpdateItemAction::class);
+            $group->patch('/section/{id}', Item\UpdateItemSectionAction::class);
             $group->delete('/{id}', Item\DeleteItemAction::class);
         });
 

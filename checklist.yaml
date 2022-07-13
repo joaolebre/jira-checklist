@@ -176,6 +176,46 @@ paths:
       security:
         -
           bearerAuth: []
+  '/api/items/section/{id}':
+    patch:
+      tags:
+        - Item
+      summary: 'Update the section of a specific item'
+      operationId: updateItemSection
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Item id.'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'Section id'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - section_id
+              properties:
+                section_id:
+                  type: integer
+                  format: int64
+                  example: '1'
+              type: object
+      responses:
+        '200':
+          description: 'Item section updated'
+        '404':
+          description: 'Item not found'
+        '405':
+          description: 'Validation exception'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
   '/api/item-statuses/{id}':
     get:
       tags:
@@ -378,6 +418,46 @@ paths:
       security:
         -
           bearerAuth: []
+  '/api/sections/tab/{id}':
+    patch:
+      tags:
+        - Section
+      summary: 'Update the tab of a specific section'
+      operationId: updateSectionTab
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Section id.'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'Tab id'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - tab_id
+              properties:
+                tab_id:
+                  type: integer
+                  format: int64
+                  example: '1'
+              type: object
+      responses:
+        '200':
+          description: 'Section tab updated'
+        '404':
+          description: 'Section not found'
+        '405':
+          description: 'Validation exception'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
   /api/tabs:
     get:
       tags:
@@ -537,6 +617,46 @@ paths:
           description: 'Invalid ID supplied'
         '404':
           description: 'Tab not found'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
+  '/api/tabs/ticket/{id}':
+    patch:
+      tags:
+        - Tab
+      summary: 'Update the ticekt of a specific tab'
+      operationId: updateTabTicket
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Tab id.'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: 'Ticket id'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - ticket_id
+              properties:
+                ticket_id:
+                  type: integer
+                  format: int64
+                  example: '1'
+              type: object
+      responses:
+        '200':
+          description: 'Tab ticket updated'
+        '404':
+          description: 'Tab not found'
+        '405':
+          description: 'Validation exception'
         '401':
           description: 'Unauthorized / Token missing or invalid'
       security:

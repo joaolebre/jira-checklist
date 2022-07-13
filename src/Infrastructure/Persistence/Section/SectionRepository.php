@@ -97,6 +97,26 @@ class SectionRepository extends BaseRepository
     /**
      * @throws SectionNotFoundException
      */
+    public function updateSectionTab(int $sectionId, int $tabId): Section
+    {
+        $query = '
+            UPDATE sections
+            SET tab_id = :tab_id
+            WHERE id = :id
+        ';
+        $statement = $this->database->prepare($query);
+
+        $statement->bindParam(':id', $sectionId);
+        $statement->bindParam(':tab_id', $tabId);
+
+        $statement->execute();
+
+        return $this->findSectionById((int) $sectionId);
+    }
+
+    /**
+     * @throws SectionNotFoundException
+     */
     public function deleteSectionById(int $sectionId) {
         $this->findSectionById($sectionId);
 
