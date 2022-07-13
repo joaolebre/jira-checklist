@@ -240,13 +240,13 @@ class Item implements JsonSerializable {
     public function jsonSerialize(): array
     {
         return [
-            'id' => $this->id,
+            'id' => (int) $this->id,
             'summary' => $this->summary,
-            'is_checked' => $this->is_checked,
-            'is_important' => $this->is_important,
-            'position' => $this->position,
-            'section_id' => (string) $this->section_id,
-            'status_id' => $this->status_id
+            'is_checked' => (bool) $this->is_checked,
+            'is_important' => (bool) $this->is_important,
+            'position' => (int) $this->position,
+            'section_id' => (int) $this->section_id,
+            'status_id' => (int) $this->status_id
         ];
     }
 }
