@@ -77,15 +77,8 @@ class GetTabAction extends TabAction
             return $this->respondWithData($tab);
         }
 
-        $tabData = [
-            'id' => $tab->getId(),
-            'name' => $tab->getName(),
-            'position' => $tab->getPosition(),
-            'ticket_id' => $tab->getTicketId()
-        ];
-
         $this->logger->info("Tab with id `${tabId}` was viewed.");
 
-        return $this->respondWithData($tabData);
+        return $this->respondWithData($tab);
     }
 }

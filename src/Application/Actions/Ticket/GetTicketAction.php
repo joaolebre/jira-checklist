@@ -84,15 +84,8 @@ class GetTicketAction extends TicketAction
             return $this->respondWithData($ticket);
         }
 
-        $ticketData = [
-            'id' => $ticket->getId(),
-            'title' => $ticket->getTitle(),
-            'description' => $ticket->getDescription(),
-            'user_id' => $ticket->getUserId()
-        ];
-
         $this->logger->info("Ticket of id `${ticketId}` was viewed.");
 
-        return $this->respondWithData($ticketData);
+        return $this->respondWithData($ticket);
     }
 }

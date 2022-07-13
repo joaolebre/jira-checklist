@@ -72,15 +72,8 @@ class GetSectionAction extends SectionAction
             return $this->respondWithData($section);
         }
 
-        $sectionData = [
-            'id' => $section->getId(),
-            'name' => $section->getName(),
-            'position' => $section->getPosition(),
-            'tab_id' => $section->getTabId()
-        ];
-
         $this->logger->info("Section with id `${sectionId}` was viewed.");
 
-        return $this->respondWithData($sectionData);
+        return $this->respondWithData($section);
     }
 }
