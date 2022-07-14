@@ -39,7 +39,7 @@ return function (ContainerBuilder $containerBuilder) {
             $flags = $dbSettings['flags'];
 
             $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
-            return new PDO($dsn, $username, $password);
+            return new PDO($dsn, $username, $password, $flags);
         }
     ]);
 };
