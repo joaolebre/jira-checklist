@@ -54,7 +54,7 @@ class Section implements JsonSerializable
     public static function validateSectionData($request, $data) {
         if ($request->getMethod() == 'POST' || $request->getMethod() == 'PUT') {
             try {
-                v::stringVal()->assert($data['name']);
+                v::stringType()->assert($data['name']);
             } catch (NestedValidationException $ex) {
                 throw new SectionValidationException($request, 'Name must be a string.');
             }

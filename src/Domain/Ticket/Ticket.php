@@ -59,7 +59,7 @@ class Ticket implements JsonSerializable
         }
 
         try {
-            v::optional(v::stringVal())->assert($data['description']);
+            v::optional(v::stringType())->assert($data['description']);
         } catch (NestedValidationException $ex) {
             throw new TicketValidationException($request, 'Description must be a string.');
         }

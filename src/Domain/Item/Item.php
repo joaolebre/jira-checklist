@@ -68,7 +68,7 @@ class Item implements JsonSerializable {
     public static function validateItemData($request, $data) {
         if ($request->getMethod() == 'POST' || $request->getMethod() == 'PUT') {
             try {
-                v::stringVal()->assert($data['summary']);
+                v::stringType()->assert($data['summary']);
             } catch (NestedValidationException $ex) {
                 throw new ItemValidationException($request, 'Summary must be a string.');
             }

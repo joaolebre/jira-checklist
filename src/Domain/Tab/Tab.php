@@ -54,7 +54,7 @@ class Tab implements JsonSerializable
     public static function validateTabData($request, $data) {
         if ($request->getMethod() == 'POST' || $request->getMethod() == 'PUT') {
             try {
-                v::stringVal()->assert($data['name']);
+                v::stringType()->assert($data['name']);
             } catch (NestedValidationException $ex) {
                 throw new TabValidationException($request, 'Name must be a string.');
             }

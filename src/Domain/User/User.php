@@ -45,7 +45,7 @@ class User implements JsonSerializable
      */
     public static function validateUserData($request, $data) {
         try {
-            v::stringVal()->length(3, 70)->assert($data['name']);
+            v::stringType()->length(3, 70)->assert($data['name']);
         } catch (NestedValidationException $ex) {
             throw new UserValidationException($request, 'Name must be between 3 and 70 characters.');
         }
