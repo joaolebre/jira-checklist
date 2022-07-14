@@ -131,8 +131,7 @@ class User implements JsonSerializable
         return [
             'id' => (int) $this->id,
             'name' => $this->name,
-            'email' => $this->email,
-            'password' => $this->password,
+            'email' => $this->email
         ];
     }
 }
