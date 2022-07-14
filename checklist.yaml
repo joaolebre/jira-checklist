@@ -156,7 +156,7 @@ paths:
       operationId: deleteItem
       parameters:
         -
-          name: itemId
+          name: id
           in: path
           description: 'Item id to delete'
           required: true
@@ -402,7 +402,7 @@ paths:
       operationId: deleteSection
       parameters:
         -
-          name: sectionId
+          name: id
           in: path
           description: 'Section id to delete'
           required: true
@@ -608,7 +608,7 @@ paths:
       operationId: deleteTab
       parameters:
         -
-          name: tabId
+          name: id
           in: path
           description: 'Tab id to delete'
           required: true
@@ -813,7 +813,7 @@ paths:
       operationId: deleteTicket
       parameters:
         -
-          name: ticketId
+          name: id
           in: path
           description: 'Ticket id to delete'
           required: true
@@ -951,7 +951,7 @@ paths:
       operationId: deleteUser
       parameters:
         -
-          name: userId
+          name: id
           in: path
           description: 'User id to delete'
           required: true

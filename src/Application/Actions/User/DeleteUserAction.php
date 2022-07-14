@@ -20,7 +20,7 @@ class DeleteUserAction extends UserAction
      *           {"bearerAuth": {}}
      *       },
      *     @OA\Parameter(
-     *         name="userId",
+     *         name="id",
      *         in="path",
      *         description="User id to delete",
      *         required=true,

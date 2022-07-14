@@ -20,7 +20,7 @@ class DeleteItemAction extends ItemAction
      *           {"bearerAuth": {}}
      *       },
      *     @OA\Parameter(
-     *         name="itemId",
+     *         name="id",
      *         in="path",
      *         description="Item id to delete",
      *         required=true,

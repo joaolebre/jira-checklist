@@ -20,7 +20,7 @@ class DeleteTabAction extends TabAction
      *           {"bearerAuth": {}}
      *       },
      *     @OA\Parameter(
-     *         name="tabId",
+     *         name="id",
      *         in="path",
      *         description="Tab id to delete",
      *         required=true,

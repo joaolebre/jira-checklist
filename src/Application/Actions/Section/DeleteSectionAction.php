@@ -20,7 +20,7 @@ class DeleteSectionAction extends SectionAction
      *           {"bearerAuth": {}}
      *       },
      *     @OA\Parameter(
-     *         name="sectionId",
+     *         name="id",
      *         in="path",
      *         description="Section id to delete",
      *         required=true,

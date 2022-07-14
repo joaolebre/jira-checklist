@@ -20,7 +20,7 @@ class DeleteTicketAction extends TicketAction
      *           {"bearerAuth": {}}
      *       },
      *     @OA\Parameter(
-     *         name="ticketId",
+     *         name="id",
      *         in="path",
      *         description="Ticket id to delete",
      *         required=true,
