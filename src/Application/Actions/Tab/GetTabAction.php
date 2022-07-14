@@ -25,7 +25,9 @@ class GetTabAction extends TabAction
      *          required=true,
      *          description="Tab id.",
      *          @OA\Schema(
-     *              type="integer"
+     *             type="integer",
+     *             format="int64",
+     *             minimum=1
      *          )
      *      ),
      *     @OA\Parameter(

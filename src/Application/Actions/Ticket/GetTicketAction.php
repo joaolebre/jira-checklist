@@ -25,7 +25,9 @@ class GetTicketAction extends TicketAction
      *          required=true,
      *          description="Ticket id.",
      *          @OA\Schema(
-     *              type="integer"
+     *             type="integer",
+     *             format="int64",
+     *             minimum=1
      *          )
      *      ),
      *     @OA\Parameter(

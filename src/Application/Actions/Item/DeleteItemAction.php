@@ -26,7 +26,8 @@ class DeleteItemAction extends ItemAction
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
-     *             format="int64"
+     *             format="int64",
+     *             minimum=1
      *         ),
      *     ),
      *     @OA\Response(

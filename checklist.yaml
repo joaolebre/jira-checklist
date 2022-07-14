@@ -74,6 +74,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
       responses:
         '200':
           description: 'Get a single item.'
@@ -101,6 +103,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
       requestBody:
         description: 'Item object'
         required: true
@@ -159,6 +163,7 @@ paths:
           schema:
             type: integer
             format: int64
+            minimum: 1
       responses:
         '200':
           description: 'Item deleted'
@@ -185,6 +190,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
       requestBody:
         description: 'Section id'
         required: true
@@ -225,6 +232,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
       responses:
         '200':
           description: 'Get a single item status.'
@@ -317,6 +326,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
         -
           name: full
           in: query
@@ -351,6 +362,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
       requestBody:
         description: 'Section object'
         required: true
@@ -396,6 +409,7 @@ paths:
           schema:
             type: integer
             format: int64
+            minimum: 1
       responses:
         '200':
           description: 'Section deleted'
@@ -422,6 +436,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
       requestBody:
         description: 'Tab id'
         required: true
@@ -516,6 +532,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
         -
           name: full
           in: query
@@ -550,6 +568,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
       requestBody:
         description: 'Tab object'
         required: true
@@ -595,6 +615,7 @@ paths:
           schema:
             type: integer
             format: int64
+            minimum: 1
       responses:
         '200':
           description: 'Tab deleted'
@@ -621,6 +642,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
       requestBody:
         description: 'Ticket id'
         required: true
@@ -714,6 +737,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
         -
           name: full
           in: query
@@ -748,6 +773,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
       requestBody:
         description: 'Ticket object'
         required: true
@@ -793,6 +820,7 @@ paths:
           schema:
             type: integer
             format: int64
+            minimum: 1
       responses:
         '200':
           description: 'Ticket deleted'
@@ -854,6 +882,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
       responses:
         '200':
           description: 'Get a single user.'
@@ -881,6 +911,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
       requestBody:
         description: 'User object'
         required: true
@@ -926,6 +958,7 @@ paths:
           schema:
             type: integer
             format: int64
+            minimum: 1
       responses:
         '200':
           description: 'User deleted'
@@ -1002,6 +1035,8 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
+            minimum: 1
       requestBody:
         description: Password
         required: true

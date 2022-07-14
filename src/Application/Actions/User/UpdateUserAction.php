@@ -27,7 +27,9 @@ class UpdateUserAction extends UserAction
      *          required=true,
      *          description="User id.",
      *          @OA\Schema(
-     *              type="integer"
+     *             type="integer",
+     *             format="int64",
+     *             minimum=1
      *          )
      *      ),
      *     @OA\Response(

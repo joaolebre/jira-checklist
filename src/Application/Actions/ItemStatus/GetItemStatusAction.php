@@ -22,7 +22,9 @@ class GetItemStatusAction extends ItemStatusAction
      *          required=true,
      *          description="Item status id.",
      *          @OA\Schema(
-     *              type="integer"
+     *             type="integer",
+     *             format="int64",
+     *             minimum=1
      *          )
      *      ),
      *      @OA\Response(

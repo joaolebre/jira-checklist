@@ -26,7 +26,9 @@ class UpdateItemAction extends ItemAction
      *          required=true,
      *          description="Item id.",
      *          @OA\Schema(
-     *              type="integer"
+     *             type="integer",
+     *             format="int64",
+     *             minimum=1
      *          )
      *      ),
      *     @OA\Response(

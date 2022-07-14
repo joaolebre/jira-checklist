@@ -27,7 +27,9 @@ class UpdateSectionTabAction extends SectionAction
      *          required=true,
      *          description="Section id.",
      *          @OA\Schema(
-     *              type="integer"
+     *             type="integer",
+     *             format="int64",
+     *             minimum=1
      *          )
      *      ),
      *     @OA\Response(
