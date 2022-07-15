@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Application\Actions\Ticket;
 
+use App\Domain\Ticket\TicketDeleteConflictException;
 use App\Domain\Ticket\TicketNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
@@ -46,17 +47,27 @@ class DeleteTicketAction extends TicketAction
      *         response=401,
      *         description="Unauthorized / Token missing or invalid"
      *     ),
+     *     @OA\Response(
+     *         response=409,
+     *         description="Could not delete ticket because of database conflict"
+     *     )
      * )
      * @return Response
      * @throws HttpBadRequestException
-     * @throws TicketNotFoundException
+     * @throws TicketNotFoundException|TicketDeleteConflictException
      */
     protected function action(): Response
     {
         $ticketId = (int) $this->resolveArg('id');
-        $this->ticketRepository->deleteTicketById($ticketId);
 
-        $this->logger->info("Ticket with id `${ticketId} deleted successfully`.");
+        try {
+            $this->ticketRepository->deleteTicketById($ticketId);
+        } catch (\PDOException $e) {
+            $this->logger->error("While deleting ticket with id ${ticketId}: " . $e->getMessage());
+            throw new TicketDeleteConflictException($this->request);
+        }
+
+        $this->logger->info("Ticket with id `${ticketId}` deleted successfully.");
 
         return $this->respondWithData();
     }

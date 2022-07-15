@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Application\Actions\Tab;
 
+use App\Domain\Tab\TabDeleteConflictException;
 use App\Domain\Tab\TabNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
@@ -46,15 +47,25 @@ class DeleteTabAction extends TabAction
      *         response=401,
      *         description="Unauthorized / Token missing or invalid"
      *     ),
+     *     @OA\Response(
+     *         response=409,
+     *         description="Could not delete tab because of database conflict"
+     *     )
      * )
      * @return Response
      * @throws HttpBadRequestException
-     * @throws TabNotFoundException
+     * @throws TabNotFoundException|TabDeleteConflictException
      */
     protected function action(): Response
     {
         $tabId = (int) $this->resolveArg('id');
-        $this->tabRepository->deleteTabById($tabId);
+
+        try {
+            $this->tabRepository->deleteTabById($tabId);
+        } catch (\PDOException $e) {
+            $this->logger->error("While deleting tab with id ${tabId}: " . $e->getMessage());
+            throw new TabDeleteConflictException($this->request);
+        }
 
         $this->logger->info("Tab with id `${tabId} deleted successfully`.");
 

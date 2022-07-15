@@ -16,6 +16,8 @@ class ActionError implements JsonSerializable
     public const UNAUTHENTICATED = 'UNAUTHENTICATED';
     public const VALIDATION_ERROR = 'VALIDATION_ERROR';
     public const VERIFICATION_ERROR = 'VERIFICATION_ERROR';
+    public const CONFLICT = 'CONFLICT';
+    public const DATABASE_ERROR = 'DATABASE_ERROR';
 
     /**
      * @var string

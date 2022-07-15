@@ -419,6 +419,8 @@ paths:
           description: 'Section not found'
         '401':
           description: 'Unauthorized / Token missing or invalid'
+        '409':
+          description: 'Could not delete section because of database conflict'
       security:
         -
           bearerAuth: []
@@ -625,6 +627,8 @@ paths:
           description: 'Tab not found'
         '401':
           description: 'Unauthorized / Token missing or invalid'
+        '409':
+          description: 'Could not delete tab because of database conflict'
       security:
         -
           bearerAuth: []
@@ -830,6 +834,8 @@ paths:
           description: 'Ticket not found'
         '401':
           description: 'Unauthorized / Token missing or invalid'
+        '409':
+          description: 'Could not delete ticket because of database conflict'
       security:
         -
           bearerAuth: []

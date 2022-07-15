@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Application\Actions\Section;
 
+use App\Domain\Section\SectionDeleteConflictException;
 use App\Domain\Section\SectionNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
@@ -46,15 +47,25 @@ class DeleteSectionAction extends SectionAction
      *         response=401,
      *         description="Unauthorized / Token missing or invalid"
      *     ),
+     *     @OA\Response(
+     *         response=409,
+     *         description="Could not delete section because of database conflict"
+     *     )
      * )
      * @return Response
      * @throws HttpBadRequestException
-     * @throws SectionNotFoundException
+     * @throws SectionNotFoundException|SectionDeleteConflictException
      */
     protected function action(): Response
     {
         $sectionId = (int) $this->resolveArg('id');
-        $this->sectionRepository->deleteSectionById($sectionId);
+
+        try {
+            $this->sectionRepository->deleteSectionById($sectionId);
+        } catch (\PDOException $e) {
+            $this->logger->error("While deleting section with id ${sectionId}: " . $e->getMessage());
+            throw new SectionDeleteConflictException($this->request);
+        }
 
         $this->logger->info("Item with id `${sectionId} deleted successfully`.");
 
