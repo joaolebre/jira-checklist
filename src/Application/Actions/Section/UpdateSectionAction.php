@@ -8,6 +8,7 @@ use App\Domain\Section\SectionNotFoundException;
 use App\Domain\Section\SectionValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class UpdateSectionAction extends SectionAction
 {
@@ -62,10 +63,16 @@ class UpdateSectionAction extends SectionAction
      * @throws SectionNotFoundException
      * @throws HttpBadRequestException
      * @throws SectionValidationException
+     * @throws HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $sectionId = (int) $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($sectionId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this section.');
+        }
+
         $section = $this->sectionRepository->findSectionById($sectionId);
 
         $data = $this->request->getParsedBody();

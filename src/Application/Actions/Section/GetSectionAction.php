@@ -6,6 +6,7 @@ namespace App\Application\Actions\Section;
 use App\Domain\Section\SectionNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class GetSectionAction extends SectionAction
 {
@@ -55,10 +56,16 @@ class GetSectionAction extends SectionAction
      * )
      * @return Response
      * @throws SectionNotFoundException|HttpBadRequestException
+     * @throws HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $sectionId = (int) $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($sectionId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to view this section.');
+        }
+
         $section = $this->sectionRepository->findSectionById($sectionId);
 
         if (!empty($this->request->getQueryParams()) && $this->request->getQueryParams()['full'] == 'true') {

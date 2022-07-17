@@ -9,6 +9,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Respect\Validation\Validator as v;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class UpdateUserPasswordAction extends UserAction
 {
@@ -61,10 +62,16 @@ class UpdateUserPasswordAction extends UserAction
      * @return Response
      * @throws UserValidationException
      * @throws HttpBadRequestException
+     * @throws HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $userId = $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($userId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this user password.');
+        }
+
         $password = $this->request->getParsedBody()['password'];
 
         try {

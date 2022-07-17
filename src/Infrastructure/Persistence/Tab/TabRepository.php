@@ -19,6 +19,20 @@ class TabRepository extends BaseRepository
         return (array) $statement->fetchAll(PDO::FETCH_CLASS, 'App\Domain\Tab\Tab');
     }
 
+    public function findAllByUserId(int $userId): array {
+        $query = '
+            SELECT * FROM tabs
+            WHERE ticket_id IN
+                (SELECT id FROM tickets
+                WHERE user_id = :user_id);
+        ';
+        $statement = $this->database->prepare($query);
+        $statement->bindParam(':user_id', $userId);
+        $statement->execute();
+
+        return (array) $statement->fetchAll(PDO::FETCH_CLASS, 'App\Domain\Tab\Tab');
+    }
+
     /**
      * @throws TabNotFoundException
      */

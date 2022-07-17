@@ -6,6 +6,7 @@ namespace App\Application\Actions\Item;
 use App\Domain\Item\ItemNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class GetItemAction extends ItemAction
 {
@@ -45,11 +46,16 @@ class GetItemAction extends ItemAction
      *     ),
      * )
      * @return Response
-     * @throws ItemNotFoundException|HttpBadRequestException
+     * @throws ItemNotFoundException|HttpBadRequestException|HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $itemId = (int) $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($itemId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to view this item.');
+        }
+
         $item = $this->itemRepository->findItemById($itemId);
 
         $this->logger->info("Item of id `${itemId}` was viewed.");

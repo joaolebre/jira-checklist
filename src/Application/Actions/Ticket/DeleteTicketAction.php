@@ -7,6 +7,7 @@ use App\Domain\Ticket\TicketDeleteConflictException;
 use App\Domain\Ticket\TicketNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class DeleteTicketAction extends TicketAction
 {
@@ -55,10 +56,13 @@ class DeleteTicketAction extends TicketAction
      * @return Response
      * @throws HttpBadRequestException
      * @throws TicketNotFoundException|TicketDeleteConflictException
+     * @throws HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $ticketId = (int) $this->resolveArg('id');
+        $ticket = $this->ticketRepository->findTicketById($ticketId);
+        $ticket->checkAuthorization($this->request, 'You are not authorized to delete this ticket.');
 
         try {
             $this->ticketRepository->deleteTicketById($ticketId);

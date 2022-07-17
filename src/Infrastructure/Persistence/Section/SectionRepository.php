@@ -18,6 +18,23 @@ class SectionRepository extends BaseRepository
         return (array) $statement->fetchAll(PDO::FETCH_CLASS, 'App\Domain\Section\Section');
     }
 
+    public function findAllByUserId(int $userId): array {
+        $query = '
+            SELECT * FROM sections
+            WHERE tab_id IN
+                (SELECT id FROM tabs
+                WHERE ticket_id IN
+                    (SELECT id FROM tickets
+                    WHERE user_id = :user_id
+                ))
+        ';
+        $statement = $this->database->prepare($query);
+        $statement->bindParam(':user_id', $userId);
+        $statement->execute();
+
+        return (array) $statement->fetchAll(PDO::FETCH_CLASS, 'App\Domain\Section\Section');
+    }
+
     /**
      * @throws SectionNotFoundException
      */

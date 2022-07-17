@@ -65,6 +65,7 @@ class LoginUserAction extends UserAction
             'sub' => $user->getId(),
             'name' => $user->getName(),
             'email' => $user->getEmail(),
+            'role' => $user->getRole(),
             'iat' => time(),
             'exp' => time() + (7 * 24 * 60 * 60)
         ];

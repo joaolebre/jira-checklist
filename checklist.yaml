@@ -12,6 +12,16 @@ paths:
         - Item
       summary: 'Get a list of all items'
       operationId: listItems
+      parameters:
+        -
+          name: user_id
+          in: query
+          description: 'Set the user id to filter the items (admin only).'
+          required: false
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
       responses:
         '200':
           description: 'List all items.'
@@ -264,6 +274,16 @@ paths:
         - Section
       summary: 'Get a list of all sections'
       operationId: listSections
+      parameters:
+        -
+          name: user_id
+          in: query
+          description: 'Set the user id to filter the sections (admin only).'
+          required: false
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
       responses:
         '200':
           description: 'List all sections.'
@@ -472,6 +492,16 @@ paths:
         - Tab
       summary: 'Get a list of all tabs'
       operationId: listTabs
+      parameters:
+        -
+          name: user_id
+          in: query
+          description: 'Set the user id to filter the tabs (admin only).'
+          required: false
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
       responses:
         '200':
           description: 'List all tabs.'
@@ -680,6 +710,16 @@ paths:
         - Ticket
       summary: 'Get a list of all tickets'
       operationId: listTickets
+      parameters:
+        -
+          name: user_id
+          in: query
+          description: 'Set the user id to filter the tickets (admin only).'
+          required: false
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
       responses:
         '200':
           description: 'List all tickets.'
@@ -974,6 +1014,8 @@ paths:
           description: 'User not found'
         '401':
           description: 'Unauthorized / Token missing or invalid'
+        '409':
+          description: 'Could not delete user because of database conflict'
       security:
         -
           bearerAuth: []
@@ -1180,6 +1222,9 @@ components:
           type: string
         password:
           description: 'User password,'
+          type: string
+        role:
+          description: 'User role,'
           type: string
       type: object
   securitySchemes:

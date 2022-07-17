@@ -28,6 +28,15 @@ class TicketRepository extends BaseRepository
         return (array) $statement->fetchAll(PDO::FETCH_CLASS, 'App\Domain\Ticket\Ticket');
     }
 
+    public function findAllByUserId(int $userId) : array {
+        $query = 'SELECT id, title, description, user_id FROM tickets WHERE user_id = :user_id';
+        $statement = $this->database->prepare($query);
+        $statement->bindParam(':user_id', $userId);
+        $statement->execute();
+
+        return (array) $statement->fetchAll(PDO::FETCH_CLASS, 'App\Domain\Ticket\Ticket');
+    }
+
     /**
      * @throws TicketNotFoundException
      */
@@ -93,9 +102,9 @@ class TicketRepository extends BaseRepository
             $sectionStatement->bindValue(':position', 1);
             $sectionStatement->bindValue(':tab_id', $this->tabRepository->database->lastInsertId());
             $sectionStatement->execute();
-        } catch (Throwable $ex) {
+        } catch (\PDOException $e) {
             $this->database->rollBack();
-            throw $ex;
+            throw $e;
         }
 
         $this->database->commit();
@@ -124,12 +133,7 @@ class TicketRepository extends BaseRepository
         return $ticket;
     }
 
-    /**
-     * @throws TicketNotFoundException
-     */
     public function deleteTicketById(int $ticketId) {
-        $this->findTicketById($ticketId);
-
         $query = 'DELETE FROM tickets WHERE tickets.id = :id';
         $statement = $this->database->prepare($query);
         $statement->bindParam(':id', $ticketId);

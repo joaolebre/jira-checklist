@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Ticket;
 
+use App\Domain\User\User;
 use JsonSerializable;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Respect\Validation\Validator as v;
+use Slim\Exception\HttpUnauthorizedException;
 
 /**
  * @OA\Schema ()
@@ -62,6 +64,16 @@ class Ticket implements JsonSerializable
             v::optional(v::stringType())->assert($data['description']);
         } catch (NestedValidationException $ex) {
             throw new TicketValidationException($request, 'Description must be a string.');
+        }
+    }
+
+    /**
+     * @throws HttpUnauthorizedException
+     */
+    public function checkAuthorization($request, $message) {
+        if ($this->getUserId() != User::getLoggedInUserId($request)
+            && User::getLoggedInUserRole($request) != 'admin') {
+            throw new HttpUnauthorizedException($request, $message);
         }
     }
 

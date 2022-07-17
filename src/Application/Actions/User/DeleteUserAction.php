@@ -7,6 +7,7 @@ use App\Domain\User\UserDeleteConflictException;
 use App\Domain\User\UserNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class DeleteUserAction extends UserAction
 {
@@ -53,11 +54,15 @@ class DeleteUserAction extends UserAction
      *     )
      * )
      * @return Response
-     * @throws UserNotFoundException|HttpBadRequestException|UserDeleteConflictException
+     * @throws UserNotFoundException|HttpBadRequestException|UserDeleteConflictException|HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $userId = (int) $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($userId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to delete this user.');
+        }
 
         try {
             $this->userRepository->deleteUserById($userId);

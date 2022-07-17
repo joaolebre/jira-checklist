@@ -7,6 +7,7 @@ use App\Domain\Item\ItemNotFoundException;
 use App\Domain\Item\ItemValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class UpdateItemAction extends ItemAction
 {
@@ -64,10 +65,16 @@ class UpdateItemAction extends ItemAction
      * @throws HttpBadRequestException
      * @throws ItemNotFoundException
      * @throws ItemValidationException
+     * @throws HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $itemId = (int) $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($itemId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this item.');
+        }
+
         $item = $this->itemRepository->findItemById($itemId);
 
         $data = $this->request->getParsedBody();

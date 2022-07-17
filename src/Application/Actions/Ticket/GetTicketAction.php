@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace App\Application\Actions\Ticket;
 
 use App\Domain\Ticket\TicketNotFoundException;
+use App\Domain\User\User;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class GetTicketAction extends TicketAction
 {
@@ -55,12 +57,14 @@ class GetTicketAction extends TicketAction
      * )
      * @return Response
      * @throws HttpBadRequestException
-     * @throws TicketNotFoundException
+     * @throws TicketNotFoundException|HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $ticketId = (int) $this->resolveArg('id');
         $ticket = $this->ticketRepository->findTicketById($ticketId);
+
+        $ticket->checkAuthorization($this->request, 'You are not authorized to view this ticket.');
 
         if (!empty($this->request->getQueryParams()) && $this->request->getQueryParams()['full'] == 'true') {
             $ticket->setTabs($this->tabRepository->findTabsByTicketId($ticketId));
@@ -80,10 +84,6 @@ class GetTicketAction extends TicketAction
                     }
                 }
             }
-
-            $this->logger->info("Ticket of id `${ticketId}` was viewed.");
-
-            return $this->respondWithData($ticket);
         }
 
         $this->logger->info("Ticket of id `${ticketId}` was viewed.");

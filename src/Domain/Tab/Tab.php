@@ -58,12 +58,6 @@ class Tab implements JsonSerializable
             } catch (NestedValidationException $ex) {
                 throw new TabValidationException($request, 'Name must be a string.');
             }
-
-            try {
-                v::number()->assert($data['position']);
-            } catch (NestedValidationException $ex) {
-                throw new TabValidationException($request, 'Position must be a number.');
-            }
         }
 
         if ($request->getMethod() == 'PUT') {

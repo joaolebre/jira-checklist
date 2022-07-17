@@ -6,6 +6,7 @@ namespace App\Application\Actions\Tab;
 use App\Domain\Tab\TabNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class GetTabAction extends TabAction
 {
@@ -55,10 +56,16 @@ class GetTabAction extends TabAction
      * )
      * @return Response
      * @throws TabNotFoundException|HttpBadRequestException
+     * @throws HttpUnauthorizedException
      */
     protected function action(): Response
     {
-        $tabId = (int) $this->resolveArg('id');
+        $tabId = (int)$this->resolveArg('id');
+
+        if (! $this->checkAuthorization($tabId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to view this tab.');
+        }
+
         $tab = $this->tabRepository->findTabById($tabId);
 
         if (!empty($this->request->getQueryParams()) && $this->request->getQueryParams()['full'] == 'true') {

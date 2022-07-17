@@ -8,6 +8,7 @@ use App\Domain\Ticket\TicketNotFoundException;
 use App\Domain\Ticket\TicketValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class UpdateTicketAction extends TicketAction
 {
@@ -62,11 +63,13 @@ class UpdateTicketAction extends TicketAction
      * @throws HttpBadRequestException
      * @throws TicketNotFoundException
      * @throws TicketValidationException
+     * @throws HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $ticketId = (int) $this->resolveArg('id');
         $ticket = $this->ticketRepository->findTicketById($ticketId);
+        $ticket->checkAuthorization($this->request, 'You are not authorized to modify this ticket.');
 
         $data = $this->request->getParsedBody();
 

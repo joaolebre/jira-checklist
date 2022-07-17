@@ -8,6 +8,7 @@ use App\Domain\Tab\TabNotFoundException;
 use App\Domain\Tab\TabValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class UpdateTabAction extends TabAction
 {
@@ -61,10 +62,16 @@ class UpdateTabAction extends TabAction
      * @return Response
      * @throws TabNotFoundException|HttpBadRequestException
      * @throws TabValidationException
+     * @throws HttpUnauthorizedException
      */
     protected function action(): Response
     {
-        $tabId = $this->resolveArg('id');
+        $tabId = (int) $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($tabId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this tab.');
+        }
+
         $tab = $this->tabRepository->findTabById((int) $tabId);
 
         $data = $this->request->getParsedBody();

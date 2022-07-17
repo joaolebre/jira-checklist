@@ -7,6 +7,7 @@ use App\Domain\Section\SectionDeleteConflictException;
 use App\Domain\Section\SectionNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class DeleteSectionAction extends SectionAction
 {
@@ -55,10 +56,15 @@ class DeleteSectionAction extends SectionAction
      * @return Response
      * @throws HttpBadRequestException
      * @throws SectionNotFoundException|SectionDeleteConflictException
+     * @throws HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $sectionId = (int) $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($sectionId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to delete this section.');
+        }
 
         try {
             $this->sectionRepository->deleteSectionById($sectionId);

@@ -8,6 +8,7 @@ use App\Domain\User\UserNotFoundException;
 use App\Domain\User\UserValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class UpdateUserAction extends UserAction
 {
@@ -62,10 +63,16 @@ class UpdateUserAction extends UserAction
      * @throws UserNotFoundException
      * @throws HttpBadRequestException
      * @throws UserValidationException
+     * @throws HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $userId = $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($userId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this user.');
+        }
+
         $user = $this->userRepository->findUserById((int) $userId);
 
         $data = $this->request->getParsedBody();

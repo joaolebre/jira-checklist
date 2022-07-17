@@ -8,6 +8,7 @@ use App\Domain\Item\ItemNotFoundException;
 use App\Domain\Item\ItemValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class UpdateItemSectionAction extends ItemAction
 {
@@ -59,13 +60,22 @@ class UpdateItemSectionAction extends ItemAction
      * )
      * @return Response
      * @throws ItemValidationException|HttpBadRequestException
-     * @throws ItemNotFoundException
+     * @throws ItemNotFoundException|HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $itemId = $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($itemId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this item.');
+        }
+
         $data = $this->request->getParsedBody();
         $sectionId = $data['section_id'];
+
+        if (! $this->checkSectionAuthorization($sectionId)) {
+            throw new HttpUnauthorizedException($this->request, 'You can not move an item to that section.');
+        }
 
         Item::validateItemData($this->request, $data);
 

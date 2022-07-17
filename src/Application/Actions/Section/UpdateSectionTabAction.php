@@ -8,6 +8,7 @@ use App\Domain\Section\SectionNotFoundException;
 use App\Domain\Section\SectionValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class UpdateSectionTabAction extends SectionAction
 {
@@ -59,13 +60,22 @@ class UpdateSectionTabAction extends SectionAction
      * )
      * @return Response
      * @throws SectionValidationException
-     * @throws HttpBadRequestException|SectionNotFoundException
+     * @throws HttpBadRequestException|SectionNotFoundException|HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $sectionId = $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($sectionId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this section.');
+        }
+
         $data = $this->request->getParsedBody();
         $tabId = $data['tab_id'];
+
+        if (! $this->checkTabAuthorization($tabId)) {
+            throw new HttpUnauthorizedException($this->request, 'You can not move a section to that tab.');
+        }
 
         Section::validateSectionData($this->request,$data);
 

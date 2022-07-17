@@ -6,7 +6,9 @@ namespace App\Application\Actions\Section;
 use App\Domain\Section\Section;
 use App\Domain\Section\SectionNotFoundException;
 use App\Domain\Section\SectionValidationException;
+use App\Domain\Tab\TabNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
+use Slim\Exception\HttpUnauthorizedException;
 
 class CreateSectionAction extends SectionAction
 {
@@ -40,13 +42,17 @@ class CreateSectionAction extends SectionAction
      *     )
      * )
      * @return Response
-     * @throws SectionNotFoundException|SectionValidationException
+     * @throws SectionNotFoundException|SectionValidationException|HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $data = $this->request->getParsedBody();
 
         Section::validateSectionData($this->request, $data);
+
+        if (! $this->checkTabAuthorization($data['tab_id'])) {
+            throw new HttpUnauthorizedException($this->request, 'You can not create a section on this tab.');
+        }
 
         $newSection = new Section();
         $newSection->setName($data['name']);

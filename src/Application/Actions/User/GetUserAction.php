@@ -6,6 +6,7 @@ namespace App\Application\Actions\User;
 use App\Domain\User\UserNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class GetUserAction extends UserAction
 {
@@ -44,11 +45,16 @@ class GetUserAction extends UserAction
      *     )
      * )
      * @throws HttpBadRequestException
-     * @throws UserNotFoundException
+     * @throws UserNotFoundException|HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $userId = (int) $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($userId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to view this user.');
+        }
+
         $user = $this->userRepository->findUserById($userId);
 
         $this->logger->info("User of id `${userId}` was viewed.");

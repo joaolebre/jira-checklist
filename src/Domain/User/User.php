@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use JsonSerializable;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Respect\Validation\Validator as v;
@@ -41,6 +43,13 @@ class User implements JsonSerializable
     private $password;
 
     /**
+     * User role,
+     * @var string
+     * @OA\Property ()
+     */
+    private $role;
+
+    /**
      * @throws UserValidationException
      */
     public static function validateUserData($request, $data) {
@@ -65,12 +74,42 @@ class User implements JsonSerializable
         }
     }
 
+    public static function getLoggedInUserRole($request): String {
+        $auth = substr($request->getHeaderLine('Authorization'), 7);
+        $token = JWT::decode($auth, new Key($_ENV['SECRET'], 'HS256'));
+
+        return $token->role;
+    }
+
+    public static function getLoggedInUserId($request): int {
+        $auth = substr($request->getHeaderLine('Authorization'), 7);
+        $token = JWT::decode($auth, new Key($_ENV['SECRET'], 'HS256'));
+
+        return $token->sub;
+    }
+
     /**
      * @return int
      */
     public function getId(): int
     {
         return (int) $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
     }
 
     /**

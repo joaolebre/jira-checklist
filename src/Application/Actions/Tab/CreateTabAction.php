@@ -6,7 +6,9 @@ namespace App\Application\Actions\Tab;
 use App\Domain\Tab\Tab;
 use App\Domain\Tab\TabNotFoundException;
 use App\Domain\Tab\TabValidationException;
+use App\Domain\Ticket\TicketNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
+use Slim\Exception\HttpUnauthorizedException;
 
 class CreateTabAction extends TabAction
 {
@@ -42,12 +44,16 @@ class CreateTabAction extends TabAction
      * @return Response
      * @throws TabNotFoundException
      * @throws TabValidationException
+     * @throws HttpUnauthorizedException|TicketNotFoundException
      */
     protected function action(): Response
     {
         $data = $this->request->getParsedBody();
 
         Tab::validateTabData($this->request, $data);
+
+        $tabTicket = $this->ticketRepository->findTicketById($data['ticket_id']);
+        $tabTicket->checkAuthorization($this->request, 'You can not create a tab on this ticket');
 
         $newTab = new Tab();
         $newTab->setName($data['name']);

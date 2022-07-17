@@ -6,6 +6,7 @@ namespace App\Application\Actions\Item;
 use App\Domain\Item\ItemNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class DeleteItemAction extends ItemAction
 {
@@ -49,10 +50,16 @@ class DeleteItemAction extends ItemAction
      * )
      * @return Response
      * @throws HttpBadRequestException|ItemNotFoundException
+     * @throws HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $itemId = (int) $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($itemId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to delete this item.');
+        }
+
         $this->itemRepository->deleteItemById($itemId);
 
         $this->logger->info("Item with id `${itemId} deleted successfully`.");

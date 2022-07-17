@@ -7,6 +7,7 @@ use App\Domain\Tab\TabDeleteConflictException;
 use App\Domain\Tab\TabNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class DeleteTabAction extends TabAction
 {
@@ -55,10 +56,15 @@ class DeleteTabAction extends TabAction
      * @return Response
      * @throws HttpBadRequestException
      * @throws TabNotFoundException|TabDeleteConflictException
+     * @throws HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $tabId = (int) $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($tabId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to delete this tab.');
+        }
 
         try {
             $this->tabRepository->deleteTabById($tabId);

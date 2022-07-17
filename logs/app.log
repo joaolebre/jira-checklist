@@ -1769,3 +1769,61 @@
 [2022-07-15T07:17:57.690581-04:00] slim-app.ERROR: While trying to delete tab with id 15: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`sandbox`.`sections`, CONSTRAINT `sections_ibfk_1` FOREIGN KEY (`tab_id`) REFERENCES `tabs` (`id`)) [] {"uid":"3fc847d"}
 [2022-07-15T07:24:08.444558-04:00] slim-app.INFO: Section list was viewed [] {"uid":"b5bef09"}
 [2022-07-15T07:24:35.733982-04:00] slim-app.ERROR: While deleting section with id 14: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`sandbox`.`items`, CONSTRAINT `items_ibfk_1` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`)) [] {"uid":"829e767"}
+[2022-07-17T12:28:08.481573-04:00] slim-app.INFO: Ticket list was viewed [] {"uid":"048ec04"}
+[2022-07-17T12:29:23.555362-04:00] slim-app.INFO: Ticket list was viewed [] {"uid":"abbcca9"}
+[2022-07-17T12:31:14.495324-04:00] slim-app.INFO: Ticket list was viewed [] {"uid":"7706725"}
+[2022-07-17T12:34:42.658462-04:00] slim-app.INFO: Ticket list was viewed by `admin` with `30`. [] {"uid":"3e5e7a1"}
+[2022-07-17T12:35:12.853859-04:00] slim-app.INFO: Ticket list was viewed by admin with 30. [] {"uid":"be333e8"}
+[2022-07-17T12:43:23.601316-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"0cfeca0"}
+[2022-07-17T12:43:34.516055-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"c53b4a2"}
+[2022-07-17T12:43:42.716019-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"2ebbf6e"}
+[2022-07-17T12:44:16.570046-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"0504104"}
+[2022-07-17T12:44:18.798737-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"333ce19"}
+[2022-07-17T12:44:19.405997-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"09ba22d"}
+[2022-07-17T12:44:19.682492-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"a0a1d6e"}
+[2022-07-17T12:44:45.208261-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"0e18372"}
+[2022-07-17T12:45:47.615374-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"a707cb5"}
+[2022-07-17T12:46:29.852131-04:00] slim-app.INFO: Ticket list was viewed by 16. [] {"uid":"36343d2"}
+[2022-07-17T12:46:29.853025-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 16. [] {"uid":"36343d2"}
+[2022-07-17T12:46:40.439047-04:00] slim-app.INFO: Ticket list was viewed by 16. [] {"uid":"62dc193"}
+[2022-07-17T12:47:16.392169-04:00] slim-app.INFO: Ticket list was viewed by 30. [] {"uid":"2ea2c5d"}
+[2022-07-17T12:47:16.392999-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"2ea2c5d"}
+[2022-07-17T13:00:28.883424-04:00] slim-app.INFO: Tab list was viewed [] {"uid":"d4af7dc"}
+[2022-07-17T13:02:06.445593-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"b98ee09"}
+[2022-07-17T13:02:11.662450-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"4a407ca"}
+[2022-07-17T13:02:20.088636-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"dba1c6b"}
+[2022-07-17T13:02:55.480285-04:00] slim-app.INFO: Ticket of id `41` was viewed. [] {"uid":"235f1a5"}
+[2022-07-17T13:55:43.929379-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 30. [] {"uid":"f570c46"}
+[2022-07-17T13:58:21.279315-04:00] slim-app.INFO: Ticket list was viewed by user with the id 14. [] {"uid":"37605b6"}
+[2022-07-17T13:58:24.673656-04:00] slim-app.INFO: Ticket list was viewed by user with the id 14. [] {"uid":"7b86025"}
+[2022-07-17T13:59:41.858031-04:00] slim-app.INFO: Ticket of id `9` was viewed. [] {"uid":"03cfd02"}
+[2022-07-17T13:59:49.303634-04:00] slim-app.INFO: Ticket of id `9` was viewed. [] {"uid":"9b8f6e1"}
+[2022-07-17T14:02:08.905454-04:00] slim-app.INFO: Ticket of id `9` was viewed. [] {"uid":"00999d4"}
+[2022-07-17T14:02:24.017765-04:00] slim-app.INFO: Ticket of id `9` was viewed. [] {"uid":"01e2d38"}
+[2022-07-17T14:13:11.161335-04:00] slim-app.INFO: Ticket of id `9` was viewed. [] {"uid":"745bf10"}
+[2022-07-17T14:21:06.863724-04:00] slim-app.ERROR: While deleting ticket with id 9: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`sandbox`.`tabs`, CONSTRAINT `tabs_ibfk_1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`)) [] {"uid":"f96c16c"}
+[2022-07-17T14:22:27.154753-04:00] slim-app.INFO: Ticket with id `9` was updated. [] {"uid":"9822885"}
+[2022-07-17T14:22:42.384998-04:00] slim-app.INFO: Ticket of id `9` was viewed. [] {"uid":"88be036"}
+[2022-07-17T14:31:16.862166-04:00] slim-app.INFO: New ticket with id `45` was created. [] {"uid":"20fc785"}
+[2022-07-17T15:56:11.551594-04:00] slim-app.INFO: Tab list was viewed by user with the id 14. [] {"uid":"af11a5e"}
+[2022-07-17T15:56:28.938225-04:00] slim-app.INFO: Ticket list was viewed by user with the id 14. [] {"uid":"ec9cca2"}
+[2022-07-17T15:57:00.102898-04:00] slim-app.INFO: Ticket of id `45` was viewed. [] {"uid":"f471c96"}
+[2022-07-17T15:57:19.444709-04:00] slim-app.INFO: Tab list was viewed by user with the id 14. [] {"uid":"8e863fe"}
+[2022-07-17T15:59:33.538993-04:00] slim-app.INFO: Tab list was viewed by user with the id 14. [] {"uid":"4607a6e"}
+[2022-07-17T16:00:03.855681-04:00] slim-app.INFO: Ticket of id `9` was viewed. [] {"uid":"8f3344e"}
+[2022-07-17T16:00:31.155102-04:00] slim-app.INFO: Tab list was viewed by user with the id 14. [] {"uid":"cf94d70"}
+[2022-07-17T16:06:21.080944-04:00] slim-app.INFO: Tab with id `10` was viewed. [] {"uid":"6883dc6"}
+[2022-07-17T16:06:26.295398-04:00] slim-app.INFO: Tab with id `10` was viewed. [] {"uid":"8a26721"}
+[2022-07-17T16:16:56.131494-04:00] slim-app.INFO: Tab with id `10` was viewed. [] {"uid":"d75b34f"}
+[2022-07-17T16:17:01.178519-04:00] slim-app.INFO: Tab with id `10` was viewed. [] {"uid":"5aa357f"}
+[2022-07-17T16:35:43.097717-04:00] slim-app.INFO: New tab with id `63` was created. [] {"uid":"d9638c5"}
+[2022-07-17T16:35:58.696976-04:00] slim-app.INFO: Tab with id `63` was viewed. [] {"uid":"32bca86"}
+[2022-07-17T16:36:07.652217-04:00] slim-app.INFO: Ticket of id `9` was viewed. [] {"uid":"afe523d"}
+[2022-07-17T16:42:04.872440-04:00] slim-app.INFO: Tab with id `63 deleted successfully`. [] {"uid":"cb5704a"}
+[2022-07-17T16:42:13.724209-04:00] slim-app.INFO: Ticket of id `9` was viewed. [] {"uid":"b0b8768"}
+[2022-07-17T16:47:21.249176-04:00] slim-app.INFO: Tab with id `2` was updated. [] {"uid":"6c80ee4"}
+[2022-07-17T17:02:39.346108-04:00] slim-app.INFO: Section list was viewed by user with the id 14. [] {"uid":"dc81c00"}
+[2022-07-17T17:42:46.625775-04:00] slim-app.INFO: Ticket list was viewed by user with the id 14. [] {"uid":"926e9a4"}
+[2022-07-17T17:43:11.655228-04:00] slim-app.INFO: Ticket of id `9` was viewed. [] {"uid":"d514a5f"}
+[2022-07-17T17:43:31.919886-04:00] slim-app.INFO: Ticket of id `45` was viewed. [] {"uid":"291a798"}
+[2022-07-17T17:53:12.680959-04:00] slim-app.INFO: Item list was viewed by user with the id 14. [] {"uid":"7e7ab3d"}

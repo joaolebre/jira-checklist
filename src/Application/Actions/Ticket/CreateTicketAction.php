@@ -6,6 +6,7 @@ namespace App\Application\Actions\Ticket;
 use App\Domain\Ticket\Ticket;
 use App\Domain\Ticket\TicketNotFoundException;
 use App\Domain\Ticket\TicketValidationException;
+use App\Domain\User\User;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -52,13 +53,10 @@ class CreateTicketAction extends TicketAction
 
         Ticket::validateTicketData($this->request, $data);
 
-        $auth = substr($this->request->getHeaderLine('Authorization'), 7);
-        $token = JWT::decode($auth, new Key($_ENV['SECRET'], 'HS256'));
-
         $newTicket = new Ticket();
         $newTicket->setTitle($data['title']);
         $newTicket->setDescription($data['description']);
-        $newTicket->setUserId((int) $token->sub);
+        $newTicket->setUserId(User::getLoggedInUserId($this->request));
 
         $createdTicket = $this->ticketRepository->createTicket($newTicket);
         $createdTicketId = $createdTicket->getId();

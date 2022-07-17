@@ -5,8 +5,10 @@ namespace App\Application\Actions\Tab;
 
 use App\Domain\Tab\Tab;
 use App\Domain\Tab\TabNotFoundException;
+use App\Domain\Ticket\TicketNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
 
 class UpdateTabTicketAction extends TabAction
 {
@@ -59,12 +61,22 @@ class UpdateTabTicketAction extends TabAction
      * @return Response
      * @throws HttpBadRequestException
      * @throws TabNotFoundException
+     * @throws HttpUnauthorizedException
+     * @throws TicketNotFoundException
      */
     protected function action(): Response
     {
         $tabId = $this->resolveArg('id');
+
+        if (! $this->checkAuthorization($tabId)) {
+            throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this tab.');
+        }
+
         $data = $this->request->getParsedBody();
         $ticketId = $data['ticket_id'];
+
+        $tabTicket = $this->ticketRepository->findTicketById($ticketId);
+        $tabTicket->checkAuthorization($this->request, 'You can not move a tab to that ticket.');
 
         Tab::validateTabData($this->request, $data);
 

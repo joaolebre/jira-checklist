@@ -15,14 +15,15 @@ $faker = $generator->getFakerConfigurator();
 // Create database tables
 
 $statements = [
-        'CREATE TABLE users (
+        "CREATE TABLE users (
         id INT PRIMARY KEY AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL,
         password VARCHAR(255) NOT NULL,
+        role VARCHAR(50) NOT NULL DEFAULT 'user',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    );',
+    );",
         'CREATE TABLE tickets (
         id INT PRIMARY KEY AUTO_INCREMENT,
         user_id INT NOT NULL,
@@ -87,7 +88,8 @@ $seeder->table('users')->columns([
     'id',
     'name' => $faker->name,
     'email'=> $faker->email,
-    'password'=> '$2y$10$ZqqPOqjxjSxnJkV7/zYuVuB28zJsQSrQUibcGktffDjkglTz8HZIy' // Hash for Password123456?
+    'password'=> '$2y$10$ZqqPOqjxjSxnJkV7/zYuVuB28zJsQSrQUibcGktffDjkglTz8HZIy', // Hash for Password123456?
+    'role' => $faker->randomElement(['admin', 'user'])
 ])->rowQuantity(30);
 
 $seeder->table('tickets')->columns([

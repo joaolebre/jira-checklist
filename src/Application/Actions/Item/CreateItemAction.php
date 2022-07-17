@@ -6,6 +6,7 @@ use App\Domain\Item\Item;
 use App\Domain\Item\ItemNotFoundException;
 use App\Domain\Item\ItemValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
+use Slim\Exception\HttpUnauthorizedException;
 
 class CreateItemAction extends ItemAction
 {
@@ -39,13 +40,17 @@ class CreateItemAction extends ItemAction
      *     )
      * )
      * @return Response
-     * @throws ItemNotFoundException|ItemValidationException
+     * @throws ItemNotFoundException|ItemValidationException|HttpUnauthorizedException
      */
     protected function action(): Response
     {
         $data = $this->request->getParsedBody();
 
         Item::validateItemData($this->request, $data);
+
+        if (! $this->checkSectionAuthorization($data['section_id'])) {
+            throw new HttpUnauthorizedException($this->request, ' You can not create an item on this section.');
+        }
 
         $newItem = new Item();
         $newItem->setSummary($data['summary']);
