@@ -666,7 +666,7 @@ paths:
     patch:
       tags:
         - Tab
-      summary: 'Update the ticekt of a specific tab'
+      summary: 'Update the ticket of a specific tab'
       operationId: updateTabTicket
       parameters:
         -

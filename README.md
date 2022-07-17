@@ -60,6 +60,8 @@ php database/dbseeder.php
 
 - Update Tab: `PUT /api/tabs/{id}`
 
+- Update Tab Ticket: `PATCH /api/tabs/ticket/{id}` 
+
 - Delete Tab: `DELETE /api/tabs/{id}`
 
 
@@ -73,6 +75,8 @@ php database/dbseeder.php
 
 - Update Section: `PUT /api/sections/{id}`
 
+- Update Section Tab: `PATCH /api/sections/tab/{id}`
+
 - Delete Section: `DELETE /api/sections/{id}`
 
 
@@ -85,6 +89,8 @@ php database/dbseeder.php
 - Create Item: `POST /api/items`
 
 - Update Item: `PUT /api/items/{id}`
+
+- Update Item Section: `PATCH /api/items/section/{id}`
 
 - Delete Item: `DELETE /api/items/{id}`
 

@@ -17,7 +17,7 @@ class UpdateTabTicketAction extends TabAction
      * @OA\Patch(
      *     tags={"Tab"},
      *     path="/api/tabs/ticket/{id}",
-     *     summary="Update the ticekt of a specific tab",
+     *     summary="Update the ticket of a specific tab",
      *     operationId="updateTabTicket",
      *     security={
      *           {"bearerAuth": {}}
