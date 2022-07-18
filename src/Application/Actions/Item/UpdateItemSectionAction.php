@@ -64,7 +64,7 @@ class UpdateItemSectionAction extends ItemAction
      */
     protected function action(): Response
     {
-        $itemId = $this->resolveArg('id');
+        $itemId = (int) $this->resolveArg('id');
 
         if (! $this->checkAuthorization($itemId)) {
             throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this item.');

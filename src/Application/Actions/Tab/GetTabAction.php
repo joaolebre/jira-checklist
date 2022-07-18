@@ -60,7 +60,7 @@ class GetTabAction extends TabAction
      */
     protected function action(): Response
     {
-        $tabId = (int)$this->resolveArg('id');
+        $tabId = (int) $this->resolveArg('id');
 
         if (! $this->checkAuthorization($tabId)) {
             throw new HttpUnauthorizedException($this->request, 'You are not authorized to view this tab.');

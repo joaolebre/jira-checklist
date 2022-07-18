@@ -64,7 +64,7 @@ class UpdateSectionTabAction extends SectionAction
      */
     protected function action(): Response
     {
-        $sectionId = $this->resolveArg('id');
+        $sectionId = (int) $this->resolveArg('id');
 
         if (! $this->checkAuthorization($sectionId)) {
             throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this section.');
