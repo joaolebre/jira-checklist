@@ -73,7 +73,7 @@ class UpdateUserAction extends UserAction
             throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this user.');
         }
 
-        $user = $this->userRepository->findUserById((int) $userId);
+        $user = $this->userRepository->findUserById($userId);
 
         $data = $this->request->getParsedBody();
 

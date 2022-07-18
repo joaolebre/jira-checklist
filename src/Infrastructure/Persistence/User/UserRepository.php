@@ -94,8 +94,7 @@ class UserRepository extends BaseRepository
         $query = '
             UPDATE users
             SET name = :name,
-                email = :email,
-                password = :password
+                email = :email
             WHERE id = :id
         ';
         $statement = $this->database->prepare($query);
@@ -103,13 +102,10 @@ class UserRepository extends BaseRepository
         $userId = $user->getId();
         $name = $user->getName();
         $email = $user->getEmail();
-        $password = $user->getPassword();
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         $statement->bindParam(':id', $userId);
         $statement->bindParam(':name', $name);
         $statement->bindParam(':email', $email);
-        $statement->bindParam(':password', $hashed_password);
 
         $statement->execute();
 

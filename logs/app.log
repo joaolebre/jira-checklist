@@ -1844,3 +1844,10 @@
 [2022-07-18T05:56:15.243715-04:00] slim-app.ERROR: Email `joao@gmail.com` already exists. [] {"uid":"2402fc6"}
 [2022-07-18T05:56:22.449431-04:00] slim-app.INFO: New user with id `35` was created. [] {"uid":"43449e3"}
 [2022-07-18T05:58:54.581207-04:00] slim-app.INFO: Password of user with id `35` was updated. [] {"uid":"d5fcd6d"}
+[2022-07-18T06:10:37.645335-04:00] slim-app.INFO: User with id `33` was updated. [] {"uid":"999aa55"}
+[2022-07-18T06:12:07.240059-04:00] slim-app.INFO: Password of user with id `33` was updated. [] {"uid":"6198d00"}
+[2022-07-18T06:12:34.684726-04:00] slim-app.INFO: Password of user with id `33` was updated. [] {"uid":"c477d2b"}
+[2022-07-18T06:14:28.439733-04:00] slim-app.INFO: User with id `28` was updated. [] {"uid":"f39b630"}
+[2022-07-18T06:15:36.542052-04:00] slim-app.INFO: User with id `28` was updated. [] {"uid":"a60f162"}
+[2022-07-18T06:16:07.732599-04:00] slim-app.INFO: Password of user with id `28` was updated. [] {"uid":"467be72"}
+[2022-07-18T06:16:28.280825-04:00] slim-app.INFO: User with id `28` was updated. [] {"uid":"fef3ebf"}
