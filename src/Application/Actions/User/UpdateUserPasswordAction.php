@@ -66,7 +66,7 @@ class UpdateUserPasswordAction extends UserAction
      */
     protected function action(): Response
     {
-        $userId = $this->resolveArg('id');
+        $userId = (int) $this->resolveArg('id');
 
         if (! $this->checkAuthorization($userId)) {
             throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this user password.');
@@ -80,7 +80,7 @@ class UpdateUserPasswordAction extends UserAction
             throw new UserValidationException($this->request, 'Password must have at least 8 characters, 1 lowercase letter, 1 uppercase letter, 1 number and 1 symbol.');
         }
 
-        $this->userRepository->updateUserPassword((int) $userId, $password);
+        $this->userRepository->updateUserPassword($userId, $password);
 
         $this->logger->info("Password of user with id `{$userId}` was updated.");
 
