@@ -1851,3 +1851,47 @@
 [2022-07-18T06:15:36.542052-04:00] slim-app.INFO: User with id `28` was updated. [] {"uid":"a60f162"}
 [2022-07-18T06:16:07.732599-04:00] slim-app.INFO: Password of user with id `28` was updated. [] {"uid":"467be72"}
 [2022-07-18T06:16:28.280825-04:00] slim-app.INFO: User with id `28` was updated. [] {"uid":"fef3ebf"}
+[2022-07-18T06:26:43.624725-04:00] slim-app.INFO: New ticket with id `47` was created. [] {"uid":"bdf7c86"}
+[2022-07-18T06:26:54.489563-04:00] slim-app.INFO: Ticket list was viewed by user with the id 28. [] {"uid":"30bb23c"}
+[2022-07-18T06:26:57.607889-04:00] slim-app.INFO: Ticket list was viewed by user with the id 28. [] {"uid":"2d28f15"}
+[2022-07-18T06:27:18.978925-04:00] slim-app.INFO: Ticket of id `47` was viewed. [] {"uid":"46e1166"}
+[2022-07-18T06:27:50.058560-04:00] slim-app.INFO: New item with id `121` was created. [] {"uid":"d8672bf"}
+[2022-07-18T06:28:18.814571-04:00] slim-app.INFO: Ticket of id `47` was viewed. [] {"uid":"549c6ad"}
+[2022-07-18T06:28:32.725579-04:00] slim-app.INFO: New item with id `123` was created. [] {"uid":"b9dfdb7"}
+[2022-07-18T06:28:43.507263-04:00] slim-app.INFO: Ticket list was viewed by user with the id 28. [] {"uid":"d9d0852"}
+[2022-07-18T06:28:47.694839-04:00] slim-app.INFO: Ticket of id `47` was viewed. [] {"uid":"12ce769"}
+[2022-07-18T06:29:35.632655-04:00] slim-app.INFO: New section with id `71` was created. [] {"uid":"efe8ce4"}
+[2022-07-18T06:29:50.689450-04:00] slim-app.INFO: New ticket with id `49` was created. [] {"uid":"128e7df"}
+[2022-07-18T06:29:55.104623-04:00] slim-app.INFO: Ticket of id `47` was viewed. [] {"uid":"aa42ef5"}
+[2022-07-18T06:30:49.599515-04:00] slim-app.INFO: Section of item with id `123` was updated to section with id `71`. [] {"uid":"58957e7"}
+[2022-07-18T06:31:09.583279-04:00] slim-app.INFO: Ticket of id `47` was viewed. [] {"uid":"6354d8d"}
+[2022-07-18T06:39:59.163740-04:00] slim-app.INFO: Ticket list was viewed by user with the id 28. [] {"uid":"2672448"}
+[2022-07-18T06:40:14.762556-04:00] slim-app.INFO: Ticket of id `47` was viewed. [] {"uid":"697b82e"}
+[2022-07-18T06:40:39.131582-04:00] slim-app.ERROR: While deleting section with id 69: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`sandbox`.`items`, CONSTRAINT `items_ibfk_1` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`)) [] {"uid":"b2583e8"}
+[2022-07-18T06:41:06.057186-04:00] slim-app.INFO: Item with id `121 deleted successfully`. [] {"uid":"f23a4ab"}
+[2022-07-18T06:41:10.449941-04:00] slim-app.INFO: Item with id `69 deleted successfully`. [] {"uid":"4ae7adc"}
+[2022-07-18T06:41:17.811533-04:00] slim-app.INFO: Ticket of id `47` was viewed. [] {"uid":"280f286"}
+[2022-07-18T06:52:25.591147-04:00] slim-app.INFO: New user with id `37` was created. [] {"uid":"52054c0"}
+[2022-07-18T06:52:36.380223-04:00] slim-app.ERROR: Email `pedro666@example.org` already exists. [] {"uid":"ca9e438"}
+[2022-07-18T07:10:58.153338-04:00] slim-app.ERROR: Email `pedro666@gmail.com` already exists. [] {"uid":"f79e16b"}
+[2022-07-18T07:11:24.175709-04:00] slim-app.INFO: New user with id `39` was created. [] {"uid":"4612aae"}
+[2022-07-18T07:12:53.236718-04:00] slim-app.INFO: User of id `39` was viewed. [] {"uid":"5d97db1"}
+[2022-07-18T07:13:50.445467-04:00] slim-app.INFO: Item status list was viewed [] {"uid":"ad44083"}
+[2022-07-18T07:14:40.422330-04:00] slim-app.INFO: New ticket with id `51` was created. [] {"uid":"240972d"}
+[2022-07-18T07:14:53.369539-04:00] slim-app.INFO: Ticket list was viewed by user with the id 39. [] {"uid":"18fec01"}
+[2022-07-18T07:15:09.268740-04:00] slim-app.INFO: Ticket of id `51` was viewed. [] {"uid":"6772bb9"}
+[2022-07-18T07:15:14.713657-04:00] slim-app.INFO: Ticket of id `51` was viewed. [] {"uid":"847e8ce"}
+[2022-07-18T07:15:36.122882-04:00] slim-app.INFO: Ticket of id `51` was viewed. [] {"uid":"84dac7f"}
+[2022-07-18T07:16:05.078467-04:00] slim-app.INFO: New item with id `125` was created. [] {"uid":"ff954a1"}
+[2022-07-18T07:16:16.728757-04:00] slim-app.INFO: Ticket of id `51` was viewed. [] {"uid":"56b465f"}
+[2022-07-18T07:16:55.720063-04:00] slim-app.INFO: New section with id `77` was created. [] {"uid":"193e771"}
+[2022-07-18T07:16:59.048812-04:00] slim-app.INFO: Ticket of id `51` was viewed. [] {"uid":"a1e5c70"}
+[2022-07-18T07:17:51.049083-04:00] slim-app.INFO: Section of item with id `125` was updated to section with id `77`. [] {"uid":"63b3670"}
+[2022-07-18T07:18:01.302789-04:00] slim-app.INFO: Ticket of id `51` was viewed. [] {"uid":"e16b55a"}
+[2022-07-18T07:18:22.424353-04:00] slim-app.ERROR: While deleting section with id 77: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`sandbox`.`items`, CONSTRAINT `items_ibfk_1` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`)) [] {"uid":"1daf611"}
+[2022-07-18T07:18:38.015183-04:00] slim-app.INFO: Item with id `75 deleted successfully`. [] {"uid":"20428e4"}
+[2022-07-18T07:18:42.938645-04:00] slim-app.INFO: Ticket of id `51` was viewed. [] {"uid":"214474b"}
+[2022-07-18T07:19:44.137980-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 24. [] {"uid":"54db75d"}
+[2022-07-18T07:19:51.124017-04:00] slim-app.INFO: Ticket list was viewed by admin with the id 24. [] {"uid":"fa33676"}
+[2022-07-18T07:20:48.957103-04:00] slim-app.INFO: Ticket of id `41` was viewed. [] {"uid":"1408157"}
+[2022-07-18T07:20:53.961285-04:00] slim-app.INFO: Ticket of id `41` was viewed. [] {"uid":"88d3c6a"}

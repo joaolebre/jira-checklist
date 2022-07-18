@@ -37,7 +37,7 @@ $statements = [
         id INT PRIMARY KEY AUTO_INCREMENT,
         ticket_id INT NOT NULL,
         name VARCHAR(255) NOT NULL,
-        position INT NOT NULL,
+        position INT NOT NULL UNIQUE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY (ticket_id) REFERENCES tickets(id)
@@ -46,7 +46,7 @@ $statements = [
         id INT PRIMARY KEY AUTO_INCREMENT,
         tab_id INT NOT NULL,
         name VARCHAR(255) NOT NULL,
-        position INT NOT NULL,
+        position INT NOT NULL UNIQUE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY (tab_id) REFERENCES tabs(id)
@@ -70,7 +70,7 @@ $statements = [
         summary TEXT NOT NULL,
         is_checked TINYINT(1) NOT NULL DEFAULT 0,
         is_important TINYINT(1) NOT NULL DEFAULT 0,
-        position INT NOT NULL,
+        position INT NOT NULL UNIQUE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY (section_id) REFERENCES sections(id),
