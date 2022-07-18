@@ -67,7 +67,7 @@ class UpdateUserAction extends UserAction
      */
     protected function action(): Response
     {
-        $userId = $this->resolveArg('id');
+        $userId = (int) $this->resolveArg('id');
 
         if (! $this->checkAuthorization($userId)) {
             throw new HttpUnauthorizedException($this->request, 'You are not authorized to modify this user.');
