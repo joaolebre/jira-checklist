@@ -34,6 +34,8 @@ php database/dbseeder.php
 
 - Update User Password: `PATCH /api/users/password/{id}`
 
+- Update User Role: `PATCH /api/users/role/{id}`
+
 - Delete User: `DELETE /api/users/{id}`
 
 

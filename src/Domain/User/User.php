@@ -53,16 +53,18 @@ class User implements JsonSerializable
      * @throws UserValidationException
      */
     public static function validateUserData($request, $data) {
-        try {
-            v::stringType()->length(3, 70)->assert($data['name']);
-        } catch (NestedValidationException $ex) {
-            throw new UserValidationException($request, 'Name must be between 3 and 70 characters.');
-        }
+        if ($request->getMethod() == 'POST' || $request->getMethod() == 'PUT') {
+            try {
+                v::stringType()->length(3, 70)->assert($data['name']);
+            } catch (NestedValidationException $ex) {
+                throw new UserValidationException($request, 'Name must be between 3 and 70 characters.');
+            }
 
-        try {
-            v::email()->assert($data['email']);
-        } catch (NestedValidationException $ex) {
-            throw new UserValidationException($request, 'Email format is invalid.');
+            try {
+                v::email()->assert($data['email']);
+            } catch (NestedValidationException $ex) {
+                throw new UserValidationException($request, 'Email format is invalid.');
+            }
         }
 
         if ($request->getMethod() == 'POST') {
@@ -70,6 +72,14 @@ class User implements JsonSerializable
                 v::regex('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$^')->assert($data['password']);
             } catch (NestedValidationException $ex) {
                 throw new UserValidationException($request, 'Password must have at least 8 characters, 1 lowercase letter, 1 uppercase letter, 1 number and 1 symbol.');
+            }
+        }
+
+        if ($request->getMethod() == 'PATCH') {
+            try {
+                v::anyOf(v::equals('admin'), v::equals('user'))->assert($data['role']);
+            } catch (NestedValidationException $ex) {
+                throw new UserValidationException($request, "Role must be either 'admin' or 'user'.");
             }
         }
     }
@@ -170,7 +180,8 @@ class User implements JsonSerializable
         return [
             'id' => (int) $this->id,
             'name' => $this->name,
-            'email' => $this->email
+            'email' => $this->email,
+            'role' => $this->role
         ];
     }
 }

@@ -1111,6 +1111,48 @@ paths:
       security:
         -
           bearerAuth: []
+  '/api/users/role/{id}':
+    patch:
+      tags:
+        - User
+      summary: 'Update the role of a specific user'
+      operationId: updateUserRole
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'User id.'
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        description: 'User role'
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - role
+              properties:
+                role:
+                  type: string
+                  format: text
+                  example: admin
+              type: object
+      responses:
+        '200':
+          description: 'User role updated'
+        '404':
+          description: 'User not found'
+        '405':
+          description: 'Validation exception'
+        '401':
+          description: 'Unauthorized / Token missing or invalid'
+      security:
+        -
+          bearerAuth: []
 components:
   schemas:
     Item:

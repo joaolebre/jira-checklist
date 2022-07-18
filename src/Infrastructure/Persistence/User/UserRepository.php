@@ -11,7 +11,7 @@ class UserRepository extends BaseRepository
 {
 
     public function findAll(): array {
-        $query = 'SELECT id, name, email, password FROM users';
+        $query = 'SELECT id, name, email, role FROM users';
         $statement = $this->database->prepare($query);
         $statement->execute();
 
@@ -130,6 +130,25 @@ class UserRepository extends BaseRepository
         $statement->bindParam(':password', $hashed_password);
 
         $statement->execute();
+    }
+
+    /**
+     * @throws UserNotFoundException
+     */
+    public function updateUserRole(int $userId, string $role): User {
+        $query = '
+            UPDATE users
+            SET role = :role
+            WHERE id = :id
+        ';
+        $statement = $this->database->prepare($query);
+
+        $statement->bindParam(':id', $userId);
+        $statement->bindParam(':role', $role);
+
+        $statement->execute();
+
+        return $this->findUserById($userId);
     }
 
     /**

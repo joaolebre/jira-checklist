@@ -45,6 +45,7 @@ return function (App $app) {
             $group->post('/login', User\LoginUserAction::class);
             $group->put('/{id}', User\UpdateUserAction::class);
             $group->patch('/password/{id}', User\UpdateUserPasswordAction::class);
+            $group->patch('/role/{id}', User\UpdateUserRoleAction::class);
             $group->delete('/{id}', User\DeleteUserAction::class);
         });
 
